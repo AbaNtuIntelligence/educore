@@ -3,21 +3,21 @@
 // ============================
 const products = [
   // Stationery
-  { id: 1, name: "A4 80gsm Copy Paper", category: "stationery", slug: "a4-copy-paper", description: "Premium quality A4 paper, 80gsm, bright white. Pack of 5 reams.", image: "https://picsum.photos/seed/paper/400/300", unit: "box (5 reams)", sku: "EDU-PAP-001", price: "R 245.00", featured: true, features: ["80gsm weight", "Bright white finish", "Suitable for double-sided printing", "Acid-free for longevity"] },
+  { id: 1, name: "A4 80gsm Copy Paper", category: "stationery", slug: "a4-copy-paper", description: "luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "https://picsum.photos/seed/paper/400/300", unit: "box (5 reams)", sku: "EDU-PAP-001", price: "R 245.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
   { id: 2, name: "Ballpoint Pen (Box 50)", category: "stationery", slug: "ballpoint-pen", description: "Smooth writing ballpoint pens, blue ink, box of 50.", image: "https://picsum.photos/seed/pen/400/300", unit: "box of 50", sku: "EDU-PEN-002", price: "R 89.00", featured: false, features: ["Blue ink", "Comfortable grip", "Smooth writing", "Box of 50"] },
   { id: 3, name: "A4 Presentation Folder", category: "stationery", slug: "presentation-folder", description: "Cardboard presentation folder with clear cover, A4 size.", image: "https://picsum.photos/seed/folder/400/300", unit: "each", sku: "EDU-FOL-003", price: "R 12.50", featured: false, features: ["A4 size", "Clear cover", "Professional finish", "Cardboard construction"] },
   { id: 4, name: "Highlighter Set (6 colours)", category: "stationery", slug: "highlighter-set", description: "Set of 6 neon highlighters, chisel tip.", image: "https://picsum.photos/seed/highlighter/400/300", unit: "set", sku: "EDU-HIG-004", price: "R 34.00", featured: false, features: ["6 neon colors", "Chisel tip", "Long-lasting ink", "Vibrant colors"] },
   { id: 5, name: "A4 Binding Covers (50 pack)", category: "stationery", slug: "binding-covers", description: "Clear plastic A4 binding covers, 50 per pack.", image: "https://picsum.photos/seed/binding/400/300", unit: "pack of 50", sku: "EDU-BIN-005", price: "R 78.00", featured: false, features: ["Clear plastic", "A4 size", "50 per pack", "Durable material"] },
 
   // Office Furniture
-  { id: 6, name: "Executive Office Desk", category: "furniture", slug: "executive-desk", description: "Modern executive desk with cable management, 1800x900x750mm.", image: "https://picsum.photos/seed/desk/400/300", unit: "each", sku: "EDU-FUR-012", price: "R 4,250.00", featured: true, features: ["Dimensions: 1800x900x750mm", "High-density MDF", "Built-in cable management", "5 colours available"] },
-  { id: 7, name: "Ergonomic Office Chair", category: "furniture", slug: "ergonomic-chair", description: "Adjustable ergonomic chair with lumbar support, mesh back.", image: "https://picsum.photos/seed/chair/400/300", unit: "each", sku: "EDU-FUR-013", price: "R 1,890.00", featured: false, features: ["Adjustable height", "Lumbar support", "Mesh back", "Padded seat"] },
+  { id: 6, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "executive-desk", description: "luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/classic-ea.jpg", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
+  { id: 7, name: "Activity Executive Desk with Side Cabinet", category: "furniture", slug: "ergonomic-chair", description: "premium office workstation designed to combine executive style, spacious functionality, and practical storage.", image: "images/activity.jpg", unit: "each", sku: "AED-013", price: "R 16,480.00", featured: false, features: ["Modern Executive Design", "Integrated Side Cabinet", "Large Executive Work Surface", "Lockable Drawers (Model Dependent)"] },
   { id: 8, name: "Filing Cabinet (4 drawer)", category: "furniture", slug: "filing-cabinet", description: "Steel filing cabinet with 4 drawers, lockable.", image: "https://picsum.photos/seed/cabinet/400/300", unit: "each", sku: "EDU-FUR-014", price: "R 2,100.00", featured: false, features: ["4 drawers", "Lockable", "Steel construction", "Smooth runners"] },
   { id: 9, name: "Conference Table (6 seater)", category: "furniture", slug: "conference-table", description: "Modern conference table, 2400x1200mm, with cable ports.", image: "https://picsum.photos/seed/table/400/300", unit: "each", sku: "EDU-FUR-015", price: "R 5,600.00", featured: false, features: ["2400x1200mm", "Cable management ports", "Modern design", "Sturdy base"] },
   { id: 10, name: "Bookshelf (5-tier)", category: "furniture", slug: "bookshelf", description: "5-tier wooden bookshelf, sturdy and stylish.", image: "https://picsum.photos/seed/bookshelf/400/300", unit: "each", sku: "EDU-FUR-016", price: "R 1,450.00", featured: false, features: ["5 tiers", "Wooden construction", "Sturdy design", "Easy assembly"] },
 
   // PPE & Safety
-  { id: 11, name: "3-Ply Face Masks (50/box)", category: "ppe", slug: "face-masks", description: "Disposable 3-ply face masks with elastic ear loops, box of 50.", image: "https://picsum.photos/seed/mask/400/300", unit: "box of 50", sku: "EDU-PPE-003", price: "R 95.00", featured: true, features: ["3-ply protection", "Elastic ear loops", "Breathable material", "CE certified"] },
+  { id: 11, name: "Re-usable Corded Ear Plugs", category: "ppe", slug: "face-masks", description: "Disposable 3-ply face masks with elastic ear loops, box of 50.", image: "images/Ear-Plugs.jpg", unit: "box of 50", sku: "EDU-PPE-003", price: "R 95.00", featured: true, features: ["3-ply protection", "Elastic ear loops", "Breathable material", "CE certified"] },
   { id: 12, name: "Nitrile Gloves (Box 100)", category: "ppe", slug: "nitrile-gloves", description: "Powder-free nitrile gloves, medical grade, box of 100.", image: "https://picsum.photos/seed/gloves/400/300", unit: "box of 100", sku: "EDU-PPE-004", price: "R 185.00", featured: false, features: ["Powder-free", "Medical grade", "Box of 100", "Sterile"] },
   { id: 13, name: "Safety Goggles", category: "ppe", slug: "safety-goggles", description: "Anti-fog safety goggles with adjustable strap, clear lens.", image: "https://picsum.photos/seed/goggles/400/300", unit: "each", sku: "EDU-PPE-005", price: "R 62.00", featured: false, features: ["Anti-fog", "Adjustable strap", "Clear lens", "Impact resistant"] },
   { id: 14, name: "Disposable Aprons (100/pack)", category: "ppe", slug: "aprons", description: "White disposable aprons, 100 per pack, waterproof.", image: "https://picsum.photos/seed/apron/400/300", unit: "pack of 100", sku: "EDU-PPE-006", price: "R 210.00", featured: false, features: ["100 per pack", "Waterproof", "Disposable", "White"] },
@@ -471,13 +471,39 @@ function showSection(sectionId) {
 }
 
 function filterProducts() {
-  const query = (document.getElementById('search-input').value || document.getElementById('mobile-search').value || '').toLowerCase().trim();
+  const query = getSearchQuery().toLowerCase();
   const activeFilter = document.querySelector('.filter-btn.active');
   const category = activeFilter ? activeFilter.dataset.filter : 'all';
+  const grid = document.getElementById('catalogue-grid');
+
   let filtered = products;
-  if (category !== 'all') filtered = filtered.filter(p => p.category === category);
-  if (query) filtered = filtered.filter(p => p.name.toLowerCase().includes(query) || p.sku.toLowerCase().includes(query));
-  renderCatalogue(filtered);
+  if (category !== 'all') {
+    filtered = filtered.filter(p => p.category === category);
+  }
+  if (query) {
+    filtered = filtered.filter(p => 
+      p.name.toLowerCase().includes(query) || 
+      p.sku.toLowerCase().includes(query) ||
+      p.description.toLowerCase().includes(query)
+    );
+  }
+
+  // Render results
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="col-span-full text-center py-12">
+        <i class="fas fa-search text-4xl text-gray-300 mb-3 block"></i>
+        <p class="text-gray-500">No products found.</p>
+        <p class="text-sm text-gray-400 mt-1">Try adjusting your search or filters.</p>
+        ${query ? `<button onclick="clearSearch()" class="mt-4 text-[#F05A28] hover:underline text-sm">Clear search</button>` : ''}
+      </div>
+    `;
+  } else {
+    renderCatalogue(filtered);
+  }
+
+  // Update clear button visibility
+  toggleClearButtons(query.length > 0);
 }
 
 // ============================
@@ -497,6 +523,8 @@ function filterProducts() {
     dots.forEach((d, i) => d.classList.toggle('active', i === index));
     current = index;
   }
+
+  
   function nextSlide() { goTo(current + 1); }
   function startAuto() { if (interval) clearInterval(interval); interval = setInterval(nextSlide, 5000); }
   function stopAuto() { if (interval) clearInterval(interval); }
@@ -541,22 +569,234 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('mobile-menu').classList.toggle('hidden');
   });
 
-  // Search
-  document.getElementById('search-input').addEventListener('input', filterProducts);
-  document.getElementById('mobile-search').addEventListener('input', function() {
-    document.getElementById('search-input').value = this.value;
-    filterProducts();
-  });
+// ============================
+// SEARCH (Simplified & Tested)
+// ============================
 
-  // Filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      filterProducts();
+function getSearchQuery() {
+  const desktop = document.getElementById('search-input');
+  const mobile = document.getElementById('mobile-search');
+  const val = desktop ? desktop.value : '';
+  if (!val && mobile) return mobile.value;
+  return val;
+}
+
+function filterProducts() {
+  const query = getSearchQuery().toLowerCase().trim();
+  const activeFilter = document.querySelector('.filter-btn.active');
+  const category = activeFilter ? activeFilter.dataset.filter : 'all';
+  const grid = document.getElementById('catalogue-grid');
+
+  console.log(`Searching for: "${query}" in category: "${category}"`); // Debug
+
+  let filtered = products;
+  if (category !== 'all') {
+    filtered = filtered.filter(p => p.category === category);
+  }
+  if (query) {
+    filtered = filtered.filter(p => 
+      p.name.toLowerCase().includes(query) || 
+      p.sku.toLowerCase().includes(query) ||
+      (p.description && p.description.toLowerCase().includes(query))
+    );
+  }
+
+  console.log(`Found ${filtered.length} products`); // Debug
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="col-span-full text-center py-12">
+        <i class="fas fa-search text-4xl text-gray-300 mb-3 block"></i>
+        <p class="text-gray-500">No products found for "${query}".</p>
+        <p class="text-sm text-gray-400 mt-1">Try adjusting your search or filters.</p>
+        ${query ? `<button onclick="clearSearch()" class="mt-4 text-[#F05A28] hover:underline text-sm">Clear search</button>` : ''}
+      </div>
+    `;
+  } else {
+    renderCatalogue(filtered);
+  }
+
+  // Show/hide clear buttons
+  const showClear = query.length > 0;
+  document.getElementById('clear-search-desktop')?.classList.toggle('hidden', !showClear);
+  document.getElementById('clear-search-mobile')?.classList.toggle('hidden', !showClear);
+}
+
+function performSearch() {
+  const query = getSearchQuery();
+  if (query.length > 0) {
+    // Navigate to catalogue if not already there
+    const catalogueSection = document.getElementById('section-catalogue');
+    if (!catalogueSection.classList.contains('active')) {
+      showSection('catalogue');
+    }
+  }
+  filterProducts();
+}
+
+function clearSearch() {
+  const desktop = document.getElementById('search-input');
+  const mobile = document.getElementById('mobile-search');
+  if (desktop) desktop.value = '';
+  if (mobile) mobile.value = '';
+  document.getElementById('clear-search-desktop')?.classList.add('hidden');
+  document.getElementById('clear-search-mobile')?.classList.add('hidden');
+  // Re-filter to show all
+  if (document.getElementById('section-catalogue').classList.contains('active')) {
+    filterProducts();
+  }
+  document.getElementById('search-input')?.focus();
+}
+// Search events
+const searchInput = document.getElementById('search-input');
+const mobileSearch = document.getElementById('mobile-search');
+if (searchInput) {
+  searchInput.addEventListener('input', performSearch);
+}
+if (mobileSearch) {
+  mobileSearch.addEventListener('input', function() {
+    // Sync value with desktop
+    const desktop = document.getElementById('search-input');
+    if (desktop && desktop.value !== this.value) {
+      desktop.value = this.value;
+    }
+    performSearch();
+  });
+}
+// Clear buttons
+document.getElementById('clear-search-desktop')?.addEventListener('click', clearSearch);
+document.getElementById('clear-search-mobile')?.addEventListener('click', clearSearch);
+
+  // ============================
+// SEARCH & FILTER (Refined)
+// ============================
+
+function getSearchQuery() {
+  const desktop = document.getElementById('search-input');
+  const mobile = document.getElementById('mobile-search');
+  const value = desktop?.value || mobile?.value || '';
+  return value.trim();
+}
+
+function setSearchQuery(value) {
+  const desktop = document.getElementById('search-input');
+  const mobile = document.getElementById('mobile-search');
+  if (desktop) desktop.value = value;
+  if (mobile) mobile.value = value;
+  toggleClearButtons(value.length > 0);
+}
+
+function toggleClearButtons(show) {
+  const clearDesktop = document.getElementById('clear-search-desktop');
+  const clearMobile = document.getElementById('clear-search-mobile');
+  if (clearDesktop) clearDesktop.classList.toggle('hidden', !show);
+  if (clearMobile) clearMobile.classList.toggle('hidden', !show);
+}
+
+function performSearch() {
+  const query = getSearchQuery();
+  
+  // If query is not empty, navigate to catalogue
+  if (query.length > 0) {
+    showSection('catalogue');
+  } else {
+    // If empty, show all products (but stay on current page)
+    filterProducts();
+    return;
+  }
+  
+  // Apply filter (will show results in catalogue)
+  filterProducts();
+  
+  // Sync between inputs (just to be safe)
+  setSearchQuery(query);
+}
+
+function clearSearch() {
+  setSearchQuery('');
+  // If we're on catalogue, reset to show all products
+  if (document.getElementById('section-catalogue').classList.contains('active')) {
+    filterProducts();
+  }
+  // Focus on search input after clearing
+  document.getElementById('search-input')?.focus();
+}
+
+function filterProducts() {
+  const query = getSearchQuery().toLowerCase();
+  const activeFilter = document.querySelector('.filter-btn.active');
+  const category = activeFilter ? activeFilter.dataset.filter : 'all';
+  const grid = document.getElementById('catalogue-grid');
+  
+  let filtered = products;
+  if (category !== 'all') {
+    filtered = filtered.filter(p => p.category === category);
+  }
+  if (query) {
+    filtered = filtered.filter(p => 
+      p.name.toLowerCase().includes(query) || 
+      p.sku.toLowerCase().includes(query) ||
+      p.description.toLowerCase().includes(query)
+    );
+  }
+  
+  // Render the filtered results into the catalogue grid
+  renderCatalogue(filtered);
+  
+  // Show/hide the "no results" message inside the grid
+  if (filtered.length === 0 && grid) {
+    // renderCatalogue already handles this, but ensure it's shown
+    grid.innerHTML = `
+      <div class="col-span-full text-center py-12">
+        <i class="fas fa-search text-4xl text-gray-300 mb-3 block"></i>
+        <p class="text-gray-500">No products found matching your search.</p>
+        <p class="text-sm text-gray-400 mt-1">Try adjusting your keywords or filters.</p>
+        ${query ? `<button onclick="clearSearch()" class="mt-4 text-[#F05A28] hover:underline text-sm">Clear search</button>` : ''}
+      </div>
+    `;
+  }
+}
+
+// --- Attach search events ---
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('search-input');
+  const mobileSearch = document.getElementById('mobile-search');
+  const clearDesktop = document.getElementById('clear-search-desktop');
+  const clearMobile = document.getElementById('clear-search-mobile');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', performSearch);
+    // Focus on search when '/' key is pressed (optional)
+    document.addEventListener('keydown', function(e) {
+      if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
+  }
+  if (mobileSearch) {
+    mobileSearch.addEventListener('input', function() {
+      // Sync desktop search value
+      const desktop = document.getElementById('search-input');
+      if (desktop) desktop.value = this.value;
+      performSearch();
+    });
+  }
+
+  if (clearDesktop) clearDesktop.addEventListener('click', clearSearch);
+  if (clearMobile) clearMobile.addEventListener('click', clearSearch);
+
+  // Also clear when user presses Escape inside search
+  [searchInput, mobileSearch].forEach(input => {
+    if (!input) return;
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        clearSearch();
+        this.blur();
+      }
     });
   });
-  document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
+});
 
   // Add to quote (event delegation)
   document.addEventListener('click', function(e) {

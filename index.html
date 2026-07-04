@@ -260,10 +260,10 @@
       <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="catalogue-download">Catalogue PDF</a>
     </nav>
     <div class="flex items-center gap-3">
-      <div class="relative hidden sm:block">
-        <input type="text" id="search-input" placeholder="Search products..." class="pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F05A28]/50 w-44 lg:w-56" />
-        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
-      </div>
+      <input type="text" id="search-input" placeholder="Search products..." />
+<button id="clear-search-desktop" class="hidden">×</button>
+
+
       <button id="basket-btn" class="relative p-2 hover:bg-gray-100 rounded-full transition">
         <i class="fas fa-shopping-basket text-xl text-[#1A2B4C]"></i>
         <span id="basket-count" class="basket-badge">0</span>
@@ -283,10 +283,13 @@
       <a href="#" class="nav-link text-gray-600" data-section="contact">Contact</a>
       <a href="#" class="nav-link text-gray-600" data-section="quote">Request Quote</a>
       <a href="#" class="nav-link text-gray-600" data-section="catalogue-download">Catalogue PDF</a>
+      
+      
       <div class="relative mt-2">
-        <input type="text" id="mobile-search" placeholder="Search products..." class="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F05A28]/50" />
-        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+        <input type="text" id="mobile-search" placeholder="Search products..." />
+          <button id="clear-search-mobile" class="hidden">×</button>
       </div>
+    
     </div>
   </div>
 </header>
