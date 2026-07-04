@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDUCORE – Stationery, PPE & Office Furniture</title>
+  <!-- Tailwind CSS (CDN) – fine for static sites -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- PDF Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js"></script>
+  <style>
+    /* ========== GENERAL ========== */
+    body { background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    /* ========== HERO SLIDER ========== */
+    .hero-wrapper {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+      background: #1A2B4C;
+    }
+    @media (min-width: 768px) { .hero-wrapper { height: 500px; } }
+    .hero-slides { position: absolute; inset: 0; }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      will-change: opacity;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 20;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(26,43,76,0.7) 0%, rgba(26,43,76,0.3) 80%);
+    }
+    .hero-content h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: white;
+      max-width: 32rem;
+    }
+    @media (min-width: 768px) { .hero-content h1 { font-size: 3.5rem; } }
+    .hero-content h1 span { color: #F05A28; }
+    .hero-content p {
+      margin-top: 0.75rem;
+      color: #d1d5db;
+      font-size: 1.125rem;
+      max-width: 28rem;
+    }
+    .hero-buttons { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+    .hero-dots {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 20;
+    }
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0;
+    }
+    .hero-dot.active {
+      background: #F05A28;
+      border-color: #F05A28;
+      box-shadow: 0 0 12px rgba(240,90,40,0.6);
+      width: 28px;
+      border-radius: 6px;
+    }
+    .hero-dot:hover { background: rgba(255,255,255,0.8); }
+    .hero-dot.active:hover { background: #F05A28; }
+
+    /* ========== CATEGORY SLIDERS ========== */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 9999px;
+      padding: 0.5rem 0.75rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      transition: all 0.2s;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    .slider-btn:hover { background: #f1f5f9; opacity: 1; }
+    .slider-btn.left { left: -0.5rem; }
+    .slider-btn.right { right: -0.5rem; }
+    .slider-btn i { font-size: 0.875rem; color: #1A2B4C; }
+    .slider-dot { transition: all 0.3s ease; }
+    .slider-dot.bg-[#F05A28] {
+      box-shadow: 0 0 8px rgba(240,90,40,0.5);
+      width: 1.25rem !important;
+    }
+
+    /* ========== PRODUCT CARDS ========== */
+    .product-card {
+      transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -12px rgba(26,43,76,0.25);
+    }
+
+    /* ========== MODAL ========== */
+    #productModal:not(.hidden) {
+      display: flex !important;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 2rem;
+    }
+    @media (min-width: 768px) { #productModal:not(.hidden) { padding-top: 4rem; } }
+    #modalContent {
+      transform-origin: center top;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    #productModal:not(.hidden) #modalContent {
+      transform: scale(1);
+      opacity: 1;
+    }
+    #modalQtyMinus, #modalQtyPlus { cursor: pointer; user-select: none; min-width: 2.5rem; }
+    #modalQtyMinus:hover, #modalQtyPlus:hover { background: #f1f5f9; }
+    #modalQtyValue { min-width: 3rem; }
+    #modalFeatures { max-height: 80px; overflow-y: auto; padding-right: 4px; }
+    #modalFeatures::-webkit-scrollbar { width: 3px; }
+    #modalFeatures::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 9999px; }
+    #modalImage { transition: transform 0.3s ease; }
+    #modalImage:hover { transform: scale(1.02); }
+
+    /* ========== QUOTE BASKET ========== */
+    .drawer { transform: translateX(100%); transition: transform 0.3s ease; }
+    .drawer.open { transform: translateX(0); }
+    .basket-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #F05A28;
+      color: white;
+      border-radius: 9999px;
+      font-size: 0.65rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #F05A28;
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: 9999px;
+      transition: background 0.2s;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: #d94a1e; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 2px solid white;
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.75rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+      text-decoration: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn-outline:hover { background: white; color: #1A2B4C; }
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: #f1f5f9;
+      color: #334155;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active { background: #1A2B4C; color: white; }
+    .filter-btn:hover:not(.active) { background: #e2e8f0; }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
+  <!-- Top bar -->
+  <div class="hidden lg:block bg-[#1A2B4C] text-white text-sm py-1.5">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <span class="opacity-80">Your trusted partner for stationery, PPE &amp; hygiene solutions.</span>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-youtube"></i></a>
+        <span class="text-gray-400">|</span>
+        <a href="#" class="hover:text-[#F05A28] transition flex items-center gap-2">
+          <i class="fas fa-download"></i> Download Catalogue (PDF)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+    <a href="#" class="text-2xl font-bold text-[#1A2B4C] tracking-tight" id="logo-link">EDUCORE</a>
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="#" class="nav-link text-[#1A2B4C] hover:text-[#F05A28]" data-section="home">Home</a>
+      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="catalogue">Catalogue</a>
+      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="about">About</a>
+      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="contact">Contact</a>
+      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="quote">Request Quote</a>
+      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="catalogue-download">Catalogue PDF</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <div class="relative hidden sm:block">
+        <input type="text" id="search-input" placeholder="Search products..." class="pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F05A28]/50 w-44 lg:w-56" />
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+      </div>
+      <button id="basket-btn" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+        <i class="fas fa-shopping-basket text-xl text-[#1A2B4C]"></i>
+        <span id="basket-count" class="basket-badge">0</span>
+      </button>
+      <button id="menu-toggle" class="md:hidden p-2 hover:bg-gray-100 rounded-full">
+        <i class="fas fa-bars text-xl text-[#1A2B4C]"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
+    <div class="flex flex-col gap-2 text-sm">
+      <a href="#" class="nav-link text-[#1A2B4C]" data-section="home">Home</a>
+      <a href="#" class="nav-link text-gray-600" data-section="catalogue">Catalogue</a>
+      <a href="#" class="nav-link text-gray-600" data-section="about">About</a>
+      <a href="#" class="nav-link text-gray-600" data-section="contact">Contact</a>
+      <a href="#" class="nav-link text-gray-600" data-section="quote">Request Quote</a>
+      <a href="#" class="nav-link text-gray-600" data-section="catalogue-download">Catalogue PDF</a>
+      <div class="relative mt-2">
+        <input type="text" id="mobile-search" placeholder="Search products..." class="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F05A28]/50" />
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MAIN ========== -->
+<main class="container mx-auto px-4 py-6">
+
+  <!-- ===== HOME ===== -->
+  <section id="section-home" class="page-section active">
+    <!-- Hero Slider -->
+    <div class="hero-wrapper" id="heroSlider">
+      <div class="hero-slides">
+        <div class="hero-slide active" style="background-image: url('https://picsum.photos/seed/office/1200/600');"></div>
+        <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/stationery/1200/600');"></div>
+        <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/ppe/1200/600');"></div>
+        <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/cleaning/1200/600');"></div>
+      </div>
+      <div class="hero-content">
+        <h1>
+          Your Single Source for<br/>
+          <span>Quality Stationery, PPE &amp; Hygiene</span>
+        </h1>
+        <p>Trusted by schools, government, and businesses across South Africa.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn-primary" onclick="document.querySelector('[data-section=catalogue]').click(); return false;">
+            View Full Catalogue <i class="fas fa-arrow-right text-sm"></i>
+          </a>
+          <a href="#" class="btn-outline" onclick="document.querySelector('[data-section=catalogue-download]').click(); return false;">
+            <i class="fas fa-download"></i> Download Catalogue
+          </a>
+        </div>
+      </div>
+      <div class="hero-dots">
+        <span class="hero-dot active" data-index="0"></span>
+        <span class="hero-dot" data-index="1"></span>
+        <span class="hero-dot" data-index="2"></span>
+        <span class="hero-dot" data-index="3"></span>
+      </div>
+    </div>
+
+    <!-- Category Sliders -->
+    <div id="category-sliders" class="space-y-12 mt-10"></div>
+  </section>
+
+  <!-- ===== CATALOGUE ===== -->
+  <section id="section-catalogue" class="page-section">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold text-[#1A2B4C] tracking-tight">
+        <i class="fas fa-th-list text-[#F05A28] mr-2"></i>All Products
+      </h2>
+      <div class="flex gap-2 flex-wrap">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="stationery">Stationery</button>
+        <button class="filter-btn" data-filter="furniture">Furniture</button>
+        <button class="filter-btn" data-filter="ppe">PPE</button>
+        <button class="filter-btn" data-filter="cleaning">Cleaning</button>
+      </div>
+    </div>
+    <div id="catalogue-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+ <section id="section-about" class="page-section">
+  
+  <!-- Hero banner -->
+  <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A2B4C] to-[#2a3f62] text-white mb-12">
+    <div class="px-6 py-16 lg:py-20 lg:px-12 relative z-10">
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight max-w-2xl">
+        About <span class="text-[#F05A28]">EDUCORE</span>
+      </h1>
+      <p class="mt-3 text-gray-200 max-w-xl text-lg">
+        Your trusted partner for stationery, PPE, hygiene, and office furniture.
+      </p>
+    </div>
+    <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-white/5 to-transparent"></div>
+  </div>
+
+  <!-- Company overview -->
+  <div class="grid md:grid-cols-2 gap-10 items-start mb-16">
+    <div class="prose prose-lg text-gray-700 space-y-4">
+      <p><strong>EDUCORE Stationery and Hygiene Supplies (Pty) Ltd</strong> is a South African company dedicated to providing high-quality stationery, office furniture, PPE, and hygiene products to educational institutions, government departments, and corporate clients.</p>
+      <p>With a focus on reliability and bulk supply, we support tenders and large-scale procurement with competitive pricing and nationwide delivery.</p>
+      <p><strong>Our Values:</strong> Integrity, Quality, and Service Excellence.</p>
+      <p><strong>Registration:</strong> 2026/461572/07 &nbsp;|&nbsp; <strong>Tax:</strong> 9790884192</p>
+      <p><strong>B-BBEE Level:</strong> Compliant &nbsp;|&nbsp; <strong>Tender Ready</strong></p>
+      <div class="flex gap-4 mt-4">
+        <a href="#" class="inline-flex items-center gap-2 bg-[#F05A28] hover:bg-[#d94a1e] text-white px-6 py-3 rounded-full text-sm font-semibold transition">
+          <i class="fas fa-download"></i> Download Company Profile
+        </a>
+      </div>
+    </div>
+    <div class="relative">
+      <img src="https://picsum.photos/seed/educore/600/400" alt="EDUCORE Office" class="rounded-xl shadow-lg w-full object-cover h-64 md:h-80" />
+      <div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-md hidden md:block">
+        <div class="flex items-center gap-3">
+          <i class="fas fa-check-circle text-[#F05A28] text-2xl"></i>
+          <span class="font-semibold text-[#1A2B4C]">Trusted Partner</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+    <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="text-3xl font-bold text-[#F05A28]">5+</div>
+      <div class="text-sm text-gray-500 mt-1">Years in Industry</div>
+    </div>
+    <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="text-3xl font-bold text-[#F05A28]">200+</div>
+      <div class="text-sm text-gray-500 mt-1">Clients Served</div>
+    </div>
+    <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="text-3xl font-bold text-[#F05A28]">1000+</div>
+      <div class="text-sm text-gray-500 mt-1">Products Supplied</div>
+    </div>
+    <div class="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+      <div class="text-3xl font-bold text-[#F05A28]">Nationwide</div>
+      <div class="text-sm text-gray-500 mt-1">Delivery Coverage</div>
+    </div>
+  </div>
+
+  <!-- Mission & Vision -->
+  <div class="grid md:grid-cols-2 gap-8 mb-16">
+    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 bg-[#F05A28]/10 rounded-full flex items-center justify-center">
+          <i class="fas fa-bullseye text-[#F05A28]"></i>
+        </div>
+        <h3 class="text-xl font-bold text-[#1A2B4C]">Our Mission</h3>
+      </div>
+      <p class="text-gray-600">To deliver reliable, high‑quality stationery, PPE, hygiene, and office furniture solutions that empower education and business across South Africa.</p>
+    </div>
+    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 bg-[#F05A28]/10 rounded-full flex items-center justify-center">
+          <i class="fas fa-eye text-[#F05A28]"></i>
+        </div>
+        <h3 class="text-xl font-bold text-[#1A2B4C]">Our Vision</h3>
+      </div>
+      <p class="text-gray-600">To become the preferred supplier of essential office and hygiene products, recognised for integrity, competitive pricing, and exceptional service.</p>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="mb-16">
+    <h2 class="text-2xl md:text-3xl font-bold text-[#1A2B4C] text-center mb-8">Leadership Team</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- Team Member 1 -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
+        <img src="https://picsum.photos/seed/bongani/300/300" alt="Bongani Dube" class="w-full h-56 object-cover" />
+        <div class="p-4">
+          <h4 class="font-bold text-[#1A2B4C]">Bongani Dube</h4>
+          <p class="text-sm text-gray-500">Managing Director</p>
+          <div class="flex justify-center gap-3 mt-2 text-[#1A2B4C]">
+            <a href="#" class="hover:text-[#F05A28]"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="hover:text-[#F05A28]"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 2 (placeholder) -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
+        <img src="https://picsum.photos/seed/thandi/300/300" alt="Thandi Mokoena" class="w-full h-56 object-cover" />
+        <div class="p-4">
+          <h4 class="font-bold text-[#1A2B4C]">Thandi Mokoena</h4>
+          <p class="text-sm text-gray-500">Operations Director</p>
+          <div class="flex justify-center gap-3 mt-2 text-[#1A2B4C]">
+            <a href="#" class="hover:text-[#F05A28]"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="hover:text-[#F05A28]"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 3 (placeholder) -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
+        <img src="https://picsum.photos/seed/sipho/300/300" alt="Sipho Ndlovu" class="w-full h-56 object-cover" />
+        <div class="p-4">
+          <h4 class="font-bold text-[#1A2B4C]">Sipho Ndlovu</h4>
+          <p class="text-sm text-gray-500">Head of Procurement</p>
+          <div class="flex justify-center gap-3 mt-2 text-[#1A2B4C]">
+            <a href="#" class="hover:text-[#F05A28]"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="hover:text-[#F05A28]"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="bg-gradient-to-r from-[#1A2B4C] to-[#2a3f62] text-white rounded-2xl p-8 text-center">
+    <h3 class="text-2xl font-bold">Ready to work with us?</h3>
+    <p class="mt-2 text-gray-200">Contact our team for inquiries, tenders, or bulk orders.</p>
+    <a href="#" class="inline-block mt-4 bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold px-8 py-3 rounded-full transition">
+      Get in Touch
+    </a>
+  </div>
+</section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="section-contact" class="page-section">
+  <!-- Page header -->
+  <div class="mb-10 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-[#1A2B4C]">Get in Touch</h2>
+    <p class="mt-2 text-gray-500 max-w-lg mx-auto">We’re here to help. Reach out for quotes, tender support, or general enquiries.</p>
+  </div>
+
+  <!-- Two-column layout: contact info + form -->
+  <div class="grid md:grid-cols-5 gap-8 max-w-6xl mx-auto">
+    
+    <!-- Left: Contact info -->
+    <div class="md:col-span-2 space-y-6">
+      <!-- Address -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+        <div class="w-10 h-10 bg-[#F05A28]/10 rounded-full flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-map-marker-alt text-[#F05A28]"></i>
+        </div>
+        <div>
+          <h4 class="font-semibold text-[#1A2B4C]">Visit Us</h4>
+          <p class="text-sm text-gray-500">104 Donnelly Street, Turffontein, Johannesburg, 2190</p>
+          <a href="https://maps.google.com/maps?q=104+Donnelly+Street+Turffontein+Johannesburg" target="_blank" class="text-xs text-[#F05A28] hover:underline mt-1 inline-block">View on Map →</a>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+        <div class="w-10 h-10 bg-[#F05A28]/10 rounded-full flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-phone text-[#F05A28]"></i>
+        </div>
+        <div>
+          <h4 class="font-semibold text-[#1A2B4C]">Call Us</h4>
+          <p class="text-sm text-gray-500">071 945 0220</p>
+          <p class="text-xs text-gray-400">Mon–Fri, 8:00 – 17:00</p>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+        <div class="w-10 h-10 bg-[#F05A28]/10 rounded-full flex items-center justify-center flex-shrink-0">
+          <i class="fas fa-envelope text-[#F05A28]"></i>
+        </div>
+        <div>
+          <h4 class="font-semibold text-[#1A2B4C]">Email Us</h4>
+          <p class="text-sm text-gray-500">info@educore.co.za</p>
+          <p class="text-xs text-gray-400">We respond within 24 hours</p>
+        </div>
+      </div>
+
+      <!-- Social links -->
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h4 class="font-semibold text-[#1A2B4C] mb-3">Connect With Us</h4>
+        <div class="flex gap-4 text-xl">
+          <a href="#" class="text-gray-500 hover:text-[#F05A28] transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-500 hover:text-[#F05A28] transition"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="text-gray-500 hover:text-[#F05A28] transition"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-gray-500 hover:text-[#F05A28] transition"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Contact form -->
+    <div class="md:col-span-3">
+      <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
+        <h3 class="text-xl font-bold text-[#1A2B4C] mb-6">Send a Message</h3>
+        <form id="contact-form" class="space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Full Name *</label>
+              <input type="text" name="name" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition" placeholder="John Doe" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Email *</label>
+              <input type="email" name="email" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition" placeholder="john@example.com" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Company</label>
+            <input type="text" name="company" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition" placeholder="Your company name" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Subject</label>
+            <input type="text" name="subject" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition" placeholder="General enquiry, tender, quote..." />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Message *</label>
+            <textarea name="message" rows="5" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition resize-y" placeholder="Tell us how we can help..."></textarea>
+          </div>
+          <button type="submit" class="w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <p class="text-xs text-gray-400 text-center mt-2">We’ll get back to you within 24 hours.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map (optional static image or iframe) -->
+  <div class="mt-12 max-w-6xl mx-auto">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div class="relative h-64 md:h-80">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.1234567890123!2d28.0456!3d-26.2041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c0a0a0a0a0a%3A0x123456789abcdef!2s104+Donnelly+St%2C+Turffontein%2C+Johannesburg%2C+2190!5e0!3m2!1sen!2sza!4v1234567890"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== QUOTE ===== -->
+  <section id="section-quote" class="page-section max-w-4xl mx-auto py-8">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-[#1A2B4C]">Request a Quote</h2>
+      <p class="mt-2 text-gray-500">Review your selected items and submit your request.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="md:col-span-2">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+          <h3 class="text-lg font-bold text-[#1A2B4C] flex items-center gap-2 mb-4">
+            <i class="fas fa-shopping-basket text-[#F05A28]"></i> Your Quote Items
+            <span id="quote-item-count" class="ml-auto text-sm font-normal text-gray-500">0 items</span>
+          </h3>
+          <div id="quote-basket-items" class="space-y-3 max-h-80 overflow-y-auto pr-2"></div>
+          <div id="quote-basket-empty" class="text-center py-8 text-gray-400">
+            <i class="fas fa-shopping-basket text-4xl block mb-2 text-gray-300"></i>
+            <p>Your quote basket is empty.</p>
+            <p class="text-sm mt-1">Browse the catalogue and add items first.</p>
+          </div>
+          <div id="quote-summary" class="hidden mt-6 pt-4 border-t border-gray-200">
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-500">Total items:</span>
+              <span id="quote-total-items" class="font-medium text-[#1A2B4C]">0</span>
+            </div>
+            <div class="flex justify-between text-sm mt-1">
+              <span class="text-gray-500">Unique products:</span>
+              <span id="quote-unique-items" class="font-medium text-[#1A2B4C]">0</span>
+            </div>
+          </div>
+          <div id="quote-actions" class="hidden mt-6 flex gap-3">
+            <button id="clear-quote-btn" class="text-sm text-red-500 hover:text-red-700 transition flex items-center gap-1">
+              <i class="fas fa-trash-alt"></i> Clear All
+            </button>
+            <button id="continue-shopping-btn" class="text-sm text-[#1A2B4C] hover:text-[#F05A28] transition flex items-center gap-1 ml-auto">
+              <i class="fas fa-arrow-left"></i> Continue Shopping
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-1">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sticky top-24">
+          <h3 class="text-lg font-bold text-[#1A2B4C] mb-4">Your Details</h3>
+          <form id="quote-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Full Name *</label>
+              <input type="text" name="name" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Email *</label>
+              <input type="email" name="email" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Company</label>
+              <input type="text" name="company" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Phone</label>
+              <input type="tel" name="phone" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Additional Notes</label>
+              <textarea name="notes" rows="3" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none"></textarea>
+            </div>
+            <button type="submit" id="submit-quote-btn" class="w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
+              <i class="fas fa-paper-plane"></i> Submit Quote Request
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATALOGUE DOWNLOAD ===== -->
+  <section id="section-catalogue-download" class="page-section">
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A2B4C] to-[#2a3f62] text-white mb-12">
+      <div class="px-6 py-12 lg:py-16 lg:px-12 relative z-10 text-center md:text-left">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <span class="inline-block bg-[#F05A28]/20 text-[#F05A28] text-sm font-semibold px-4 py-1 rounded-full mb-3">
+              <i class="fas fa-file-pdf mr-2"></i> Complete Product Catalogue 2026
+            </span>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+              Download Our<br/>
+              <span class="text-[#F05A28]">Full Product Catalogue</span>
+            </h1>
+            <p class="mt-3 text-gray-200 max-w-xl text-base md:text-lg">
+              Access our complete range of stationery, office furniture, PPE, and hygiene solutions – all in one easy‑to‑download PDF.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-4">
+              <button id="generatePdfBtn" class="bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2 shadow-lg">
+                <i class="fas fa-download"></i> Download Catalogue (PDF)
+              </button>
+              <button id="printPdfBtn" class="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2">
+                <i class="fas fa-print"></i> Print Catalogue
+              </button>
+              <a href="#" class="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2" onclick="document.querySelector('[data-section=catalogue]').click(); return false;">
+                Browse Online <i class="fas fa-arrow-right text-sm"></i>
+              </a>
+            </div>
+            <p class="mt-4 text-sm text-gray-300">
+              <i class="fas fa-file-pdf mr-1"></i> PDF generated from live product data • <span id="pdfProductCount">0</span> products
+            </p>
+          </div>
+          <div class="flex-shrink-0 w-48 md:w-56 lg:w-64 bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/20 shadow-xl text-center">
+            <i class="fas fa-file-pdf text-7xl text-[#F05A28]"></i>
+            <p class="mt-3 text-white/80 text-sm">Live Catalogue</p>
+            <p class="text-white/50 text-xs"><span id="pdfProductCount2">0</span> products</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Features (keep your existing) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+        <div class="w-12 h-12 bg-[#F05A28]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-boxes text-[#F05A28] text-xl"></i>
+        </div>
+        <h4 class="font-semibold text-[#1A2B4C]"><span id="featureProductCount">0</span>+ Products</h4>
+        <p class="text-sm text-gray-500 mt-1">Complete range of stationery, furniture, PPE & hygiene</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+        <div class="w-12 h-12 bg-[#F05A28]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-tag text-[#F05A28] text-xl"></i>
+        </div>
+        <h4 class="font-semibold text-[#1A2B4C]">Bulk Pricing</h4>
+        <p class="text-sm text-gray-500 mt-1">Competitive rates for schools, government & corporate</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+        <div class="w-12 h-12 bg-[#F05A28]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-truck text-[#F05A28] text-xl"></i>
+        </div>
+        <h4 class="font-semibold text-[#1A2B4C]">Nationwide Delivery</h4>
+        <p class="text-sm text-gray-500 mt-1">Fast and reliable shipping across South Africa</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+        <div class="w-12 h-12 bg-[#F05A28]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+          <i class="fas fa-file-contract text-[#F05A28] text-xl"></i>
+        </div>
+        <h4 class="font-semibold text-[#1A2B4C]">Tender Ready</h4>
+        <p class="text-sm text-gray-500 mt-1">B-BBEE compliant with full tender support</p>
+      </div>
+    </div>
+    <!-- Trust signals -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="flex items-center gap-2 justify-center text-sm text-gray-500">
+        <i class="fas fa-shield-alt text-[#F05A28]"></i> Secure Download
+      </div>
+      <div class="flex items-center gap-2 justify-center text-sm text-gray-500">
+        <i class="fas fa-sync-alt text-[#F05A28]"></i> Live Data
+      </div>
+      <div class="flex items-center gap-2 justify-center text-sm text-gray-500">
+        <i class="fas fa-mobile-alt text-[#F05A28]"></i> Mobile Ready
+      </div>
+      <div class="flex items-center gap-2 justify-center text-sm text-gray-500">
+        <i class="fas fa-check-circle text-[#F05A28]"></i> B-BBEE Compliant
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ========== BASKET DRAWER ========== -->
+<div id="basket-drawer" class="drawer fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 overflow-y-auto p-6">
+  <div class="flex justify-between items-center border-b pb-4 mb-4">
+    <h3 class="text-xl font-bold text-[#1A2B4C]">Your Quote Basket</h3>
+    <button id="close-drawer" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times text-xl"></i></button>
+  </div>
+  <div id="basket-items" class="space-y-4"></div>
+  <div id="basket-empty" class="text-center text-gray-500 py-8">
+    <i class="fas fa-shopping-basket text-4xl text-gray-300 mb-2 block"></i>
+    <p>Your basket is empty.</p>
+  </div>
+  <div class="mt-6 border-t pt-4">
+    <button id="request-quote-btn" class="w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg transition">
+      Request Quote
+    </button>
+  </div>
+</div>
+<div id="drawer-overlay" class="fixed inset-0 bg-black/30 z-40 hidden"></div>
+
+<!-- ========== PRODUCT MODAL ========== -->
+<div id="productModal" class="fixed inset-0 z-50 hidden">
+  <div id="modalOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  <div class="relative z-10 max-w-5xl mx-auto mt-8 md:mt-16 px-4">
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+      <button id="modalCloseBtn" class="absolute top-4 right-4 z-20 p-2 bg-white/80 hover:bg-white rounded-full shadow-md transition hover:scale-105 text-[#1A2B4C]">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+      <div class="grid md:grid-cols-2">
+        <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex items-center justify-center min-h-[300px] md:min-h-[400px]">
+          <img id="modalImage" src="" alt="Product" class="object-contain max-h-[400px] w-full" />
+        </div>
+        <div class="p-6 md:p-8 flex flex-col">
+          <h2 id="modalName" class="text-2xl md:text-3xl font-bold text-[#1A2B4C] leading-tight">Product Name</h2>
+          <div class="flex items-center gap-2 mt-1">
+            <span class="text-yellow-400 text-sm">★★★★★</span>
+            <span class="text-xs text-gray-400">(12 reviews)</span>
+            <span class="text-xs text-gray-300">|</span>
+            <span class="text-xs text-[#F05A28] font-medium">In Stock</span>
+          </div>
+          <span id="modalPrice" class="text-3xl font-bold text-[#F05A28] mt-3">R 0.00</span>
+          <div class="flex flex-wrap gap-3 mt-2 text-sm">
+            <span class="bg-gray-100 px-3 py-1 rounded-full text-gray-600">SKU: <span id="modalSku">-</span></span>
+            <span class="bg-gray-100 px-3 py-1 rounded-full text-gray-600">Unit: <span id="modalUnit">-</span></span>
+            <span class="bg-[#1A2B4C]/10 px-3 py-1 rounded-full text-[#1A2B4C] font-medium">Category: <span id="modalCategory">-</span></span>
+          </div>
+          <p id="modalDescription" class="text-gray-600 mt-4 text-sm leading-relaxed">Description</p>
+          <div class="mt-4">
+            <h4 class="font-semibold text-[#1A2B4C] text-sm mb-1">Features & Benefits</h4>
+            <ul id="modalFeatures" class="list-disc list-inside text-sm text-gray-600 space-y-0.5 max-h-[80px] overflow-y-auto"></ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-gray-200 flex flex-wrap items-center gap-4">
+            <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+              <button id="modalQtyMinus" class="px-3 py-2 hover:bg-gray-100 text-gray-600 transition">−</button>
+              <span id="modalQtyValue" class="px-4 py-2 border-x border-gray-300 min-w-[3rem] text-center font-medium text-[#1A2B4C]">1</span>
+              <button id="modalQtyPlus" class="px-3 py-2 hover:bg-gray-100 text-gray-600 transition">+</button>
+            </div>
+            <button id="modalAddToQuote" class="flex-1 min-w-[140px] bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-2.5 px-6 rounded-lg transition shadow-sm hover:shadow-md active:scale-95 flex items-center justify-center gap-2">
+              <i class="fas fa-plus"></i> Add to Quote
+            </button>
+            <button id="modalContactSales" class="border border-[#1A2B4C] text-[#1A2B4C] hover:bg-[#1A2B4C] hover:text-white font-semibold py-2.5 px-4 rounded-lg transition flex items-center gap-2 text-sm">
+              <i class="fas fa-phone-alt"></i> Contact Sales
+            </button>
+          </div>
+          <a href="#" id="modalBackLink" class="mt-4 text-sm text-gray-400 hover:text-[#F05A28] transition flex items-center gap-1">
+            <i class="fas fa-arrow-left"></i> Back to Catalogue
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-[#1A2B4C] text-white mt-16 py-10">
+  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <h4 class="text-xl font-bold mb-4">EDUCORE</h4>
+      <p class="text-sm text-gray-300">104 Donnelly Street, Turffontein, Johannesburg, 2190</p>
+      <p class="text-sm text-gray-300 mt-2">Cell: 071 945 0220</p>
+      <p class="text-sm text-gray-300">Email: info@educore.co.za</p>
+    </div>
+    <div>
+      <h5 class="font-semibold mb-3">Quick Links</h5>
+      <ul class="space-y-1 text-sm text-gray-300">
+        <li><a href="#" class="hover:text-[#F05A28] transition" data-section="home">Home</a></li>
+        <li><a href="#" class="hover:text-[#F05A28] transition" data-section="catalogue">Catalogue</a></li>
+        <li><a href="#" class="hover:text-[#F05A28] transition" data-section="about">About</a></li>
+        <li><a href="#" class="hover:text-[#F05A28] transition" data-section="contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-semibold mb-3">Resources</h5>
+      <a href="#" class="inline-flex items-center gap-2 bg-[#F05A28] hover:bg-[#d94a1e] px-4 py-2 rounded-lg text-sm transition" data-section="catalogue-download">
+        <i class="fas fa-download"></i> Download Catalogue (PDF)
+      </a>
+      <p class="text-sm text-gray-300 mt-3">Reg: 2026/461572/07</p>
+      <p class="text-sm text-gray-300">Tax: 9790884192</p>
+      <p class="text-sm text-[#F05A28] font-medium mt-1">✓ B-BBEE Compliant | Tender Ready</p>
+    </div>
+    <div>
+      <h5 class="font-semibold mb-3">Connect</h5>
+      <div class="flex gap-4 text-xl">
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p class="text-sm text-gray-400 mt-4">&copy; 2026 EDUCORE. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
