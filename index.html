@@ -11,6 +11,8 @@
   <!-- PDF Generator -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js"></script>
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     /* ========== GENERAL ========== */
     body { background: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
@@ -302,10 +304,10 @@
     <!-- Hero Slider -->
     <div class="hero-wrapper" id="heroSlider">
       <div class="hero-slides">
-        <div class="hero-slide active" style="background-image: url('https://picsum.photos/seed/office/1200/600');"></div>
-        <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/stationery/1200/600');"></div>
-        <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/ppe/1200/600');"></div>
-        <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/cleaning/1200/600');"></div>
+        <div class="hero-slide active" style="background-image: url('images/Educore.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/Educore1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/stationery.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('images/Mop-Caps.png');"></div>
       </div>
       <div class="hero-content">
         <h1>
@@ -382,11 +384,11 @@
       </div>
     </div>
     <div class="relative">
-      <img src="https://picsum.photos/seed/educore/600/400" alt="EDUCORE Office" class="rounded-xl shadow-lg w-full object-cover h-64 md:h-80" />
+      <img src="images/Educore.jpg" alt="EDUCORE Office" class="rounded-xl shadow-lg w-full object-cover h-64 md:h-80" />
       <div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-md hidden md:block">
         <div class="flex items-center gap-3">
           <i class="fas fa-check-circle text-[#F05A28] text-2xl"></i>
-          <span class="font-semibold text-[#1A2B4C]">Trusted Partner</span>
+          <!--<span class="font-semibold text-[#1A2B4C]">Trusted Partner</span>-->
         </div>
       </div>
     </div>
@@ -434,11 +436,11 @@
     </div>
   </div>
 
-  <!-- Team -->
+  <!-- Team --
   <div class="mb-16">
     <h2 class="text-2xl md:text-3xl font-bold text-[#1A2B4C] text-center mb-8">Leadership Team</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <!-- Team Member 1 -->
+      <!-- Team Member 1 --
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
         <img src="https://picsum.photos/seed/bongani/300/300" alt="Bongani Dube" class="w-full h-56 object-cover" />
         <div class="p-4">
@@ -450,7 +452,7 @@
           </div>
         </div>
       </div>
-      <!-- Team Member 2 (placeholder) -->
+      <!-- Team Member 2 (placeholder) --
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
         <img src="https://picsum.photos/seed/thandi/300/300" alt="Thandi Mokoena" class="w-full h-56 object-cover" />
         <div class="p-4">
@@ -462,7 +464,7 @@
           </div>
         </div>
       </div>
-      <!-- Team Member 3 (placeholder) -->
+      <!-- Team Member 3 (placeholder) --
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
         <img src="https://picsum.photos/seed/sipho/300/300" alt="Sipho Ndlovu" class="w-full h-56 object-cover" />
         <div class="p-4">
@@ -475,7 +477,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>==>
 
   <!-- Contact CTA -->
   <div class="bg-gradient-to-r from-[#1A2B4C] to-[#2a3f62] text-white rounded-2xl p-8 text-center">
@@ -551,35 +553,34 @@
     <!-- Right: Contact form -->
     <div class="md:col-span-3">
       <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
-        <h3 class="text-xl font-bold text-[#1A2B4C] mb-6">Send a Message</h3>
-        <form id="contact-form" class="space-y-4">
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Full Name *</label>
-              <input type="text" name="name" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition" placeholder="John Doe" />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Email *</label>
-              <input type="email" name="email" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition" placeholder="john@example.com" />
-            </div>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Company</label>
-            <input type="text" name="company" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition" placeholder="Your company name" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Subject</label>
-            <input type="text" name="subject" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition" placeholder="General enquiry, tender, quote..." />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Message *</label>
-            <textarea name="message" rows="5" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none transition resize-y" placeholder="Tell us how we can help..."></textarea>
-          </div>
-          <button type="submit" class="w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
-            <i class="fas fa-paper-plane"></i> Send Message
-          </button>
-          <p class="text-xs text-gray-400 text-center mt-2">We’ll get back to you within 24 hours.</p>
-        </form>
+        <h2 class="text-3xl font-bold text-[#1A2B4C] text-center mb-8">Get in Touch</h2>
+  <form id="contact-form" class="space-y-4 bg-white p-6 rounded-xl shadow-sm">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Full Name *</label>
+      <input type="text" id="contact-name" name="name" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" placeholder="John Doe" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Email *</label>
+      <input type="email" id="contact-email" name="email" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" placeholder="info@educorestationery-hygiene-ppe.co.za
+" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Company</label>
+      <input type="text" id="contact-company" name="company" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" placeholder="Your company name" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Subject</label>
+      <input type="text" id="contact-subject" name="subject" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" placeholder="General enquiry, tender, quote..." />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Message *</label>
+      <textarea id="contact-message" name="message" rows="5" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none resize-y" placeholder="Tell us how we can help..."></textarea>
+    </div>
+    <button type="submit" id="contact-submit-btn" class="w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
+      <i class="fas fa-paper-plane"></i> Send Message
+    </button>
+    <div id="contact-feedback" class="hidden text-center text-sm mt-2"></div>
+  </form>
       </div>
     </div>
   </div>

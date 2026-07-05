@@ -16,7 +16,7 @@ const products = [
   
 
   // Office Furniture
-  { id:11, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/classic-ea.jpg", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
+  { id:11, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "https://i.imgur.com/bcPlRtd.jpeg", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
   { id:12, name: "Activity Executive Desk with Side Cabinet", category: "furniture", slug: "ergonomic-chair", description: "Premium office workstation designed to combine executive style, spacious functionality, and practical storage.", image: "images/activity.jpg", unit: "each", sku: "AED-013", price: "R 16,480.00", featured: false, features: ["Modern Executive Design", "Integrated Side Cabinet", "Large Executive Work Surface", "Lockable Drawers (Model Dependent)"] },
   { id:13, name: "Lenny Medium Back Chair", category: "furniture", slug: "furniture", description: "Modern, ergonomic office chair designed to provide comfort, support, and functionality for everyday use.", image: "images/Lenny.jpg", unit: "each", sku: "LMB-014", price: "R 4330.00", featured: false, features: ["Ergonomic Medium Back Design", "Comfortable Padded Seat & Backrest", "Height Adjustable", "Smooth 360° Swivel"] },
   { id:14, name: "Walnut Boardroom Table", category: "furniture", slug: "furniture", description: "Premium conference table designed to bring elegance, functionality, and professionalism to modern meeting spaces.", image: "images/Walnut.jpg", unit: "each", sku: "WAL-015", price: "R 11,455.00", featured: true, features: ["Elegant Walnut Finish", "Spacious Meeting Surface", "Durable Construction", "Scratch & Stain Resistant Surface"] },
@@ -791,6 +791,67 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileSearch = document.getElementById('mobile-search');
   const clearDesktop = document.getElementById('clear-search-desktop');
   const clearMobile = document.getElementById('clear-search-mobile');
+
+
+// ============================
+// CONTACT FORM – EmailJS
+// ============================
+
+// Initialize EmailJS with your Public Key
+(function() {
+  // Replace with your EmailJS Public Key
+  emailjs.init('YOUR_EMAILJS_PUBLIC_KEY');
+})();
+
+document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const submitBtn = document.getElementById('contact-submit-btn');
+  const feedback = document.getElementById('contact-feedback');
+  
+  // Collect form data
+  const formData = {
+    from_name: document.getElementById('contact-name').value,
+    from_email: document.getElementById('contact-email').value,
+    company: document.getElementById('contact-company').value,
+    subject: document.getElementById('contact-subject').value,
+    message: document.getElementById('contact-message').value,
+    to_email: 'info@educore.co.za' // Your business email
+  };
+  
+  // Validate required fields
+  if (!formData.from_name || !formData.from_email || !formData.message) {
+    feedback.className = 'text-center text-sm mt-2 text-red-600';
+    feedback.textContent = 'Please fill in all required fields.';
+    feedback.classList.remove('hidden');
+    return;
+  }
+  
+  // Disable button and show loading state
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  feedback.classList.add('hidden');
+  
+  // Send email using EmailJS
+  // Replace with your EmailJS Service ID and Template ID
+  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+    .then(function(response) {
+      feedback.className = 'text-center text-sm mt-2 text-green-600';
+      feedback.textContent = '✅ Your message was sent successfully! We\'ll respond within 24 hours.';
+      feedback.classList.remove('hidden');
+      document.getElementById('contact-form').reset();
+    })
+    .catch(function(error) {
+      console.error('EmailJS error:', error);
+      feedback.className = 'text-center text-sm mt-2 text-red-600';
+      feedback.textContent = '❌ There was an error sending your message. Please try again later.';
+      feedback.classList.remove('hidden');
+    })
+    .finally(function() {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    });
+});
 
   if (searchInput) {
     searchInput.addEventListener('input', performSearch);
