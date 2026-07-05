@@ -3,35 +3,60 @@
 // ============================
 const products = [
   // Stationery
-  { id: 1, name: "Index Cards 5×3 Plain-Rainbow x5 Set Tic 90X126 5 TAB", category: "stationery", slug: "a4-copy-paper", description: "compact, high-quality coloured index cards designed for efficient organisation, note-taking, filing, and quick reference.", image: "https://picsum.photos/seed/paper/400/300", unit: "box (5 reams)", sku: "EDU-PAP-001", price: "R 45.00", featured: true, features: ["Compact 5 × 3 Inch Size (90 × 126mm)", "Plain Writing Surface", "5-Tab Rainbow Divider Set", "Premium Cardstock"] },
-  { id: 2, name: "Ballpoint Pen (Box 50)", category: "stationery", slug: "ballpoint-pen", description: "Smooth writing ballpoint pens, blue ink, box of 50.", image: "https://picsum.photos/seed/pen/400/300", unit: "box of 50", sku: "EDU-PEN-002", price: "R 89.00", featured: false, features: ["Blue ink", "Comfortable grip", "Smooth writing", "Box of 50"] },
-  { id: 3, name: "Suspension Attache Case with Lock + Handle and 10 Suspension files", category: "stationery", slug: "attache-case", description: "durable and secure portable filing solution designed for professionals who require organised document storage on the move.", image: "images/Suspension.jpg", unit: "each", sku: "ATT-003", price: "R 250.00", featured: false, features: ["Suspension File Compatibility", "Comfortable Carry Handle", "Secure Locking Mechanism", "Complete Portable Filing System"] },
-  { id: 4, name: "Highlighter Set (6 colours)", category: "stationery", slug: "highlighter-set", description: "Set of 6 neon highlighters, chisel tip.", image: "https://picsum.photos/seed/highlighter/400/300", unit: "set", sku: "EDU-HIG-004", price: "R 34.00", featured: false, features: ["6 neon colors", "Chisel tip", "Long-lasting ink", "Vibrant colors"] },
-  { id: 5, name: "Lever Arch Files A4 Black & White Mottle – 50 Pack", category: "stationery", slug: "Lever-Arch-Files", description: "are premium-quality document filing solutions designed to organise, protect, and store A4-sized documents efficiently in professional and educational environments.", image: "images/Lever-Arch.jpg", unit: "pack of 50", sku: "LV-005", price: "R 1,122.00", featured: true, features: ["A4 Document Compatibility", "Heavy-Duty Lever Arch Mechanism", "Classic Black & White Mottle Finish", "Pack of 50 Files"] },
+  { id:1, name: "Index Cards 5×3 Plain-Rainbow x5 Set Tic 90X126 5 TAB", category: "stationery", slug: "a4-copy-paper", description: "Compact, high-quality coloured index cards designed for efficient organisation, note-taking, filing, and quick reference.", image: "images/index-cards.jpg", unit: "box (5 reams)", sku: "EDU-PAP-001", price: "R 45.00", featured: true, features: ["Compact 5 × 3 Inch Size (90 × 126mm)", "Plain Writing Surface", "5-Tab Rainbow Divider Set", "Premium Cardstock"] },
+  { id:2, name: "Value Pack Storage Box + 5 Lever Arch Files – 2 Pack", category: "stationery", slug: "Lever-Arch", description: "complete document organisation and archiving solution designed for businesses, schools, government departments, and home offices.", image: "IMAGES/value-pack.jpg", unit: "2 Pack", sku: "LEV-ACH-002", price: "R 495.99", featured: true, features: ["Large Storage Capacity", "Commercial Files Included", "Premium Lever Arch Files", "Durable Storage Boxes"] },
+  { id:3, name: "Suspension Attache Case with Lock + Handle and 10 Suspension files", category: "stationery", slug: "attache-case", description: "durable and secure portable filing solution designed for professionals who require organised document storage on the move.", image: "images/Suspension.jpg", unit: "each", sku: "ATT-003", price: "R 250.00", featured:true, features: ["Suspension File Compatibility", "Comfortable Carry Handle", "Secure Locking Mechanism", "Complete Portable Filing System"] },
+  { id:4, name: "Highlighter Set (6 colours)", category: "stationery", slug: "highlighter-set", description: "Set of 6 neon highlighters, chisel tip.", image: "images/1.avif", unit: "set", sku: "EDU-HIG-004", price: "R 34.00", featured: false, features: ["6 neon colors", "Chisel tip", "Long-lasting ink", "Vibrant colors"] },
+  { id:5, name: "Lever Arch Files A4 Black & White Mottle – 50 Pack", category: "stationery", slug: "Lever-Arch-Files", description: "are premium-quality document filing solutions designed to organise, protect, and store A4-sized documents efficiently in professional and educational environments.", image: "images/Lever-Arch.jpg", unit: "pack of 50", sku: "LV-005", price: "R 1,122.00", featured: true, features: ["A4 Document Compatibility", "Heavy-Duty Lever Arch Mechanism", "Classic Black & White Mottle Finish", "Pack of 50 Files"] },
+  { id:6, name: "Corrugated Archive Box F/S – 12 Pack", category: "stationery", slug: "Corrugated", description: "Durable and practical document storage solution designed for the safe archiving, organisation, and transportation of foolscap-sized files and records.", image: "Images/Corrugated.jpg", unit: "12 Pack", sku: "EDU-FUR-016", price: "R 286.99", featured: true, features: ["Foolscap Size (F/S) Compatibility", "Strong Corrugated Cardboard Construction", "Pack of 12 Boxes", "Easy Assembly"] },
+  { id:7, name: "Value Pack Storage Box + 5 Lever Arch Files", category: "stationery", slug: "Lever-Arch-Files", description: "convenient and cost-effective document storage solution designed to help businesses and individuals organise, protect, and archive important paperwork.", image: "images/value pack-box+5.jpg", unit: "box of 5", sku: "VP-003", price: "R 255.00", featured: true, features: ["Complete Filing Solution", "Premium Lever Arch Files", "Durable Archive Storage Box", "A4 Document Compatibility"] },
+  { id:8, name: "Suspension Files – 50 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "Lever-Arch-Files", description: "Premium-quality hanging files designed to provide an efficient, organised, and professional document management system.", image: "images/Suspension-files-50-pack.jpg", unit: "pack of 50", sku: "SF-005", price: "R 250.00", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
+  { id:9, name: "Value Pack Storage Box + 5 Lever Arch Files", category: "stationery", slug: "Lever-Arch-Files", description: "convenient and cost-effective document storage solution designed to help businesses and individuals organise, protect, and archive important paperwork.", image: "images/Value-Pack-box5.jpg", unit: "box of 5", sku: "VP-003", price: "R 255.00", featured: true, features: ["Complete Filing Solution", "Premium Lever Arch Files", "Durable Archive Storage Box", "A4 Document Compatibility"] },
+  { id:10, name: "Suspension Files – 50 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "Lever-Arch-Files", description: "Premium-quality hanging files designed to provide an efficient, organised, and professional document management system.", image: "images/Suspension-files-50-pack.jpg", unit: "pack of 50", sku: "SF-005", price: "R 250.00", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
+  
 
   // Office Furniture
-  { id: 6, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "executive-desk", description: "luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/classic-ea.jpg", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
-  { id: 7, name: "Activity Executive Desk with Side Cabinet", category: "furniture", slug: "ergonomic-chair", description: "premium office workstation designed to combine executive style, spacious functionality, and practical storage.", image: "images/activity.jpg", unit: "each", sku: "AED-013", price: "R 16,480.00", featured: false, features: ["Modern Executive Design", "Integrated Side Cabinet", "Large Executive Work Surface", "Lockable Drawers (Model Dependent)"] },
-  { id: 8, name: "Filing Cabinet (4 drawer)", category: "furniture", slug: "filing-cabinet", description: "Steel filing cabinet with 4 drawers, lockable.", image: "https://picsum.photos/seed/cabinet/400/300", unit: "each", sku: "EDU-FUR-014", price: "R 2,100.00", featured: false, features: ["4 drawers", "Lockable", "Steel construction", "Smooth runners"] },
-  { id: 9, name: "Conference Table (6 seater)", category: "furniture", slug: "conference-table", description: "Modern conference table, 2400x1200mm, with cable ports.", image: "https://picsum.photos/seed/table/400/300", unit: "each", sku: "EDU-FUR-015", price: "R 5,600.00", featured: false, features: ["2400x1200mm", "Cable management ports", "Modern design", "Sturdy base"] },
-  { id: 10, name: "Bookshelf (5-tier)", category: "furniture", slug: "bookshelf", description: "5-tier wooden bookshelf, sturdy and stylish.", image: "https://picsum.photos/seed/bookshelf/400/300", unit: "each", sku: "EDU-FUR-016", price: "R 1,450.00", featured: false, features: ["5 tiers", "Wooden construction", "Sturdy design", "Easy assembly"] },
+  { id:11, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "executive-desk", description: "luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/classic-ea.jpg", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
+  { id:12, name: "Activity Executive Desk with Side Cabinet", category: "furniture", slug: "ergonomic-chair", description: "premium office workstation designed to combine executive style, spacious functionality, and practical storage.", image: "images/activity.jpg", unit: "each", sku: "AED-013", price: "R 16,480.00", featured: false, features: ["Modern Executive Design", "Integrated Side Cabinet", "Large Executive Work Surface", "Lockable Drawers (Model Dependent)"] },
+  { id:13, name: "Filing Cabinet (4 drawer)", category: "furniture", slug: "filing-cabinet", description: "Steel filing cabinet with 4 drawers, lockable.", image: "https://picsum.photos/seed/cabinet/400/300", unit: "each", sku: "EDU-FUR-014", price: "R 2,100.00", featured: false, features: ["4 drawers", "Lockable", "Steel construction", "Smooth runners"] },
+  { id:14, name: "Conference Table (6 seater)", category: "furniture", slug: "conference-table", description: "Modern conference table, 2400x1200mm, with cable ports.", image: "https://picsum.photos/seed/table/400/300", unit: "each", sku: "EDU-FUR-015", price: "R 5,600.00", featured: false, features: ["2400x1200mm", "Cable management ports", "Modern design", "Sturdy base"] },
+  { id:15, name: "Bookshelf (5-tier)", category: "furniture", slug: "bookshelf", description: "5-tier wooden bookshelf, sturdy and stylish.", image: "https://picsum.photos/seed/bookshelf/400/300", unit: "each", sku: "EDU-FUR-016", price: "R 1,450.00", featured: false, features: ["5 tiers", "Wooden construction", "Sturdy design", "Easy assembly"] },
+  { id:16, name: "Filing Cabinet (4 drawer)", category: "furniture", slug: "filing-cabinet", description: "Steel filing cabinet with 4 drawers, lockable.", image: "https://picsum.photos/seed/cabinet/400/300", unit: "each", sku: "EDU-FUR-014", price: "R 2,100.00", featured: false, features: ["4 drawers", "Lockable", "Steel construction", "Smooth runners"] },
+  { id:17, name: "Conference Table (6 seater)", category: "furniture", slug: "conference-table", description: "Modern conference table, 2400x1200mm, with cable ports.", image: "https://picsum.photos/seed/table/400/300", unit: "each", sku: "EDU-FUR-015", price: "R 5,600.00", featured: false, features: ["2400x1200mm", "Cable management ports", "Modern design", "Sturdy base"] },
+  { id:18, name: "Bookshelf (5-tier)", category: "furniture", slug: "bookshelf", description: "5-tier wooden bookshelf, sturdy and stylish.", image: "https://picsum.photos/seed/bookshelf/400/300", unit: "each", sku: "EDU-FUR-016", price: "R 1,450.00", featured: false, features: ["5 tiers", "Wooden construction", "Sturdy design", "Easy assembly"] },
+  { id:19, name: "Value Pack Storage Box + 5 Lever Arch Files", category: "stationery", slug: "Lever-Arch-Files", description: "convenient and cost-effective document storage solution designed to help businesses and individuals organise, protect, and archive important paperwork.", image: "images/value pack-box+5.jpg", unit: "box of 5", sku: "VP-003", price: "R 255.00", featured: true, features: ["Complete Filing Solution", "Premium Lever Arch Files", "Durable Archive Storage Box", "A4 Document Compatibility"] },
+  { id:20, name: "Suspension Files – 50 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "Lever-Arch-Files", description: "Premium-quality hanging files designed to provide an efficient, organised, and professional document management system.", image: "images/Suspension-files-50-pack.jpg", unit: "pack of 50", sku: "SF-005", price: "R 250.00", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
+
+
 
   // PPE & Safety
-  { id: 11, name: "Face Mask (3 ply) Black – Case of 20 boxes (1000 units)", category: "ppe", slug: "face-masks", description: "high-quality, single-use protective face mask designed to provide effective everyday protection while ensuring maximum comfort and breathability.", image: "images/Face-Mask.png", unit: "box of 50", sku: "PPE-003", price: "R 95.00", featured: true, features: ["3-ply protection", "Elastic ear loops", "Breathable material", "CE certified"] },
-  { id: 12, name: "Nitrile Gloves (Box 100)", category: "ppe", slug: "nitrile-gloves", description: "Powder-free nitrile gloves, medical grade, box of 100.", image: "https://picsum.photos/seed/gloves/400/300", unit: "box of 100", sku: "EDU-PPE-004", price: "R 185.00", featured: false, features: ["Powder-free", "Medical grade", "Box of 100", "Sterile"] },
-  { id: 13, name: "Safety Goggles", category: "ppe", slug: "safety-goggles.png", description: "Anti-fog safety goggles with adjustable strap, clear lens.", image: "images/safety-goggles.png", unit: "each", sku: "EDU-PPE-005", price: "R 147,56", featured: false, features: ["Anti-fog", "Adjustable strap", "Clear lens", "Impact resistant"] },
-  { id: 14, name: "Disposable Aprons (100/pack)", category: "ppe", slug: "aprons", description: "White disposable aprons, 100 per pack, waterproof.", image: "https://picsum.photos/seed/apron/400/300", unit: "pack of 100", sku: "EDU-PPE-006", price: "R 210.00", featured: false, features: ["100 per pack", "Waterproof", "Disposable", "White"] },
-  { id: 15, name: "Hand Sanitiser (5L)", category: "ppe", slug: "hand-sanitiser", description: "5L bulk hand sanitiser, 70% alcohol, with pump dispenser.", image: "https://picsum.photos/seed/sanitiser/400/300", unit: "5L container", sku: "EDU-PPE-007", price: "R 320.00", featured: false, features: ["5L container", "70% alcohol", "With pump dispenser", "Bulk supply"] },
+  { id: 21, name: "Face Mask (3 ply) Black – Case of 20 boxes (1000 units)", category: "ppe", slug: "face-masks", description: "high-quality, single-use protective face mask designed to provide effective everyday protection while ensuring maximum comfort and breathability.", image: "images/Face-Mask.png", unit: "box of 50", sku: "PPE-003", price: "R 95.00", featured: true, features: ["3-ply protection", "Elastic ear loops", "Breathable material", "CE certified"] },
+  { id: 22, name: "Nitrile Gloves (Box 100)", category: "ppe", slug: "nitrile-gloves", description: "Powder-free nitrile gloves, medical grade, box of 100.", image: "https://picsum.photos/seed/gloves/400/300", unit: "box of 100", sku: "EDU-PPE-004", price: "R 185.00", featured: false, features: ["Powder-free", "Medical grade", "Box of 100", "Sterile"] },
+  { id: 23, name: "Safety Goggles", category: "ppe", slug: "safety-goggles.png", description: "Anti-fog safety goggles with adjustable strap, clear lens.", image: "images/safety-goggles.png", unit: "each", sku: "EDU-PPE-005", price: "R 147,56", featured: false, features: ["Anti-fog", "Adjustable strap", "Clear lens", "Impact resistant"] },
+  { id: 24, name: "Disposable Aprons (100/pack)", category: "ppe", slug: "aprons", description: "White disposable aprons, 100 per pack, waterproof.", image: "https://picsum.photos/seed/apron/400/300", unit: "pack of 100", sku: "EDU-PPE-006", price: "R 210.00", featured: false, features: ["100 per pack", "Waterproof", "Disposable", "White"] },
+  { id: 25, name: "Hand Sanitiser (5L)", category: "ppe", slug: "hand-sanitiser", description: "5L bulk hand sanitiser, 70% alcohol, with pump dispenser.", image: "https://picsum.photos/seed/sanitiser/400/300", unit: "5L container", sku: "EDU-PPE-007", price: "R 320.00", featured: false, features: ["5L container", "70% alcohol", "With pump dispenser", "Bulk supply"] },
+  { id: 26, name: "Safety Goggles", category: "ppe", slug: "safety-goggles.png", description: "Anti-fog safety goggles with adjustable strap, clear lens.", image: "images/safety-goggles.png", unit: "each", sku: "EDU-PPE-005", price: "R 147,56", featured: false, features: ["Anti-fog", "Adjustable strap", "Clear lens", "Impact resistant"] },
+  { id: 27, name: "Disposable Aprons (100/pack)", category: "ppe", slug: "aprons", description: "White disposable aprons, 100 per pack, waterproof.", image: "https://picsum.photos/seed/apron/400/300", unit: "pack of 100", sku: "EDU-PPE-006", price: "R 210.00", featured: false, features: ["100 per pack", "Waterproof", "Disposable", "White"] },
+  { id: 28, name: "Hand Sanitiser (5L)", category: "ppe", slug: "hand-sanitiser", description: "5L bulk hand sanitiser, 70% alcohol, with pump dispenser.", image: "https://picsum.photos/seed/sanitiser/400/300", unit: "5L container", sku: "EDU-PPE-007", price: "R 320.00", featured: false, features: ["5L container", "70% alcohol", "With pump dispenser", "Bulk supply"] },
+  { id: 29, name: "Value Pack Storage Box + 5 Lever Arch Files", category: "stationery", slug: "Lever-Arch-Files", description: "convenient and cost-effective document storage solution designed to help businesses and individuals organise, protect, and archive important paperwork.", image: "images/value pack-box+5.jpg", unit: "box of 5", sku: "VP-003", price: "R 255.00", featured: true, features: ["Complete Filing Solution", "Premium Lever Arch Files", "Durable Archive Storage Box", "A4 Document Compatibility"] },
+  { id: 30, name: "Suspension Files – 50 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "Lever-Arch-Files", description: "Premium-quality hanging files designed to provide an efficient, organised, and professional document management system.", image: "images/Suspension-Files.jpg", unit: "pack of 50", sku: "SF-005", price: "R 250.00", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
+
 
   // Cleaning & Hygiene
-  { id: 16, name: "Industrial Cleaning Chemical (5L)", category: "cleaning", slug: "cleaning-chemical", description: "Multi-purpose industrial cleaner, concentrated formula.", image: "https://picsum.photos/seed/cleaner/400/300", unit: "5L container", sku: "EDU-CLN-005", price: "R 175.00", featured: false, features: ["5L container", "Concentrated formula", "Multi-purpose", "Industrial grade"] },
-  { id: 17, name: "Paper Towels (24 rolls)", category: "cleaning", slug: "paper-towels", description: "High-absorbency paper towels, 24 rolls per case.", image: "https://picsum.photos/seed/towels/400/300", unit: "case of 24", sku: "EDU-CLN-006", price: "R 280.00", featured: false, features: ["24 rolls", "High absorbency", "2-ply", "Eco-friendly"] },
-  { id: 18, name: "Floor Sweeper (75cm)", category: "cleaning", slug: "floor-sweeper", description: "Heavy-duty floor sweeper, 75cm width, with dustpan.", image: "https://picsum.photos/seed/sweeper/400/300", unit: "each", sku: "EDU-CLN-007", price: "R 450.00", featured: false, features: ["75cm width", "Heavy-duty", "With dustpan", "Commercial grade"] },
-  { id: 19, name: "Bin Liners (50 pack)", category: "cleaning", slug: "bin-liners", description: "Black bin liners, 50 per pack, 90L capacity.", image: "https://picsum.photos/seed/liners/400/300", unit: "pack of 50", sku: "EDU-CLN-008", price: "R 120.00", featured: false, features: ["50 per pack", "90L capacity", "Black", "Heavy-duty"] },
-  { id: 20, name: "Microfibre Cloths (10 pack)", category: "cleaning", slug: "microfibre-cloths", description: "Reusable microfibre cloths for cleaning, 10 per pack.", image: "https://picsum.photos/seed/cloths/400/300", unit: "pack of 10", sku: "EDU-CLN-009", price: "R 65.00", featured: false, features: ["10 per pack", "Reusable", "Lint-free", "Machine washable"] },
+  { id: 31, name: "Industrial Cleaning Chemical (5L)", category: "cleaning", slug: "cleaning-chemical", description: "Multi-purpose industrial cleaner, concentrated formula.", image: "https://picsum.photos/seed/cleaner/400/300", unit: "5L container", sku: "EDU-CLN-005", price: "R 175.00", featured: false, features: ["5L container", "Concentrated formula", "Multi-purpose", "Industrial grade"] },
+  { id: 32, name: "Paper Towels (24 rolls)", category: "cleaning", slug: "paper-towels", description: "High-absorbency paper towels, 24 rolls per case.", image: "https://picsum.photos/seed/towels/400/300", unit: "case of 24", sku: "EDU-CLN-006", price: "R 280.00", featured: false, features: ["24 rolls", "High absorbency", "2-ply", "Eco-friendly"] },
+  { id: 33, name: "Floor Sweeper (75cm)", category: "cleaning", slug: "floor-sweeper", description: "Heavy-duty floor sweeper, 75cm width, with dustpan.", image: "https://picsum.photos/seed/sweeper/400/300", unit: "each", sku: "EDU-CLN-007", price: "R 450.00", featured: false, features: ["75cm width", "Heavy-duty", "With dustpan", "Commercial grade"] },
+  { id: 34, name: "Bin Liners (50 pack)", category: "cleaning", slug: "bin-liners", description: "Black bin liners, 50 per pack, 90L capacity.", image: "https://picsum.photos/seed/liners/400/300", unit: "pack of 50", sku: "EDU-CLN-008", price: "R 120.00", featured: false, features: ["50 per pack", "90L capacity", "Black", "Heavy-duty"] },
+  { id: 35, name: "Microfibre Cloths (10 pack)", category: "cleaning", slug: "microfibre-cloths", description: "Reusable microfibre cloths for cleaning, 10 per pack.", image: "https://picsum.photos/seed/cloths/400/300", unit: "pack of 10", sku: "EDU-CLN-009", price: "R 65.00", featured: false, features: ["10 per pack", "Reusable", "Lint-free", "Machine washable"] },
+  { id: 36, name: "Floor Sweeper (75cm)", category: "cleaning", slug: "floor-sweeper", description: "Heavy-duty floor sweeper, 75cm width, with dustpan.", image: "https://picsum.photos/seed/sweeper/400/300", unit: "each", sku: "EDU-CLN-007", price: "R 450.00", featured: false, features: ["75cm width", "Heavy-duty", "With dustpan", "Commercial grade"] },
+  { id: 37, name: "Bin Liners (50 pack)", category: "cleaning", slug: "bin-liners", description: "Black bin liners, 50 per pack, 90L capacity.", image: "https://picsum.photos/seed/liners/400/300", unit: "pack of 50", sku: "EDU-CLN-008", price: "R 120.00", featured: false, features: ["50 per pack", "90L capacity", "Black", "Heavy-duty"] },
+  { id: 38, name: "Microfibre Cloths (10 pack)", category: "cleaning", slug: "microfibre-cloths", description: "Reusable microfibre cloths for cleaning, 10 per pack.", image: "https://picsum.photos/seed/cloths/400/300", unit: "pack of 10", sku: "EDU-CLN-009", price: "R 65.00", featured: false, features: ["10 per pack", "Reusable", "Lint-free", "Machine washable"] },
+  { id: 39, name: "Value Pack Storage Box + 5 Lever Arch Files", category: "stationery", slug: "Lever-Arch-Files", description: "convenient and cost-effective document storage solution designed to help businesses and individuals organise, protect, and archive important paperwork.", image: "images/value pack-box+5.jpg", unit: "box of 5", sku: "VP-003", price: "R 255.00", featured: true, features: ["Complete Filing Solution", "Premium Lever Arch Files", "Durable Archive Storage Box", "A4 Document Compatibility"] },
+  { id: 40, name: "Suspension Files – 50 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "Lever-Arch-Files", description: "Premium-quality hanging files designed to provide an efficient, organised, and professional document management system.", image: "images/Suspension-files- 50-pack.jpg", unit: "pack of 50", sku: "SF-005", price: "R 250.00", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
+
 
   // Generate 80 more products
-  ...Array.from({ length: 80 }, (_, i) => {
+  ...Array.from({ length: 10 }, (_, i) => {
     const categories = ['stationery', 'furniture', 'ppe', 'cleaning'];
     const cat = categories[i % categories.length];
     const names = {
@@ -525,6 +550,8 @@ function filterProducts() {
   }
 
   
+
+
   function nextSlide() { goTo(current + 1); }
   function startAuto() { if (interval) clearInterval(interval); interval = setInterval(nextSlide, 5000); }
   function stopAuto() { if (interval) clearInterval(interval); }
@@ -570,83 +597,50 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 // ============================
-// SEARCH (Simplified & Tested)
+// SEARCH HELPERS
 // ============================
 
 function getSearchQuery() {
   const desktop = document.getElementById('search-input');
   const mobile = document.getElementById('mobile-search');
   const val = desktop ? desktop.value : '';
-  if (!val && mobile) return mobile.value;
-  return val;
+  if (!val && mobile) return mobile.value || '';
+  return val || '';
 }
 
-function filterProducts() {
-  const query = getSearchQuery().toLowerCase().trim();
-  const activeFilter = document.querySelector('.filter-btn.active');
-  const category = activeFilter ? activeFilter.dataset.filter : 'all';
-  const grid = document.getElementById('catalogue-grid');
+function setSearchQuery(value) {
+  const desktop = document.getElementById('search-input');
+  const mobile = document.getElementById('mobile-search');
+  if (desktop) desktop.value = value;
+  if (mobile) mobile.value = value;
+  toggleClearButtons(value && value.length > 0);
+}
 
-  console.log(`Searching for: "${query}" in category: "${category}"`); // Debug
-
-  let filtered = products;
-  if (category !== 'all') {
-    filtered = filtered.filter(p => p.category === category);
-  }
-  if (query) {
-    filtered = filtered.filter(p => 
-      p.name.toLowerCase().includes(query) || 
-      p.sku.toLowerCase().includes(query) ||
-      (p.description && p.description.toLowerCase().includes(query))
-    );
-  }
-
-  console.log(`Found ${filtered.length} products`); // Debug
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div class="col-span-full text-center py-12">
-        <i class="fas fa-search text-4xl text-gray-300 mb-3 block"></i>
-        <p class="text-gray-500">No products found for "${query}".</p>
-        <p class="text-sm text-gray-400 mt-1">Try adjusting your search or filters.</p>
-        ${query ? `<button onclick="clearSearch()" class="mt-4 text-[#F05A28] hover:underline text-sm">Clear search</button>` : ''}
-      </div>
-    `;
-  } else {
-    renderCatalogue(filtered);
-  }
-
-  // Show/hide clear buttons
-  const showClear = query.length > 0;
-  document.getElementById('clear-search-desktop')?.classList.toggle('hidden', !showClear);
-  document.getElementById('clear-search-mobile')?.classList.toggle('hidden', !showClear);
+function toggleClearButtons(show) {
+  const clearDesktop = document.getElementById('clear-search-desktop');
+  const clearMobile = document.getElementById('clear-search-mobile');
+  if (clearDesktop) clearDesktop.classList.toggle('hidden', !show);
+  if (clearMobile) clearMobile.classList.toggle('hidden', !show);
 }
 
 function performSearch() {
   const query = getSearchQuery();
   if (query.length > 0) {
-    // Navigate to catalogue if not already there
-    const catalogueSection = document.getElementById('section-catalogue');
-    if (!catalogueSection.classList.contains('active')) {
-      showSection('catalogue');
-    }
+    showSection('catalogue');
   }
   filterProducts();
+  setSearchQuery(query);
 }
 
 function clearSearch() {
-  const desktop = document.getElementById('search-input');
-  const mobile = document.getElementById('mobile-search');
-  if (desktop) desktop.value = '';
-  if (mobile) mobile.value = '';
-  document.getElementById('clear-search-desktop')?.classList.add('hidden');
-  document.getElementById('clear-search-mobile')?.classList.add('hidden');
-  // Re-filter to show all
-  if (document.getElementById('section-catalogue').classList.contains('active')) {
+  setSearchQuery('');
+  if (document.getElementById('section-catalogue')?.classList.contains('active')) {
     filterProducts();
   }
   document.getElementById('search-input')?.focus();
 }
+
+
 // Search events
 const searchInput = document.getElementById('search-input');
 const mobileSearch = document.getElementById('mobile-search');
@@ -723,11 +717,11 @@ function clearSearch() {
 }
 
 function filterProducts() {
-  const query = getSearchQuery().toLowerCase();
+  const query = getSearchQuery().toLowerCase().trim();
   const activeFilter = document.querySelector('.filter-btn.active');
   const category = activeFilter ? activeFilter.dataset.filter : 'all';
   const grid = document.getElementById('catalogue-grid');
-  
+
   let filtered = products;
   if (category !== 'all') {
     filtered = filtered.filter(p => p.category === category);
@@ -736,25 +730,24 @@ function filterProducts() {
     filtered = filtered.filter(p => 
       p.name.toLowerCase().includes(query) || 
       p.sku.toLowerCase().includes(query) ||
-      p.description.toLowerCase().includes(query)
+      (p.description && p.description.toLowerCase().includes(query))
     );
   }
-  
-  // Render the filtered results into the catalogue grid
-  renderCatalogue(filtered);
-  
-  // Show/hide the "no results" message inside the grid
-  if (filtered.length === 0 && grid) {
-    // renderCatalogue already handles this, but ensure it's shown
+
+  if (filtered.length === 0) {
     grid.innerHTML = `
       <div class="col-span-full text-center py-12">
         <i class="fas fa-search text-4xl text-gray-300 mb-3 block"></i>
-        <p class="text-gray-500">No products found matching your search.</p>
-        <p class="text-sm text-gray-400 mt-1">Try adjusting your keywords or filters.</p>
+        <p class="text-gray-500">No products found.</p>
+        <p class="text-sm text-gray-400 mt-1">Try adjusting your search or filters.</p>
         ${query ? `<button onclick="clearSearch()" class="mt-4 text-[#F05A28] hover:underline text-sm">Clear search</button>` : ''}
       </div>
     `;
+  } else {
+    renderCatalogue(filtered);
   }
+
+  toggleClearButtons(query.length > 0);
 }
 
 // --- Attach search events ---

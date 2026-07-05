@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDUCORE – Catalogue PDF</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<!-- Header (same) -->
+<!-- ===== NAVIGATION ===== -->
+<header>
+  <!-- Top Bar -->
+  <div class="top-bar hidden lg:block bg-[#1A2B4C] text-white text-sm py-1.5">
+    <div class="container flex justify-between items-center">
+      <span class="opacity-80">Your trusted partner for stationery, PPE &amp; hygiene solutions.</span>
+      <div class="flex items-center gap-4">
+        <a href="#" class="text-white hover:text-[#F05A28] transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white hover:text-[#F05A28] transition"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="text-white hover:text-[#F05A28] transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white hover:text-[#F05A28] transition"><i class="fab fa-youtube"></i></a>
+        <span class="text-gray-400">|</span>
+        <a href="/download.html" class="text-white hover:text-[#F05A28] transition flex items-center gap-2">
+          <i class="fas fa-download"></i> Download Catalogue (PDF)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <div class="container py-3 flex flex-wrap items-center justify-between gap-3 bg-white">
+    <!-- Logo -->
+    <a href="/index.html" class="text-2xl font-bold text-[#1A2B4C] tracking-tight">EDUCORE</a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="/index.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-semibold">Home</a>
+      <a href="/catalogue.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-semibold">Catalogue</a>
+      <a href="/about.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-semibold">About</a>
+      <a href="/contact.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-semibold">Contact</a>
+      <a href="/quote.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-semibold">Request Quote</a>
+      <a href="/download.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-semibold">Catalogue PDF</a>
+    </nav>
+
+    <!-- Right: Search + Basket -->
+    <div class="flex items-center gap-3">
+      <!-- Desktop Search -->
+      <div class="relative hidden sm:block">
+        <input type="text" id="search-input" placeholder="Search products..." 
+               class="pl-8 pr-8 py-1.5 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F05A28]/50 w-44 lg:w-56 text-[#1A2B4C]" />
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+        <button id="clear-search-desktop" 
+                class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden text-xs">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+
+      <!-- Basket -->
+      <button id="basket-btn" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+        <i class="fas fa-shopping-basket text-xl text-[#1A2B4C]"></i>
+        <span id="basket-count" class="basket-badge">0</span>
+      </button>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="menu-toggle" class="md:hidden p-2 hover:bg-gray-100 rounded-full">
+        <i class="fas fa-bars text-xl text-[#1A2B4C]"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
+    <div class="flex flex-col gap-2 text-sm">
+      <a href="/index.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-medium">Home</a>
+      <a href="/catalogue.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-medium">Catalogue</a>
+      <a href="/about.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-medium">About</a>
+      <a href="/contact.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-medium">Contact</a>
+      <a href="/quote.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-medium">Request Quote</a>
+      <a href="/download.html" class="text-[#1A2B4C] hover:text-[#F05A28] transition font-medium">Catalogue PDF</a>
+      <!-- Mobile Search -->
+      <div class="relative mt-2">
+        <input type="text" id="mobile-search" placeholder="Search products..." 
+               class="w-full pl-8 pr-8 py-1.5 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F05A28]/50 text-[#1A2B4C]" />
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+        <button id="clear-search-mobile" 
+                class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden text-xs">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container py-10">
+  <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A2B4C] to-[#2a3f62] text-white mb-12">
+    <div class="px-6 py-12 lg:py-16 lg:px-12 relative z-10 text-center md:text-left">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <span class="inline-block bg-[#F05A28]/20 text-[#F05A28] text-sm font-semibold px-4 py-1 rounded-full mb-3">
+            <i class="fas fa-file-pdf mr-2"></i> Complete Product Catalogue 2026
+          </span>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+            Download Our<br/><span class="text-[#F05A28]">Full Product Catalogue</span>
+          </h1>
+          <p class="mt-3 text-gray-200 max-w-xl text-base md:text-lg">
+            Access our complete range of stationery, office furniture, PPE, and hygiene solutions – all in one easy‑to‑download PDF.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-4">
+            <button id="generatePdfBtn" class="bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2 shadow-lg">
+              <i class="fas fa-download"></i> Download Catalogue (PDF)
+            </button>
+            <button id="printPdfBtn" class="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2">
+              <i class="fas fa-print"></i> Print Catalogue
+            </button>
+            <a href="/catalogue.html" class="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2">
+              Browse Online <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-gray-300">
+            <i class="fas fa-file-pdf mr-1"></i> PDF generated from live product data • <span id="pdfProductCount">0</span> products
+          </p>
+        </div>
+        <div class="flex-shrink-0 w-48 md:w-56 lg:w-64 bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/20 shadow-xl text-center">
+          <i class="fas fa-file-pdf text-7xl text-[#F05A28]"></i>
+          <p class="mt-3 text-white/80 text-sm">Live Catalogue</p>
+          <p class="text-white/50 text-xs"><span id="pdfProductCount2">0</span> products</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust signals etc. (keep as before) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+      <div class="w-12 h-12 bg-[#F05A28]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+        <i class="fas fa-boxes text-[#F05A28] text-xl"></i>
+      </div>
+      <h4 class="font-semibold text-[#1A2B4C]"><span id="featureProductCount">0</span>+ Products</h4>
+      <p class="text-sm text-gray-500 mt-1">Complete range</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+      <div class="w-12 h-12 bg-[#F05A28]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+        <i class="fas fa-tag text-[#F05A28] text-xl"></i>
+      </div>
+      <h4 class="font-semibold text-[#1A2B4C]">Bulk Pricing</h4>
+      <p class="text-sm text-gray-500 mt-1">Competitive rates</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+      <div class="w-12 h-12 bg-[#F05A28]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+        <i class="fas fa-truck text-[#F05A28] text-xl"></i>
+      </div>
+      <h4 class="font-semibold text-[#1A2B4C]">Nationwide Delivery</h4>
+      <p class="text-sm text-gray-500 mt-1">Fast shipping</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-center">
+      <div class="w-12 h-12 bg-[#F05A28]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+        <i class="fas fa-file-contract text-[#F05A28] text-xl"></i>
+      </div>
+      <h4 class="font-semibold text-[#1A2B4C]">Tender Ready</h4>
+      <p class="text-sm text-gray-500 mt-1">B-BBEE compliant</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="flex items-center gap-2 justify-center text-sm text-gray-500"><i class="fas fa-shield-alt text-[#F05A28]"></i> Secure Download</div>
+    <div class="flex items-center gap-2 justify-center text-sm text-gray-500"><i class="fas fa-sync-alt text-[#F05A28]"></i> Live Data</div>
+    <div class="flex items-center gap-2 justify-center text-sm text-gray-500"><i class="fas fa-mobile-alt text-[#F05A28]"></i> Mobile Ready</div>
+    <div class="flex items-center gap-2 justify-center text-sm text-gray-500"><i class="fas fa-check-circle text-[#F05A28]"></i> B-BBEE Compliant</div>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Column 1: Company -->
+    <div>
+      <h4 class="text-xl font-bold mb-4">EDUCORE</h4>
+      <p class="text-sm text-gray-300">104 Donnelly Street, Turffontein, Johannesburg, 2190</p>
+      <p class="text-sm text-gray-300 mt-2">Cell: 071 945 0220</p>
+      <p class="text-sm text-gray-300">Email: info@educore.co.za</p>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div>
+      <h5 class="font-semibold mb-3">Quick Links</h5>
+      <ul class="space-y-1 text-sm text-gray-300">
+        <li><a href="/index.html" class="hover:text-[#F05A28] transition">Home</a></li>
+        <li><a href="/catalogue.html" class="hover:text-[#F05A28] transition">Catalogue</a></li>
+        <li><a href="/about.html" class="hover:text-[#F05A28] transition">About</a></li>
+        <li><a href="/contact.html" class="hover:text-[#F05A28] transition">Contact</a></li>
+        <li><a href="/quote.html" class="hover:text-[#F05A28] transition">Request Quote</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Resources -->
+    <div>
+      <h5 class="font-semibold mb-3">Resources</h5>
+      <a href="/download.html" class="inline-flex items-center gap-2 bg-[#F05A28] hover:bg-[#d94a1e] px-4 py-2 rounded-lg text-sm transition">
+        <i class="fas fa-download"></i> Download Catalogue (PDF)
+      </a>
+      <p class="text-sm text-gray-300 mt-3">Reg: 2026/461572/07</p>
+      <p class="text-sm text-gray-300">Tax: 9790884192</p>
+      <p class="text-sm text-[#F05A28] font-medium mt-1">✓ B-BBEE Compliant | Tender Ready</p>
+    </div>
+
+    <!-- Column 4: Social -->
+    <div>
+      <h5 class="font-semibold mb-3">Connect With Us</h5>
+      <div class="flex gap-4 text-xl">
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p class="text-sm text-gray-400 mt-4">&copy; 2026 EDUCORE. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/download.js"></script>
+</body>
+</html>

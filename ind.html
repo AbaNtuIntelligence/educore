@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDUCORE – Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+<style>
+
+
+
+  /* Force navbar visibility */
+  .container.py-3 nav a {
+    color: #1A2B4C !important;
+    font-weight: 600 !important;
+  }
+  .container.py-3 nav a:hover {
+    color: #F05A28 !important;
+  }
+  /* Mobile menu links */
+  #mobile-menu a {
+    color: #1A2B4C !important;
+  }
+  #mobile-menu a:hover {
+    color: #F05A28 !important;
+  }
+
+  
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER (Same on all pages) ===== -->
+<header>
+  <div class="top-bar hidden lg:block">
+    <div class="container flex justify-between items-center">
+      <span class="opacity-80">Your trusted partner for stationery, PPE &amp; hygiene solutions.</span>
+      <div class="flex items-center gap-4">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <span class="text-gray-400">|</span>
+        <a href="/download.html"><i class="fas fa-download"></i> Download Catalogue (PDF)</a>
+      </div>
+    </div>
+  </div>
+  <div class="container py-3 flex flex-wrap items-center justify-between gap-3">
+    <a href="/index.html" class="text-2xl font-bold text-[#1A2B4C] tracking-tight">EDUCORE</a>
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+  <a href="/index.html" style="color:#1A2B4C; font-weight:600; text-decoration:none;" onmouseover="this.style.color='#F05A28'" onmouseout="this.style.color='#1A2B4C'">Home</a>
+  <a href="/catalogue.html" style="color:#1A2B4C; font-weight:600; text-decoration:none;" onmouseover="this.style.color='#F05A28'" onmouseout="this.style.color='#1A2B4C'">Catalogue</a>
+  <a href="/about.html" style="color:#1A2B4C; font-weight:600; text-decoration:none;" onmouseover="this.style.color='#F05A28'" onmouseout="this.style.color='#1A2B4C'">About</a>
+  <a href="/contact.html" style="color:#1A2B4C; font-weight:600; text-decoration:none;" onmouseover="this.style.color='#F05A28'" onmouseout="this.style.color='#1A2B4C'">Contact</a>
+  <a href="/quote.html" style="color:#1A2B4C; font-weight:600; text-decoration:none;" onmouseover="this.style.color='#F05A28'" onmouseout="this.style.color='#1A2B4C'">Request Quote</a>
+  <a href="/download.html" style="color:#1A2B4C; font-weight:600; text-decoration:none;" onmouseover="this.style.color='#F05A28'" onmouseout="this.style.color='#1A2B4C'">Catalogue PDF</a>
+</nav>
+    <div class="flex items-center gap-3">
+      <div class="relative hidden sm:block">
+        <input type="text" id="search-input" placeholder="Search products..." class="pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F05A28]/50 w-44 lg:w-56" />
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+      </div>
+      <button id="basket-btn" class="relative p-2 hover:bg-gray-100 rounded-full transition">
+        <i class="fas fa-shopping-basket text-xl text-[#1A2B4C]"></i>
+        <span id="basket-count" class="basket-badge">0</span>
+      </button>
+      <button id="menu-toggle" class="md:hidden p-2 hover:bg-gray-100 rounded-full"><i class="fas fa-bars text-xl text-[#1A2B4C]"></i></button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
+    <div class="flex flex-col gap-2 text-sm">
+      <a href="/index.html" class="text-[#1A2B4C]">Home</a>
+      <a href="/catalogue.html" class="text-gray-600">Catalogue</a>
+      <a href="/about.html" class="text-gray-600">About</a>
+      <a href="/contact.html" class="text-gray-600">Contact</a>
+      <a href="/quote.html" class="text-gray-600">Request Quote</a>
+      <a href="/download.html" class="text-gray-600">Catalogue PDF</a>
+      <div class="relative mt-2">
+        <input type="text" id="mobile-search" placeholder="Search..." class="w-full pl-8 pr-3 py-1.5 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#F05A28]/50" />
+        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container py-6">
+  <!-- Hero Slider -->
+  <div class="hero-wrapper" id="heroSlider">
+    <div class="hero-slides">
+      <div class="hero-slide active" style="background-image: url('https://picsum.photos/seed/office/1200/600');"></div>
+      <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/stationery/1200/600');"></div>
+      <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/ppe/1200/600');"></div>
+      <div class="hero-slide" style="background-image: url('https://picsum.photos/seed/cleaning/1200/600');"></div>
+    </div>
+    <div class="hero-content">
+      <h1>Your Single Source for<br/><span>Quality Stationery, PPE &amp; Hygiene</span></h1>
+      <p>Trusted by schools, government, and businesses across South Africa.</p>
+      <div class="hero-buttons">
+        <a href="/catalogue.html" class="btn-primary">View Full Catalogue <i class="fas fa-arrow-right text-sm"></i></a>
+        <a href="/download.html" class="btn-outline"><i class="fas fa-download"></i> Download Catalogue</a>
+      </div>
+    </div>
+    <div class="hero-dots">
+      <span class="hero-dot active" data-index="0"></span>
+      <span class="hero-dot" data-index="1"></span>
+      <span class="hero-dot" data-index="2"></span>
+      <span class="hero-dot" data-index="3"></span>
+    </div>
+  </div>
+
+  <!-- Category Sliders -->
+  <div id="category-sliders" class="space-y-12 mt-10"></div>
+</main>
+
+<!-- ===== BASKET DRAWER (Shared) ===== -->
+<div id="basket-drawer" class="drawer fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 overflow-y-auto p-6">
+  <div class="flex justify-between items-center border-b pb-4 mb-4">
+    <h3 class="text-xl font-bold text-[#1A2B4C]">Your Quote Basket</h3>
+    <button id="close-drawer" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times text-xl"></i></button>
+  </div>
+  <div id="basket-items" class="space-y-4"></div>
+  <div id="basket-empty" class="text-center text-gray-500 py-8">
+    <i class="fas fa-shopping-basket text-4xl text-gray-300 mb-2 block"></i>
+    <p>Your basket is empty.</p>
+  </div>
+  <div class="mt-6 border-t pt-4">
+    <a href="/quote.html" class="block w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg text-center transition">Request Quote</a>
+  </div>
+</div>
+<div id="drawer-overlay"></div>
+
+<!-- ===== FOOTER (Shared) ===== -->
+<footer>
+  <div class="container grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <h4 class="text-xl font-bold mb-4">EDUCORE</h4>
+      <p class="text-sm text-gray-300">104 Donnelly Street, Turffontein, Johannesburg, 2190</p>
+      <p class="text-sm text-gray-300 mt-2">Cell: 071 945 0220</p>
+      <p class="text-sm text-gray-300">Email: info@educore.co.za</p>
+    </div>
+    <div>
+      <h5 class="font-semibold mb-3">Quick Links</h5>
+      <ul class="space-y-1 text-sm text-gray-300">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/catalogue.html">Catalogue</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 class="font-semibold mb-3">Resources</h5>
+      <a href="/download.html" class="inline-flex items-center gap-2 bg-[#F05A28] hover:bg-[#d94a1e] px-4 py-2 rounded-lg text-sm transition"><i class="fas fa-download"></i> Download Catalogue (PDF)</a>
+      <p class="text-sm text-gray-300 mt-3">Reg: 2026/461572/07</p>
+      <p class="text-sm text-gray-300">Tax: 9790884192</p>
+      <p class="text-sm text-[#F05A28] font-medium mt-1">✓ B-BBEE Compliant | Tender Ready</p>
+    </div>
+    <div>
+      <h5 class="font-semibold mb-3">Connect</h5>
+      <div class="flex gap-4 text-xl">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p class="text-sm text-gray-400 mt-4">&copy; 2026 EDUCORE. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/home.js"></script>
+</body>
+</html>
