@@ -16,16 +16,16 @@ const products = [
   
 
   // Office Furniture
-  { id:11, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "executive-desk", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/classic-ea.jpg", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
-  { id:12, name: "Activity Executive Desk with Side Cabinet", category: "office-furniture", slug: "ergonomic-chair", description: "Premium office workstation designed to combine executive style, spacious functionality, and practical storage.", image: "images/activity.jpg", unit: "each", sku: "AED-013", price: "R 16,480.00", featured: false, features: ["Modern Executive Design", "Integrated Side Cabinet", "Large Executive Work Surface", "Lockable Drawers (Model Dependent)"] },
-  { id:13, name: "Lenny Medium Back Chair", category: "furniture", slug: "office-furniture", description: "Modern, ergonomic office chair designed to provide comfort, support, and functionality for everyday use.", image: "images/Lenny.jpg", unit: "each", sku: "LMB-014", price: "R 4330.00", featured: false, features: ["Ergonomic Medium Back Design", "Comfortable Padded Seat & Backrest", "Height Adjustable", "Smooth 360° Swivel"] },
-  { id:14, name: "Walnut Boardroom Table", category: "furniture", slug: "conference-table", description: "Premium conference table designed to bring elegance, functionality, and professionalism to modern meeting spaces.", image: "images/Walnut.jpg", unit: "each", sku: "WAL-015", price: "R 11,455.00", featured: true, features: ["Elegant Walnut Finish", "Spacious Meeting Surface", "Durable Construction", "Scratch & Stain Resistant Surface"] },
-  { id:15, name: "Nevada L-Shaped Desk", category: "furniture", slug: "desk", description: "Contemporary workstation designed to maximise workspace, improve organisation, and enhance productivity.", image: "images/Nevada.jpg", unit: "each", sku: "NLD-016", price: "R 17,525.00", featured: true, features: ["L-Shaped Workstation Design", "Large Work Surface", "Integrated Storage (Model Dependent)", "Durable Construction"] },
-  { id:16, name: "Tide Black High Back Chair", category: "furniture", slug: "office-furniture", description: "Contemporary executive office chair designed to deliver exceptional comfort, ergonomic support, and professional style.", image: "images/Tide.jpg", unit: "each", sku: "TID-014", price: "R 3,455.00", featured: true, features: ["Ergonomic High-Back Design", "Premium Cushioned Comfort", "Stylish Black Upholstery", "Adjustable Seat Height"] },
-  { id:17, name: "Activity Straight Reception Desk", category: "furniture", slug: "office-furniture", description: "Modern and functional reception solution designed to create a professional first impression while providing an efficient workspace for receptionists and front-office personnel.", image: "images/Straight.jpg", unit: "each", sku: "STR-015", price: "R 19,605.00", featured: false, features: ["Modern Straight-Line Design", "Raised Reception Counter", "Spacious Workstation", "Integrated Storage"] },
-  { id:18, name: "President High Back Office Chair", category: "furniture", slug: "office-furniture", description: "Premium executive seating solution designed to provide exceptional comfort, ergonomic support, and professional style.", image: "images/president.jpg", unit: "each", sku: "PRC-016", price: "R 8,460.00", featured: true, features: ["5 tiers", "Executive High-Back Design", "Ergonomic Comfort", "Premium Upholstery", "Adjustable Seat Height", "Tilt & Recline Mechanism", "360° Swivel Function"] },
-  { id:19, name: "Classic Eames High Back Chair", category: "office-furniture", slug: "office-furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/chair.jpg", unit: "each", sku: "EA-003", price: "R 5,330.00", featured: true, features: ["Iconic Executive Design", "High Back Ergonomic Support", "Premium Upholstered Seat and Backrest", "Adjustable Seat Height", "Tilt and Recline Function", "Smooth-Rolling Castors"] },
-  { id:20, name: "Indigo Boardroom Table", category: "office-furniture", slug: "Lever-Arch-Files", description: "Executive-quality meeting table designed to create a professional and collaborative environment for boardrooms, conference rooms, and executive offices.", image: "images/Indigo-.jpg", unit: "EA", sku: "IDG-005", price: "R 250.00", featured: true, features: ["Modern Executive Design", "Spacious Work Surface", "Premium Construction", "Robust Frame", "Easy-to-Clean Surface"] },
+  { id:11, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/classic-ea.jpg", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
+  { id:12, name: "Activity Executive Desk with Side Cabinet", category: "furniture", slug: "ergonomic-chair", description: "Premium office workstation designed to combine executive style, spacious functionality, and practical storage.", image: "images/activity.jpg", unit: "each", sku: "AED-013", price: "R 16,480.00", featured: false, features: ["Modern Executive Design", "Integrated Side Cabinet", "Large Executive Work Surface", "Lockable Drawers (Model Dependent)"] },
+  { id:13, name: "Lenny Medium Back Chair", category: "furniture", slug: "furniture", description: "Modern, ergonomic office chair designed to provide comfort, support, and functionality for everyday use.", image: "images/Lenny.jpg", unit: "each", sku: "LMB-014", price: "R 4330.00", featured: false, features: ["Ergonomic Medium Back Design", "Comfortable Padded Seat & Backrest", "Height Adjustable", "Smooth 360° Swivel"] },
+  { id:14, name: "Walnut Boardroom Table", category: "furniture", slug: "furniture", description: "Premium conference table designed to bring elegance, functionality, and professionalism to modern meeting spaces.", image: "images/Walnut.jpg", unit: "each", sku: "WAL-015", price: "R 11,455.00", featured: true, features: ["Elegant Walnut Finish", "Spacious Meeting Surface", "Durable Construction", "Scratch & Stain Resistant Surface"] },
+  { id:15, name: "Nevada L-Shaped Desk", category: "furniture", slug: "furniture", description: "Contemporary workstation designed to maximise workspace, improve organisation, and enhance productivity.", image: "images/Nevada.jpg", unit: "each", sku: "NLD-016", price: "R 17,525.00", featured: true, features: ["L-Shaped Workstation Design", "Large Work Surface", "Integrated Storage (Model Dependent)", "Durable Construction"] },
+  { id:16, name: "Tide Black High Back Chair", category: "furniture", slug: "furniture", description: "Contemporary executive office chair designed to deliver exceptional comfort, ergonomic support, and professional style.", image: "images/Tide.jpg", unit: "each", sku: "TID-014", price: "R 3,455.00", featured: true, features: ["Ergonomic High-Back Design", "Premium Cushioned Comfort", "Stylish Black Upholstery", "Adjustable Seat Height"] },
+  { id:17, name: "Activity Straight Reception Desk", category: "furniture", slug: "furniture", description: "Modern and functional reception solution designed to create a professional first impression while providing an efficient workspace for receptionists and front-office personnel.", image: "images/Straight.jpg", unit: "each", sku: "STR-015", price: "R 19,605.00", featured: false, features: ["Modern Straight-Line Design", "Raised Reception Counter", "Spacious Workstation", "Integrated Storage"] },
+  { id:18, name: "President High Back Office Chair", category: "furniture", slug: "furniture", description: "Premium executive seating solution designed to provide exceptional comfort, ergonomic support, and professional style.", image: "images/president.jpg", unit: "each", sku: "PRC-016", price: "R 8,460.00", featured: true, features: ["5 tiers", "Executive High-Back Design", "Ergonomic Comfort", "Premium Upholstery", "Adjustable Seat Height", "Tilt & Recline Mechanism", "360° Swivel Function"] },
+  { id:19, name: "Classic Eames High Back Chair", category: "furniture", slug: "furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/chair.jpg", unit: "each", sku: "EA-003", price: "R 5,330.00", featured: true, features: ["Iconic Executive Design", "High Back Ergonomic Support", "Premium Upholstered Seat and Backrest", "Adjustable Seat Height", "Tilt and Recline Function", "Smooth-Rolling Castors"] },
+  { id:20, name: "Indigo Boardroom Table", category: "furniture", slug: "furniture", description: "Executive-quality meeting table designed to create a professional and collaborative environment for boardrooms, conference rooms, and executive offices.", image: "images/Indigo-.jpg", unit: "EA", sku: "IDG-005", price: "R 250.00", featured: true, features: ["Modern Executive Design", "Spacious Work Surface", "Premium Construction", "Robust Frame", "Easy-to-Clean Surface"] },
 
 
 
@@ -499,10 +499,13 @@ function showSection(sectionId) {
 }
 
 function filterProducts() {
-  const query = getSearchQuery().toLowerCase();
+  const query = getSearchQuery().toLowerCase().trim();
   const activeFilter = document.querySelector('.filter-btn.active');
   const category = activeFilter ? activeFilter.dataset.filter : 'all';
   const grid = document.getElementById('catalogue-grid');
+
+  // Debug log to see what's happening
+  console.log('Filtering by category:', category, 'Query:', query);
 
   let filtered = products;
   if (category !== 'all') {
@@ -512,28 +515,50 @@ function filterProducts() {
     filtered = filtered.filter(p => 
       p.name.toLowerCase().includes(query) || 
       p.sku.toLowerCase().includes(query) ||
-      p.description.toLowerCase().includes(query)
+      (p.description && p.description.toLowerCase().includes(query))
     );
   }
 
-  // Render results
+  console.log('Found:', filtered.length, 'products');
+
   if (filtered.length === 0) {
     grid.innerHTML = `
       <div class="col-span-full text-center py-12">
         <i class="fas fa-search text-4xl text-gray-300 mb-3 block"></i>
-        <p class="text-gray-500">No products found.</p>
-        <p class="text-sm text-gray-400 mt-1">Try adjusting your search or filters.</p>
-        ${query ? `<button onclick="clearSearch()" class="mt-4 text-[#F05A28] hover:underline text-sm">Clear search</button>` : ''}
+        <p class="text-gray-500">No products found in "${category}".</p>
+        <p class="text-sm text-gray-400 mt-1">Try selecting a different category.</p>
       </div>
     `;
   } else {
     renderCatalogue(filtered);
   }
 
-  // Update clear button visibility
   toggleClearButtons(query.length > 0);
 }
 
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    filterProducts();
+  });
+});
+
+// Set initial active filter
+document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
+
+function getSearchQuery() {
+  const desktop = document.getElementById('search-input');
+  const mobile = document.getElementById('mobile-search');
+  const val = desktop ? desktop.value : '';
+  if (!val && mobile) return mobile.value || '';
+  return val || '';
+}
+
+// Set initial active filter
+document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
 // ============================
 // HERO SLIDER
 // ============================
