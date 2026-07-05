@@ -83,6 +83,9 @@ const products = [
   })
 ];
 
+
+
+
 // ============================
 // STATE
 // ============================
@@ -571,6 +574,13 @@ function filterProducts() {
 // ============================
 // INITIALIZATION
 // ============================
+// Download catalogue buttons
+document.querySelectorAll('.download-catalogue-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    generateCataloguePDF();
+  });
+});
 document.addEventListener('DOMContentLoaded', function() {
   // Render sliders and catalogue
   renderSliders();
