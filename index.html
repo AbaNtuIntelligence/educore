@@ -300,42 +300,75 @@
 <main class="container mx-auto px-4 py-6">
 
   <!-- ===== HOME ===== -->
-  <section id="section-home" class="page-section active">
-    <!-- Hero Slider -->
-    <div class="hero-wrapper" id="heroSlider">
-      <div class="hero-slides">
-        <div class="hero-slide active" style="background-image: url('images/Educore.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/Educore1.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/stationery.jpg');"></div>
-        <div class="hero-slide" style="background-image: url('images/Mop-Caps.png');"></div>
-      </div>
-      <div class="hero-content">
-        <h1>
-          Your Single Source for<br/>
-          <span>Quality Stationery, PPE &amp; Hygiene</span>
-        </h1>
-        <p>Trusted by schools, government, and businesses across South Africa.</p>
-        <div class="hero-buttons">
-          <a href="#" class="btn-primary" onclick="document.querySelector('[data-section=catalogue]').click(); return false;">
-            View Full Catalogue <i class="fas fa-arrow-right text-sm"></i>
-          </a>
-          <a href="#" class="btn-outline" onclick="document.querySelector('[data-section=catalogue-download]').click(); return false;">
-            <i class="fas fa-download"></i> Download Catalogue
-          </a>
-        </div>
-      </div>
-      <div class="hero-dots">
-        <span class="hero-dot active" data-index="0"></span>
-        <span class="hero-dot" data-index="1"></span>
-        <span class="hero-dot" data-index="2"></span>
-        <span class="hero-dot" data-index="3"></span>
+<section id="section-home" class="page-section active">
+  <!-- Hero Slider -->
+  <div class="hero-wrapper" id="heroSlider">
+
+    <div class="hero-slides">
+      <div
+        class="hero-slide active"
+        style="background-image: url('/images/educore.jpg');"
+      ></div>
+
+      <div
+        class="hero-slide"
+        style="background-image: url('/images/educore-1.jpg');"
+      ></div>
+
+      <div
+        class="hero-slide"
+        style="background-image: url('/images/stationery.jpg');"
+      ></div>
+
+      <div
+        class="hero-slide"
+        style="background-image: url('/images/mop-cap-pack-of-100-units.png');"
+      ></div>
+    </div>
+
+    <div class="hero-content">
+      <h1>
+        Your Single Source for<br />
+        <span>Quality Stationery, PPE &amp; Hygiene</span>
+      </h1>
+
+      <p>
+        Trusted by schools, government, and businesses across South Africa.
+      </p>
+
+      <div class="hero-buttons">
+        <a
+          href="#"
+          class="btn-primary"
+          onclick="document.querySelector('[data-section=catalogue]').click(); return false;"
+        >
+          View Full Catalogue
+          <i class="fas fa-arrow-right text-sm"></i>
+        </a>
+
+        <a
+          href="#"
+          class="btn-outline"
+          onclick="document.querySelector('[data-section=catalogue-download]').click(); return false;"
+        >
+          <i class="fas fa-download"></i>
+          Download Catalogue
+        </a>
       </div>
     </div>
 
-    <!-- Category Sliders -->
-    <div id="category-sliders" class="space-y-12 mt-10"></div>
-  </section>
+    <div class="hero-dots">
+      <span class="hero-dot active" data-index="0"></span>
+      <span class="hero-dot" data-index="1"></span>
+      <span class="hero-dot" data-index="2"></span>
+      <span class="hero-dot" data-index="3"></span>
+    </div>
 
+  </div>
+
+  <!-- Category Sliders -->
+  <div id="category-sliders" class="space-y-12 mt-10"></div>
+</section>
   <!-- ===== CATALOGUE ===== -->
   <section id="section-catalogue" class="page-section">
     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
@@ -384,8 +417,11 @@
       </div>
     </div>
     <div class="relative">
-      <img src="images/Educore.jpg" alt="EDUCORE Office" class="rounded-xl shadow-lg w-full object-cover h-64 md:h-80" />
-      <div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-md hidden md:block">
+<img
+  src="/images/educore.jpg"
+  alt="EDUCORE Office"
+  class="rounded-xl shadow-lg w-full object-cover h-64 md:h-80"
+/>      <div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-md hidden md:block">
         <div class="flex items-center gap-3">
           <i class="fas fa-check-circle text-[#F05A28] text-2xl"></i>
           <!--<span class="font-semibold text-[#1A2B4C]">Trusted Partner</span>-->
