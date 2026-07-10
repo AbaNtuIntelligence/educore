@@ -1,87 +1,89 @@
+import { getProductsFromGoogleSheets } from "./src/services/googleSheets.js";
+let products = [];
 // ============================
 // DATA – 100+ Products
 // ============================
-const products = [
+//const products = [
   // Stationery
-  { id:1, name: "Index Cards 5×3 Plain-Rainbow x5 Set Tic 90X126 5 TAB", category: "stationery", slug: "a4-copy-paper", description: "Compact, high-quality coloured index cards designed for efficient organisation, note-taking, filing, and quick reference.", image: "images/Index-Cards.jpg", unit: "box (5 reams)", sku: "EDU-PAP-001", price: "R 45.00", featured: true, features: ["Compact 5 × 3 Inch Size (90 × 126mm)", "Plain Writing Surface", "5-Tab Rainbow Divider Set", "Premium Cardstock"] },
-  { id:2, name: "Value Pack Storage Box + 5 Lever Arch Files – 2 Pack", category: "stationery", slug: "Lever-Arch", description: "Complete document organisation and archiving solution designed for businesses, schools, government departments, and home offices.", image: "images/Value-Pack.jpg", unit: "2 Pack", sku: "LEV-ACH-002", price: "R 495.99", featured: true, features: ["Large Storage Capacity", "Commercial Files Included", "Premium Lever Arch Files", "Durable Storage Boxes"] },
-  { id:3, name: "Suspension Attache Case with Lock + Handle and 10 Suspension files", category: "stationery", slug: "attache-case", description: "Durable and secure portable filing solution designed for professionals who require organised document storage on the move.", image: "images/Suspension.jpg", unit: "each", sku: "ATT-003", price: "R 250.00", featured:true, features: ["Suspension File Compatibility", "Comfortable Carry Handle", "Secure Locking Mechanism", "Complete Portable Filing System"] },
-  { id:4, name: "Highlighter Set (6 colours)", category: "stationery", slug: "highlighter-set", description: "Set of 6 neon highlighters, chisel tip.", image: "images/1.avif", unit: "set", sku: "EDU-HIG-004", price: "R 34.00", featured: false, features: ["6 neon colors", "Chisel tip", "Long-lasting ink", "Vibrant colors"] },
-  { id:5, name: "Lever Arch Files A4 Black & White Mottle – 50 Pack", category: "stationery", slug: "Lever-Arch-Files", description: "Premium-quality document filing solutions designed to organise, protect, and store A4-sized documents efficiently in professional and educational environments.", image: "images/Lever-Arch.jpg", unit: "pack of 50", sku: "LV-005", price: "R 1,122.00", featured: true, features: ["A4 Document Compatibility", "Heavy-Duty Lever Arch Mechanism", "Classic Black & White Mottle Finish", "Pack of 50 Files"] },
-  { id:6, name: "Corrugated Archive Box F/S – 12 Pack", category: "stationery", slug: "Corrugated", description: "Durable and practical document storage solution designed for the safe archiving, organisation, and transportation of foolscap-sized files and records.", image: "images/Corrugated.jpg", unit: "12 Pack", sku: "EDU-FUR-016", price: "R 286.99", featured: true, features: ["Foolscap Size (F/S) Compatibility", "Strong Corrugated Cardboard Construction", "Pack of 12 Boxes", "Easy Assembly"] },
-  { id:7, name: "TYPEK Paper A4 500 Sheet Ream EAs", category: "stationery", slug: "Typek-A4", description: "Premium-quality multifunction office paper engineered to deliver exceptional performance across all printing, copying, and everyday office applications", image: "images/Typek5.jpg", unit: "box of 5", sku: "TPK-003", price: "R 379.99", featured: true, features: ["Premium A4 Office Paper", "80gsm Paper Weight", "Bright White Finish", "Superior Print Quality", "Excellent Double-Sided Printing", "Reliable Printer Performance", "Environmentally Responsible", "Bulk Pack – 2,500 Sheets"] },
-  { id:8, name: "Suspension Files – 50 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "suspension-file", description: "Premium-quality hanging files designed to provide an efficient, organised, and professional document management system.", image: "images/Suspension-Files.jpg", unit: "pack of 50", sku: "SF-005", price: "R 250.00", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
-  { id:9, name: "Value Pack Box + 5 Lever Arch Files", category: "stationery", slug: "Lever-Arch-Files", description: "Convenient and cost-effective document storage solution designed to help businesses and individuals organise, protect, and archive important paperwork.", image: "images/ValuePack-box5.jpg", unit: "box of 5", sku: "VP-003", price: "R 255.00", featured: true, features: ["Complete Filing Solution", "Premium Lever Arch Files", "Durable Archive Storage Box", "A4 Document Compatibility"] },
-  { id:10, name: "Suspension Files – 25 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "suspension-file", description: "Premium-quality hanging files designed to provide an efficient, organised, and easily accessible document filing system.", image: "images/Suspension_Files25.jpg", unit: "pack of 25", sku: "SF-025", price: "R 199.99", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
+ // { id:1, name: "Index Cards 5×3 Plain-Rainbow x5 Set Tic 90X126 5 TAB", category: "stationery", slug: "Index Cards a4-copy-paper", description: "Compact, high-quality coloured index cards designed for efficient organisation, note-taking, filing, and quick reference.", image: "public/images/products/Index-Cards-90-X-126 5 TAB.webp", unit: "box (5 reams)", sku: "EDU-PAP-001", price: "R 45.00", featured: true, features: ["Compact 5 × 3 Inch Size (90 × 126mm)", "Plain Writing Surface", "5-Tab Rainbow Divider Set", "Premium Cardstock"] },
+ // { id:2, name: "Value Pack Storage Box + 5 Lever Arch Files – 2 Pack", category: "stationery", slug: "Lever-Arch", description: "Complete document organisation and archiving solution designed for businesses, schools, government departments, and home offices.", image: "public/images/products/Value-Pack.webp", unit: "2 Pack", sku: "LEV-ACH-002", price: "R 495.99", featured: true, features: ["Large Storage Capacity", "Commercial Files Included", "Premium Lever Arch Files", "Durable Storage Boxes"] },
+  //{ id:3, name: "Suspension Attache Case with Lock + Handle and 10 Suspension files", category: "stationery", slug: "attache-case", description: "Durable and secure portable filing solution designed for professionals who require organised document storage on the move.", image: "public/images/products/Suspension.webp", unit: "each", sku: "ATT-003", price: "R 250.00", featured:true, features: ["Suspension File Compatibility", "Comfortable Carry Handle", "Secure Locking Mechanism", "Complete Portable Filing System"] },
+  //{ id:4, name: "Highlighter Set (6 colours)", category: "stationery", slug: "highlighter-set", description: "Set of 6 neon highlighters, chisel tip.", image: "public/images/products/highlighter-set.webp", unit: "set", sku: "EDU-HIG-004", price: "R 34.00", featured: false, features: ["6 neon colors", "Chisel tip", "Long-lasting-ink", "Vibrant colors"] },
+  //{ id:5, name: "Lever Arch Files A4 Black & White Mottle – 50 Pack", category: "stationery", slug: "Lever-Arch-Files", description: "Premium-quality document filing solutions designed to organise, protect, and store A4-sized documents efficiently in professional and educational environments.", image: "/images/products/Lever-Arch-Files.webp", unit: "pack of 50", sku: "LV-005", price: "R 1,122.00", featured: true, features: ["A4 Document Compatibility", "Heavy-Duty Lever Arch Mechanism", "Classic Black & White Mottle Finish", "Pack of 50 Files"] },
+ // { id:6, name: "Corrugated Archive Box F/S – 12 Pack", category: "stationery", slug: "corrugated-archive-box", description: "Durable and practical document storage solution designed for the safe archiving, organisation, and transportation of foolscap-sized files and records.", image: "/images/products/corrugated-archive-box.webp", unit: "12 Pack", sku: "EDU-FUR-016", price: "R 286.99", featured: true, features: ["Foolscap Size (F/S) Compatibility", "Strong Corrugated Cardboard Construction", "Pack of 12 Boxes", "Easy Assembly"] },
+  //{ id:7, name: "TYPEK Paper A4 500 Sheet Ream EAs", category: "stationery", slug: "Typek-A4", description: "Premium-quality multifunction office paper engineered to deliver exceptional performance across all printing, copying, and everyday office applications", image: "/images/products/Typek5.webp", unit: "box of 5", sku: "TPK-003", price: "R 379.99", featured: true, features: ["Premium A4 Office Paper", "80gsm Paper Weight", "Bright White Finish", "Superior Print Quality", "Excellent Double-Sided Printing", "Reliable Printer Performance", "Environmentally Responsible", "Bulk Pack – 2,500 Sheets"] },
+  //{ id:8, name: "Suspension Files – 50 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "suspension-file", description: "Premium-quality hanging files designed to provide an efficient, organised, and professional document management system.", image: "/images/products/Suspension-Files.webp", unit: "pack of 50", sku: "SF-005", price: "R 250.00", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
+ // { id:9, name: "Value Pack Box + 5 Lever Arch Files", category: "stationery", slug: "Lever-Arch-Files", description: "Convenient and cost-effective document storage solution designed to help businesses and individuals organise, protect, and archive important paperwork.", image: "/images/products/ValuePack-box5.webp", unit: "box of 5", sku: "VP-003", price: "R 255.00", featured: true, features: ["Complete Filing Solution", "Premium Lever Arch Files", "Durable Archive Storage Box", "A4 Document Compatibility"] },
+ // { id:10, name: "Suspension Files – 25 Pack with Flexi Tabs & Inserts", category: "stationery", slug: "suspension-file", description: "Premium-quality hanging files designed to provide an efficient, organised, and easily accessible document filing system.", image: "/images/products/Suspension_Files25.webp", unit: "pack of 25", sku: "SF-025", price: "R 199.99", featured: true, features: ["Pack of 50 Suspension Files", "Flexi Tabs & Replaceable Inserts", "Heavy-Duty Manila Card Construction", "Strong Metal Suspension Rails"] },
   
 
   // Office Furniture
-  { id:11, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "https://i.imgur.com/bcPlRtd.jpeg", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
-  { id:12, name: "Activity Executive Desk with Side Cabinet", category: "furniture", slug: "ergonomic-chair", description: "Premium office workstation designed to combine executive style, spacious functionality, and practical storage.", image: "images/activity.jpg", unit: "each", sku: "AED-013", price: "R 16,480.00", featured: false, features: ["Modern Executive Design", "Integrated Side Cabinet", "Large Executive Work Surface", "Lockable Drawers (Model Dependent)"] },
-  { id:13, name: "Lenny Medium Back Chair", category: "furniture", slug: "furniture", description: "Modern, ergonomic office chair designed to provide comfort, support, and functionality for everyday use.", image: "images/Lenny.jpg", unit: "each", sku: "LMB-014", price: "R 4330.00", featured: false, features: ["Ergonomic Medium Back Design", "Comfortable Padded Seat & Backrest", "Height Adjustable", "Smooth 360° Swivel"] },
-  { id:14, name: "Walnut Boardroom Table", category: "furniture", slug: "furniture", description: "Premium conference table designed to bring elegance, functionality, and professionalism to modern meeting spaces.", image: "images/Walnut.jpg", unit: "each", sku: "WAL-015", price: "R 11,455.00", featured: true, features: ["Elegant Walnut Finish", "Spacious Meeting Surface", "Durable Construction", "Scratch & Stain Resistant Surface"] },
-  { id:15, name: "Nevada L-Shaped Desk", category: "furniture", slug: "furniture", description: "Contemporary workstation designed to maximise workspace, improve organisation, and enhance productivity.", image: "images/Nevada.jpg", unit: "each", sku: "NLD-016", price: "R 17,525.00", featured: true, features: ["L-Shaped Workstation Design", "Large Work Surface", "Integrated Storage (Model Dependent)", "Durable Construction"] },
-  { id:16, name: "Tide Black High Back Chair", category: "furniture", slug: "furniture", description: "Contemporary executive office chair designed to deliver exceptional comfort, ergonomic support, and professional style.", image: "images/Tide.jpg", unit: "each", sku: "TID-014", price: "R 3,455.00", featured: true, features: ["Ergonomic High-Back Design", "Premium Cushioned Comfort", "Stylish Black Upholstery", "Adjustable Seat Height"] },
-  { id:17, name: "Activity Straight Reception Desk", category: "furniture", slug: "furniture", description: "Modern and functional reception solution designed to create a professional first impression while providing an efficient workspace for receptionists and front-office personnel.", image: "images/Straight.jpg", unit: "each", sku: "STR-015", price: "R 19,605.00", featured: false, features: ["Modern Straight-Line Design", "Raised Reception Counter", "Spacious Workstation", "Integrated Storage"] },
-  { id:18, name: "President High Back Office Chair", category: "furniture", slug: "furniture", description: "Premium executive seating solution designed to provide exceptional comfort, ergonomic support, and professional style.", image: "images/president.jpg", unit: "each", sku: "PRC-016", price: "R 8,460.00", featured: true, features: ["5 tiers", "Executive High-Back Design", "Ergonomic Comfort", "Premium Upholstery", "Adjustable Seat Height", "Tilt & Recline Mechanism", "360° Swivel Function"] },
-  { id:19, name: "Classic Eames High Back Chair", category: "furniture", slug: "furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/chair.jpg", unit: "each", sku: "EA-003", price: "R 5,330.00", featured: true, features: ["Iconic Executive Design", "High Back Ergonomic Support", "Premium Upholstered Seat and Backrest", "Adjustable Seat Height", "Tilt and Recline Function", "Smooth-Rolling Castors"] },
-  { id:20, name: "Indigo Boardroom Table", category: "furniture", slug: "furniture", description: "Executive-quality meeting table designed to create a professional and collaborative environment for boardrooms, conference rooms, and executive offices.", image: "images/Indigo-.jpg", unit: "EA", sku: "IDG-005", price: "R 250.00", featured: true, features: ["Modern Executive Design", "Spacious Work Surface", "Premium Construction", "Robust Frame", "Easy-to-Clean Surface"] },
+//  { id:11, name: "Classic Eames High Back-Cushion", category: "furniture", slug: "furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "https://i.imgur.com/bcPlRtd.webp", unit: "each", sku: "CEH-012", price: "R 5,495.00", featured: true, features: ["Elegant Executive Design", "High Back Ergonomic Support", "Extra-Thick Cushioned Padding", "Premium Upholstery"] },
+ // { id:12, name: "Activity Executive Desk with Side Cabinet", category: "furniture", slug: "ergonomic-chair", description: "Premium office workstation designed to combine executive style, spacious functionality, and practical storage.", image: "images/activity.webp", unit: "each", sku: "AED-013", price: "R 16,480.00", featured: false, features: ["Modern Executive Design", "Integrated Side Cabinet", "Large Executive Work Surface", "Lockable Drawers (Model Dependent)"] },
+//  { id:13, name: "Lenny Medium Back Chair", category: "furniture", slug: "furniture", description: "Modern, ergonomic office chair designed to provide comfort, support, and functionality for everyday use.", image: "images/Lenny.webp", unit: "each", sku: "LMB-014", price: "R 4330.00", featured: false, features: ["Ergonomic Medium Back Design", "Comfortable Padded Seat & Backrest", "Height Adjustable", "Smooth 360° Swivel"] },
+ // { id:14, name: "Walnut Boardroom Table", category: "furniture", slug: "furniture", description: "Premium conference table designed to bring elegance, functionality, and professionalism to modern meeting spaces.", image: "images/Walnut.webp", unit: "each", sku: "WAL-015", price: "R 11,455.00", featured: true, features: ["Elegant Walnut Finish", "Spacious Meeting Surface", "Durable Construction", "Scratch & Stain Resistant Surface"] },
+ // { id:15, name: "Nevada L-Shaped Desk", category: "furniture", slug: "furniture", description: "Contemporary workstation designed to maximise workspace, improve organisation, and enhance productivity.", image: "images/Nevada.webp", unit: "each", sku: "NLD-016", price: "R 17,525.00", featured: true, features: ["L-Shaped Workstation Design", "Large Work Surface", "Integrated Storage (Model Dependent)", "Durable Construction"] },
+ // { id:16, name: "Tide Black High Back Chair", category: "furniture", slug: "furniture", description: "Contemporary executive office chair designed to deliver exceptional comfort, ergonomic support, and professional style.", image: "images/Tide.webp", unit: "each", sku: "TID-014", price: "R 3,455.00", featured: true, features: ["Ergonomic High-Back Design", "Premium Cushioned Comfort", "Stylish Black Upholstery", "Adjustable Seat Height"] },
+ // { id:17, name: "Activity Straight Reception Desk", category: "furniture", slug: "furniture", description: "Modern and functional reception solution designed to create a professional first impression while providing an efficient workspace for receptionists and front-office personnel.", image: "images/Straight.webp", unit: "each", sku: "STR-015", price: "R 19,605.00", featured: false, features: ["Modern Straight-Line Design", "Raised Reception Counter", "Spacious Workstation", "Integrated Storage"] },
+ // { id:18, name: "President High Back Office Chair", category: "furniture", slug: "furniture", description: "Premium executive seating solution designed to provide exceptional comfort, ergonomic support, and professional style.", image: "images/president.webp", unit: "each", sku: "PRC-016", price: "R 8,460.00", featured: true, features: ["5 tiers", "Executive High-Back Design", "Ergonomic Comfort", "Premium Upholstery", "Adjustable Seat Height", "Tilt & Recline Mechanism", "360° Swivel Function"] },
+//  { id:19, name: "Classic Eames High Back Chair", category: "furniture", slug: "furniture", description: "Luxurious executive office chair designed to deliver superior comfort, ergonomic support, and timeless sophistication.", image: "images/chair.webp", unit: "each", sku: "EA-003", price: "R 5,330.00", featured: true, features: ["Iconic Executive Design", "High Back Ergonomic Support", "Premium Upholstered Seat and Backrest", "Adjustable Seat Height", "Tilt and Recline Function", "Smooth-Rolling Castors"] },
+ // { id:20, name: "Indigo Boardroom Table", category: "furniture", slug: "furniture", description: "Executive-quality meeting table designed to create a professional and collaborative environment for boardrooms, conference rooms, and executive offices.", image: "images/Indigo-.webp", unit: "EA", sku: "IDG-005", price: "R 250.00", featured: true, features: ["Modern Executive Design", "Spacious Work Surface", "Premium Construction", "Robust Frame", "Easy-to-Clean Surface"] },
 
 
 
   // PPE & Safety
-  { id: 21, name: "Face Mask (3 ply) Black – Case of 20 boxes (1000 units)", category: "ppe", slug: "face-masks", description: "High-quality, single-use protective face mask designed to provide effective everyday protection while ensuring maximum comfort and breathability.", image: "images/Face-Mask.png", unit: "box of 50", sku: "PPE-003", price: "R 95.00", featured: true, features: ["3-ply protection", "Elastic ear loops", "Breathable material", "CE certified"] },
-  { id: 22, name: "Reusable Corded Ear Plugs", category: "ppe", slug: "ear-plugs", description: "High-quality hearing protection devices designed to reduce exposure to harmful noise levels while ensuring comfort, convenience, and long-lasting performance.", image: "images/Ear-Plugs.png", unit: "EA", sku: "EDU-PPE-004", price: "R 7.99", featured: true, features: ["Effective Hearing Protection", "Reusable Design", "Soft & Comfortable Material", "Corded Convenience", "Easy to Insert & Remove", "Washable & Hygienic"] },
-  { id: 23, name: "Safety Goggles", category: "ppe", slug: "safety-goggles.png", description: "Anti-fog safety goggles with adjustable strap, clear lens.", image: "images/safety-goggles.png", unit: "each", sku: "EDU-PPE-005", price: "R 147,99", featured: false, features: ["Anti-fog", "Adjustable strap", "Clear lens", "Impact resistant"] },
-  { id: 24, name: "Disposable Aprons (100/pack)", category: "ppe", slug: "aprons", description: "Lightweight, waterproof protective garments designed to provide an effective barrier against spills, splashes, dirt, and contaminants in a wide range of professional environments.", image: "images/Disposable-Aprons.png", unit: "pack of 100", sku: "DA-006", price: "R 103.00", featured: false, features: ["100 per pack", "Waterproof", "Disposable", "White", "Single-Use Disposable Design", "Universal Fit", "Easy Tie Fastening"] },
-  { id: 25, name: "Deli Gloves (Pack of 100)", category: "ppe", slug: "gloves", description: "Lightweight, disposable food-handling gloves designed to provide a hygienic barrier between hands and food products.", image: "images/Deli-Gloves.png", unit: "()100's)", sku: "DGL-007", price: "R 15.99", featured: true, features: ["Food-Safe Material", "Disposable Single-Use Design", "Pack of 100 Gloves", "Ambidextrous Fit", "Lightweight & Comfortable", "Easy to Put On & Remove", "Latex-Free"] },
-  { id: 26, name: "SA10 Reflective Safety Vest – Various Sizes", category: "ppe", slug: "covers", description: "High-visibility personal protective garment designed to improve worker safety in low-light, high-traffic, and hazardous environments.", image: "images/Reflective-Vest.png", unit: "each", sku: "SRV-005", price: "R 79.99", featured: true, features: ["High-Visibility Design", "Reflective Tape", "Lightweight & Breathable", "Durable Construction", "Front Closure", "Various Sizes Available", "Comfortable Fit"] },
-  { id: 27, name: "Disposable Shoe Covers (Plastic) – Pack of 100", category: "ppe", slug: "covers", description: "Lightweight, waterproof protective covers designed to prevent the transfer of dirt, dust, moisture, and contaminants into clean or controlled environments..", image: "images/Plastic-Shoe.png", unit: "pack of 100", sku: "SC-006", price: "R 120.39", featured: true, features: ["Durable Polyethylene Construction", "Waterproof Protection", "Disposable Single-Use Design", "Pack of 100", "Elastic Opening", "Quick & Easy to Wear"] },
-  { id: 28, name: "Mop Cap (Pack of 100 Units) – Various Colours", category: "ppe", slug: "cap", description: "Disposable head covering designed to maintain high standards of hygiene by preventing hair from contaminating clean or controlled environments.", image: "images/Mop-Cap.jpg", unit: "100's", sku: "CAP-007", price: "R 95.99", featured: true, features: ["Premium Non-Woven Polypropylene", "Disposable Single-Use Design", "Pack of 100 Units", "Elasticated Edge", "Various Colour Options"] },
-  { id: 29, name: "Safety Hard Hat (SABS Approved) – Various Colours", category: "ppe", slug: "HARD-HAT", description: "High-quality personal protective helmet designed to provide reliable head protection in hazardous work environments.", image: "images/Hard-Hat.png", unit: "EA", sku: "HH-003", price: "R 26.99", featured: true, features: ["SABS Approved", "High-Impact Resistant Shell", "Adjustable Suspension Harness", "Lightweight & Comfortable", "Various Colour Options", "Ventilated Options (Model Dependent)"] },
-  { id: 30, name: "Heat Resistant Gloves", category: "ppe", slug: "gloves", description: "Premium personal protective gloves designed to provide reliable protection against high temperatures, hot surfaces, and thermal hazards in demanding work environments.", image: "images/Heat-Resistant.png", unit: "EA", sku: "HRG-005", price: "R 136.99", featured: true, features: ["Superior Heat Resistance", "Durable Construction", "Comfortable Ergonomic Fit", "Enhanced Grip", "Extended Wrist Protection", "Abrasion & Tear Resistant", "Breathable Interior", "Reusable Design"] },
+  //{ id: 21, name: "Face Mask (3 ply) Black – Case of 20 boxes (1000 units)", category: "ppe", slug: "face-masks", description: "High-quality, single-use protective face mask designed to provide effective everyday protection while ensuring maximum comfort and breathability.", image: "images/Face-Mask.webp", unit: "box of 50", sku: "PPE-003", price: "R 95.00", featured: true, features: ["3-ply protection", "Elastic ear loops", "Breathable material", "CE certified"] },
+ // { id: 22, name: "Reusable Corded Ear Plugs", category: "ppe", slug: "ear-plugs", description: "High-quality hearing protection devices designed to reduce exposure to harmful noise levels while ensuring comfort, convenience, and long-lasting performance.", image: "images/Ear-Plugs.webp", unit: "EA", sku: "EDU-PPE-004", price: "R 7.99", featured: true, features: ["Effective Hearing Protection", "Reusable Design", "Soft & Comfortable Material", "Corded Convenience", "Easy to Insert & Remove", "Washable & Hygienic"] },
+ // { id: 23, name: "Safety Goggles", category: "ppe", slug: "safety-goggles.png", description: "Anti-fog safety goggles with adjustable strap, clear lens.", image: "images/safety-goggles.webp", unit: "each", sku: "EDU-PPE-005", price: "R 147,99", featured: false, features: ["Anti-fog", "Adjustable strap", "Clear lens", "Impact resistant"] },
+ // { id: 24, name: "Disposable Aprons (100/pack)", category: "ppe", slug: "aprons", description: "Lightweight, waterproof protective garments designed to provide an effective barrier against spills, splashes, dirt, and contaminants in a wide range of professional environments.", image: "images/Disposable-Aprons.webp", unit: "pack of 100", sku: "DA-006", price: "R 103.00", featured: false, features: ["100 per pack", "Waterproof", "Disposable", "White", "Single-Use Disposable Design", "Universal Fit", "Easy Tie Fastening"] },
+  //{ id: 25, name: "Deli Gloves (Pack of 100)", category: "ppe", slug: "gloves", description: "Lightweight, disposable food-handling gloves designed to provide a hygienic barrier between hands and food products.", image: "images/Deli-Gloves.webp", unit: "()100's)", sku: "DGL-007", price: "R 15.99", featured: true, features: ["Food-Safe Material", "Disposable Single-Use Design", "Pack of 100 Gloves", "Ambidextrous Fit", "Lightweight & Comfortable", "Easy to Put On & Remove", "Latex-Free"] },
+ // { id: 26, name: "SA10 Reflective Safety Vest – Various Sizes", category: "ppe", slug: "covers", description: "High-visibility personal protective garment designed to improve worker safety in low-light, high-traffic, and hazardous environments.", image: "images/Reflective-Vest.webp", unit: "each", sku: "SRV-005", price: "R 79.99", featured: true, features: ["High-Visibility Design", "Reflective Tape", "Lightweight & Breathable", "Durable Construction", "Front Closure", "Various Sizes Available", "Comfortable Fit"] },
+  //{ id: 27, name: "Disposable Shoe Covers (Plastic) – Pack of 100", category: "ppe", slug: "covers", description: "Lightweight, waterproof protective covers designed to prevent the transfer of dirt, dust, moisture, and contaminants into clean or controlled environments.", image: "images/Plastic-Shoe.webp", unit: "pack of 100", sku: "SC-006", price: "R 120.39", featured: true, features: ["Durable Polyethylene Construction", "Waterproof Protection", "Disposable Single-Use Design", "Pack of 100", "Elastic Opening", "Quick & Easy to Wear"] },
+ // { id: 28, name: "Mop Cap (Pack of 100 Units) – Various Colours", category: "ppe", slug: "cap", description: "Disposable head covering designed to maintain high standards of hygiene by preventing hair from contaminating clean or controlled environments.", image: "images/Mop-Cap.webp", unit: "100's", sku: "CAP-007", price: "R 95.99", featured: true, features: ["Premium Non-Woven Polypropylene", "Disposable Single-Use Design", "Pack of 100 Units", "Elasticated Edge", "Various Colour Options"] },
+ // { id: 29, name: "Safety Hard Hat (SABS Approved) – Various Colours", category: "ppe", slug: "HARD-HAT", description: "High-quality personal protective helmet designed to provide reliable head protection in hazardous work environments.", image: "images/Hard-Hat.webp", unit: "EA", sku: "HH-003", price: "R 26.99", featured: true, features: ["SABS Approved", "High-Impact Resistant Shell", "Adjustable Suspension Harness", "Lightweight & Comfortable", "Various Colour Options", "Ventilated Options (Model Dependent)"] },
+ // { id: 30, name: "Heat Resistant Gloves", category: "ppe", slug: "gloves", description: "Premium personal protective gloves designed to provide reliable protection against high temperatures, hot surfaces, and thermal hazards in demanding work environments.", image: "images/Heat-Resistant.webp", unit: "EA", sku: "HRG-005", price: "R 136.99", featured: true, features: ["Superior Heat Resistance", "Durable Construction", "Comfortable Ergonomic Fit", "Enhanced Grip", "Extended Wrist Protection", "Abrasion & Tear Resistant", "Breathable Interior", "Reusable Design"] },
 
 
   // Cleaning & Hygiene
-  { id: 31, name: "Magic Wipe Disposable Spunlace Cloth Roll", category: "cleaning", slug: "cloth-roll", description: "Premium multi-purpose cleaning cloth designed for superior absorbency, strength, and hygiene across commercial, industrial, healthcare, and hospitality environments.", image: "images/Cloth-Roll.png", unit: "400m Roll", sku: "CR-005", price: "R 499.00", featured: true, features: ["Premium Spunlace Non-Woven Material", "Highly Absorbent", "Lint-Free Cleaning", "Disposable Single-Use Design", "Wet & Dry Use"] },
-  { id: 32, name: "Toilet Paper Dispenser – 3 Roll (TR3)", category: "cleaning", slug: "paper-towels", description: "Robust, high-capacity washroom solution designed to provide continuous access to toilet tissue while reducing maintenance and refill frequency.", image: "images/3-Roll.png", unit: "EA", sku: "TR3-006", price: "R 529.00", featured: true, features: ["3-Roll High Capacity", "Lockable Design", "Heavy-Duty Construction", "Wall-Mounted Installation", "Manual Dispensing System", "Refill Viewing Window", "Vandal-Resistant Design"] },
-  { id: 33, name: "55cm Mustik Double Blade Floor Squeegee Only", category: "cleaning", slug: "floor-sweeper", description: "Heavy-duty cleaning tool designed for the fast and efficient removal of water, spills, cleaning solutions, and other liquids from a wide variety of floor surfaces.", image: "images/55cm-Mustik.jpg", unit: "each", sku: "BLD-007", price: "R 450.00", featured: true, features: ["55cm Wide Cleaning Head", "Double Rubber Blade Design", "Heavy-Duty Construction", "Effective Liquid Removal", "Suitable for Multiple Floor Types", "Easy Handle Attachment", "Low Maintenance"] },
-  { id: 34, name: "Pot Scourer (Pack of 36)", category: "cleaning", slug: "bin-liners", description: "Heavy-duty cleaning solution designed to tackle stubborn grease, burnt-on food, and tough grime on cookware, kitchen utensils, and hard surfaces.", image: "images/Pot-scourer.png", unit: "pack of 36", sku: "POT-008", price: "R 67.99", featured: false, features: ["Heavy-Duty Cleaning Performance", "Durable Construction", "Pack of 36 Scourers", "Highly Effective Scrubbing Action", "Flexible & Easy to Handle", "Long-Lasting Performance", "Multi-Purpose Cleaning"] },
-  { id: 35, name: "Infrared Thermometer – Hands-Free Tripod Mounted – K3", category: "cleaning", slug: "microfibre-cloths", description: "High-performance, non-contact temperature screening device designed for fast, accurate, and hygienic body temperature measurement..", image: "images/mounted-thermo.png", unit: "EA", sku: "TK3-009", price: "R 999.00", featured: false, features: ["Hands-Free Operation", "Advanced Infrared Sensor", "Tripod Mounted Design", "Automatic Temperature Detection", "Fast Response Time", "Large Digital Display", "Fever Alarm Function", "Non-Contact Measurement", "Durable Construction"] },
-  { id: 36, name: "Premium Flippable Swivel Face Shield – 1000 Micron", category: "cleaning", slug: "face-mask", description: "High-quality reusable face protection solution designed to safeguard the wearer against airborne droplets, liquid splashes, dust, and flying particles.", image: "images/premium-face.jpg", unit: "each", sku: "FS-007", price: "R 105.99", featured: false, features: ["1000-Micron Heavy-Duty Visor", "Flippable Swivel Design", "Flippable Swivel Design", "Full Face Coverage", "Crystal-Clear Visibility", "Adjustable Headband", "Lightweight & Comfortable", "Compatible with Other PPE & Easy to Clean"] },
-  { id: 37, name: "19L Pedal Sanitary Bin / She Bin", category: "cleaning", slug: "bin-liners", description: "Practical and hygienic waste disposal solution designed for the safe and discreet disposal of feminine hygiene products in commercial, institutional, and public washrooms.", image: "images/19l-Sanibin.png", unit: "EA", sku: "19L-008", price: "R 699.99", featured: false, features: ["19-Litre Capacity", "9Hands-Free Pedal Operation", "Soft-Closing Lid", "Durable Construction", "Compact & Space-Efficient Design", "Easy to Clean", "Leak-Resistant Inner Bucket", "Stable Non-Slip Base"] },
-  { id: 38, name: "Plexiglass Counter Desk Shield – 600 × 500 × 3mm", category: "cleaning", slug: "Desk-Shield", description: "Clear, durable protective barrier designed to provide a safe and hygienic separation between staff and customers during face-to-face interactions.", image: "images/Plexiglass_Desk.png", unit: "EA", sku: "PGD-009", price: "R 530.00", featured: false, features: ["High-Quality Clear Plexiglass", "Protective Barrier", "Optimal Size", "Stable Freestanding Design", "Transaction Opening (Model Dependent)", "Easy to Clean", "Lightweight & Portable", "Durable Construction"] },
-  { id: 39, name: "Multipurpose Cleaning Solution 5L", category: "cleaning", slug: "all-purpose", description: "Premium two-in-one vehicle cleaning solution that effectively washes and protects your vehicle in a single application.", image: "images/All-Purpose5L.jpg", unit: "EA", sku: "APC-003", price: "R 186.99", featured: true, features: ["Powerful Cleaning Action", "Enhanced Gloss Finish", "High-Foaming Formula", "A4 Document Compatibility", "Easy to Use", "Pleasant Fragrance"]  },
-  { id: 40, name: "Heavy-Duty Degreaser Cleaner – 5L", category: "cleaning", slug: "cleaning", description: "Powerful, professional-grade cleaning solution formulated to cut through stubborn grease, oil, grime, carbon deposits, and industrial dirt with ease.", image: "images/degreaser5l.jpg", unit: "EA", sku: "DGR-005", price: "R 536.99", featured: true, features: ["Powerful Degreasing Formula", "Powerful Degreasing Formula", "Professional-Grade Performance", "Concentrated 5L Solution", "Multi-Surface Compatibility", "Fast-Acting Formula", "Low-Residue Finish", "Easy Application", "Large 5L Capacity"] },
+ // { id: 31, name: "Magic Wipe Disposable Spunlace Cloth Roll", category: "cleaning", slug: "cloth-roll", description: "Premium multi-purpose cleaning cloth designed for superior absorbency, strength, and hygiene across commercial, industrial, healthcare, and hospitality environments.", image: "images/Cloth-Roll.webp", unit: "400m Roll", sku: "CR-005", price: "R 499.00", featured: true, features: ["Premium Spunlace Non-Woven Material", "Highly Absorbent", "Lint-Free Cleaning", "Disposable Single-Use Design", "Wet & Dry Use"] },
+  //{ id: 32, name: "Toilet Paper Dispenser – 3 Roll (TR3)", category: "cleaning", slug: "paper-towels", description: "Robust, high-capacity washroom solution designed to provide continuous access to toilet tissue while reducing maintenance and refill frequency.", image: "images/3-Roll.webp", unit: "EA", sku: "TR3-006", price: "R 529.00", featured: true, features: ["3-Roll High Capacity", "Lockable Design", "Heavy-Duty Construction", "Wall-Mounted Installation", "Manual Dispensing System", "Refill Viewing Window", "Vandal-Resistant Design"] },
+ // { id: 33, name: "55cm Mustik Double Blade Floor Squeegee Only", category: "cleaning", slug: "floor-sweeper", description: "Heavy-duty cleaning tool designed for the fast and efficient removal of water, spills, cleaning solutions, and other liquids from a wide variety of floor surfaces.", image: "images/55cm-Mustik.webp", unit: "each", sku: "BLD-007", price: "R 450.00", featured: true, features: ["55cm Wide Cleaning Head", "Double Rubber Blade Design", "Heavy-Duty Construction", "Effective Liquid Removal", "Suitable for Multiple Floor Types", "Easy Handle Attachment", "Low Maintenance"] },
+ // { id: 34, name: "Pot Scourer (Pack of 36)", category: "cleaning", slug: "bin-liners", description: "Heavy-duty cleaning solution designed to tackle stubborn grease, burnt-on food, and tough grime on cookware, kitchen utensils, and hard surfaces.", image: "images/Pot-scourer.webp", unit: "pack of 36", sku: "POT-008", price: "R 67.99", featured: false, features: ["Heavy-Duty Cleaning Performance", "Durable Construction", "Pack of 36 Scourers", "Highly Effective Scrubbing Action", "Flexible & Easy to Handle", "Long-Lasting Performance", "Multi-Purpose Cleaning"] },
+ // { id: 35, name: "Infrared Thermometer – Hands-Free Tripod Mounted – K3", category: "cleaning", slug: "microfibre-cloths", description: "High-performance, non-contact temperature screening device designed for fast, accurate, and hygienic body temperature measurement.", image: "images/mounted-thermo.webp", unit: "EA", sku: "TK3-009", price: "R 999.00", featured: false, features: ["Hands-Free Operation", "Advanced Infrared Sensor", "Tripod Mounted Design", "Automatic Temperature Detection", "Fast Response Time", "Large Digital Display", "Fever Alarm Function", "Non-Contact Measurement", "Durable Construction"] },
+ // { id: 36, name: "Premium Flippable Swivel Face Shield – 1000 Micron", category: "cleaning", slug: "face-mask", description: "High-quality reusable face protection solution designed to safeguard the wearer against airborne droplets, liquid splashes, dust, and flying particles.", image: "images/premium-face.webp", unit: "each", sku: "FS-007", price: "R 105.99", featured: false, features: ["1000-Micron Heavy-Duty Visor", "Flippable Swivel Design", "Flippable Swivel Design", "Full Face Coverage", "Crystal-Clear Visibility", "Adjustable Headband", "Lightweight & Comfortable", "Compatible with Other PPE & Easy to Clean"] },
+//  { id: 37, name: "19L Pedal Sanitary Bin / She Bin", category: "cleaning", slug: "bin-liners", description: "Practical and hygienic waste disposal solution designed for the safe and discreet disposal of feminine hygiene products in commercial, institutional, and public washrooms.", image: "images/19l-Sanibin.webp", unit: "EA", sku: "19L-008", price: "R 699.99", featured: false, features: ["19-Litre Capacity", "9Hands-Free Pedal Operation", "Soft-Closing Lid", "Durable Construction", "Compact & Space-Efficient Design", "Easy to Clean", "Leak-Resistant Inner Bucket", "Stable Non-Slip Base"] },
+  //{ id: 38, name: "Plexiglass Counter Desk Shield – 600 × 500 × 3mm", category: "cleaning", slug: "Desk-Shield", description: "Clear, durable protective barrier designed to provide a safe and hygienic separation between staff and customers during face-to-face interactions.", image: "images/Plexiglass_Desk.webp", unit: "EA", sku: "PGD-009", price: "R 530.00", featured: false, features: ["High-Quality Clear Plexiglass", "Protective Barrier", "Optimal Size", "Stable Freestanding Design", "Transaction Opening (Model Dependent)", "Easy to Clean", "Lightweight & Portable", "Durable Construction"] },
+ // { id: 39, name: "Multipurpose Cleaning Solution 5L", category: "cleaning", slug: "multipurpose cleaning solution 5L", description: "Premium two-in-one vehicle cleaning solution that effectively washes and protects your vehicle in a single application.", image: "images/all-purpose5L.webp", unit: "EA", sku: "APC-003", price: "R 186.99", featured: true, features: ["Powerful Cleaning Action", "Enhanced Gloss Finish", "High-Foaming Formula", "A4 Document Compatibility", "Easy to Use", "Pleasant Fragrance"]  },
+ // { id: 40, name: "Heavy-Duty Degreaser Cleaner – 5L", category: "cleaning", slug: "heavy-duty-degreaser-cleaner", description: "Powerful, professional-grade cleaning solution formulated to cut through stubborn grease, oil, grime, carbon deposits, and industrial dirt with ease.", image: "images/heavy-duty-degreaser-cleaner -5L.webp", unit: "EA", sku: "DGR-005", price: "R 536.99", featured: true, features: ["Powerful Degreasing Formula", "Powerful Degreasing Formula", "Professional-Grade Performance", "Concentrated 5L Solution", "Multi-Surface Compatibility", "Fast-Acting Formula", "Low-Residue Finish", "Easy Application", "Large 5L Capacity"] },
 
 
   // Generate 80 more products
-  ...Array.from({ length: 0 }, (_, i) => {
-    const categories = ['stationery', 'furniture', 'ppe', 'cleaning'];
-    const cat = categories[i % categories.length];
-    const names = {
-      stationery: ['Stapler', 'Whiteboard Marker', 'Correction Tape', 'Glue Stick', 'Scissors', 'Ruler', 'Pencil Set', 'Eraser', 'Sharpener', 'Notebook'],
-      furniture: ['Desk Lamp', 'Shelf Unit', 'Drawer Organiser', 'Monitor Stand', 'Coat Hanger', 'Side Table', 'Bookcase', 'Pedestal', 'Desk Tidy', 'Screen Divider'],
-      ppe: ['Ear Plugs', 'Face Shield', 'Safety Boots', 'Hard Hat', 'Reflective Vest', 'Safety Harness', 'Knee Pads', 'Gloves (Leather)', 'Respirator', 'First Aid Kit'],
-      cleaning: ['Broom', 'Mop', 'Duster', 'Window Cleaner', 'Floor Polish', 'Disinfectant Spray', 'Toilet Cleaner', 'Scrub Brush', 'Bucket', 'Squeegee']
-    };
-    const catNames = names[cat] || ['Product'];
-    const name = catNames[i % catNames.length] + ' ' + (i + 21);
-    return {
+  //...Array.from({ length: 0 }, (_, i) => {
+   // const categories = ['stationery', 'furniture', 'ppe', 'cleaning'];
+   // const cat = categories[i % categories.length];
+   // const names = {
+   //   stationery: ['Stapler', 'Whiteboard Marker', 'Correction Tape', 'Glue Stick', 'Scissors', 'Ruler', 'Pencil Set', 'Eraser', 'Sharpener', 'Notebook'],
+   //   furniture: ['Desk Lamp', 'Shelf Unit', 'Drawer Organiser', 'Monitor Stand', 'Coat Hanger', 'Side Table', 'Bookcase', 'Pedestal', 'Desk Tidy', 'Screen Divider'],
+   //   ppe: ['Ear Plugs', 'Face Shield', 'Safety Boots', 'Hard Hat', 'Reflective Vest', 'Safety Harness', 'Knee Pads', 'Gloves (Leather)', 'Respirator', 'First Aid Kit'],
+   //   cleaning: ['Broom', 'Mop', 'Duster', 'Window Cleaner', 'Floor Polish', 'Disinfectant Spray', 'Toilet Cleaner', 'Scrub Brush', 'Bucket', 'Squeegee']
+    //};
+   // const catNames = names[cat] || ['Product'];
+   // const name = catNames[i % catNames.length] + ' ' + (i + 21);
+   // return {
  
-      name: name,
-      category: cat,
-      slug: name.toLowerCase().replace(/\s+/g, '-'),
-      description: `High-quality ${cat} product for professional use.`,
-      image: `https://picsum.photos/seed/${name.replace(/\s+/g, '')}/400/300`,
-      unit: i % 2 === 0 ? 'each' : 'pack',
-      sku: `EDU-${cat.slice(0,3).toUpperCase()}-${String(i+21).padStart(3,'0')}`,
-      price: `R ${(Math.random() * 2000 + 50).toFixed(0)}.00`,
-      featured: i % 5 === 0,
-      features: [`Quality ${cat} product`, 'Professional grade', 'Durable', 'Reliable']
-    };
-  })
-];
+   //   name: name,
+    //  category: cat,
+    //  slug: name.toLowerCase().replace(/\s+/g, '-'),
+    //  description: `High-quality ${cat} product for professional use.`,
+    //  image: `https://picsum.photos/seed/${name.replace(/\s+/g, '')}/400/300`,
+    //  unit: i % 2 === 0 ? 'each' : 'pack',
+    //  sku: `EDU-${cat.slice(0,3).toUpperCase()}-${String(i+21).padStart(3,'0')}`,
+   //   price: `R ${(Math.random() * 2000 + 50).toFixed(0)}.00`,
+   //   featured: i % 5 === 0,
+   //   features: [`Quality ${cat} product`, 'Professional grade', 'Durable', 'Reliable']
+   // };
+ // })
+//];
 
 
 
@@ -498,43 +500,7 @@ function showSection(sectionId) {
   if (sectionId === 'quote') renderQuoteBasket();
 }
 
-function filterProducts() {
-  const query = getSearchQuery().toLowerCase().trim();
-  const activeFilter = document.querySelector('.filter-btn.active');
-  const category = activeFilter ? activeFilter.dataset.filter : 'all';
-  const grid = document.getElementById('catalogue-grid');
 
-  // Debug log to see what's happening
-  console.log('Filtering by category:', category, 'Query:', query);
-
-  let filtered = products;
-  if (category !== 'all') {
-    filtered = filtered.filter(p => p.category === category);
-  }
-  if (query) {
-    filtered = filtered.filter(p => 
-      p.name.toLowerCase().includes(query) || 
-      p.sku.toLowerCase().includes(query) ||
-      (p.description && p.description.toLowerCase().includes(query))
-    );
-  }
-
-  console.log('Found:', filtered.length, 'products');
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div class="col-span-full text-center py-12">
-        <i class="fas fa-search text-4xl text-gray-300 mb-3 block"></i>
-        <p class="text-gray-500">No products found in "${category}".</p>
-        <p class="text-sm text-gray-400 mt-1">Try selecting a different category.</p>
-      </div>
-    `;
-  } else {
-    renderCatalogue(filtered);
-  }
-
-  toggleClearButtons(query.length > 0);
-}
 
 
 // Filter buttons
@@ -549,13 +515,6 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 // Set initial active filter
 document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
 
-function getSearchQuery() {
-  const desktop = document.getElementById('search-input');
-  const mobile = document.getElementById('mobile-search');
-  const val = desktop ? desktop.value : '';
-  if (!val && mobile) return mobile.value || '';
-  return val || '';
-}
 
 // Set initial active filter
 document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
@@ -597,19 +556,74 @@ document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active'
 })();
 
 // ============================
+// GOOGLE SHEETS LOADER
+// ============================
+
+async function loadProductsFromSheet() {
+
+  try {
+
+    console.log("Starting Google Sheet load...");
+
+    products = await getProductsFromGoogleSheets();
+
+    console.log(`Loaded ${products.length} products from Google Sheets`);
+    console.table(products.slice(0, 5));
+
+    console.log("FIRST PRODUCT:", products[0]);
+
+console.log(
+  "CATEGORY SLIDERS:",
+  document.getElementById("category-sliders")
+);
+
+console.log(
+  "CATALOGUE GRID:",
+  document.getElementById("catalogue-grid")
+);
+
+console.log(
+  "CATEGORIES RECEIVED:",
+  [...new Set(products.map(product => product.category))]
+);
+    renderSliders();
+
+    renderCatalogue(products);
+
+
+    const countEl = document.getElementById("pdfProductCount");
+    if (countEl) countEl.textContent = products.length;
+
+
+    const countEl2 = document.getElementById("pdfProductCount2");
+    if (countEl2) countEl2.textContent = products.length;
+
+
+    const featureCount = document.getElementById("featureProductCount");
+    if (featureCount) featureCount.textContent = products.length;
+
+
+  } catch (error) {
+
+    console.error(
+      "Failed to load Google Sheets products:",
+      error
+    );
+
+  }
+
+}
+
+
+
+
+
+// ============================
 // INITIALIZATION
 // ============================
-// Download catalogue buttons
-document.querySelectorAll('.download-catalogue-btn').forEach(btn => {
-  btn.addEventListener('click', function(e) {
-    e.preventDefault();
-    generateCataloguePDF();
-  });
-});
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Render sliders and catalogue
-  renderSliders();
-  renderCatalogue(products);
+  loadProductsFromSheet();
   renderBasket();
 
   // Navigation
@@ -619,6 +633,7 @@ document.addEventListener('DOMContentLoaded', function() {
       showSection(this.dataset.section);
     });
   });
+
   document.querySelectorAll('[data-section]').forEach(el => {
     el.addEventListener('click', function(e) {
       const section = this.dataset.section;
@@ -627,71 +642,205 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Mobile menu
-  document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('hidden');
-  });
+  const menuToggle = document.getElementById('menu-toggle');
 
-// ============================
-// SEARCH HELPERS
-// ============================
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.toggle('hidden');
+    });
+  }
 
-function getSearchQuery() {
-  const desktop = document.getElementById('search-input');
-  const mobile = document.getElementById('mobile-search');
-  const val = desktop ? desktop.value : '';
-  if (!val && mobile) return mobile.value || '';
-  return val || '';
-}
-
-function setSearchQuery(value) {
-  const desktop = document.getElementById('search-input');
-  const mobile = document.getElementById('mobile-search');
-  if (desktop) desktop.value = value;
-  if (mobile) mobile.value = value;
-  toggleClearButtons(value && value.length > 0);
-}
-
-function toggleClearButtons(show) {
+  // Search elements
+  const searchInput = document.getElementById('search-input');
+  const mobileSearch = document.getElementById('mobile-search');
   const clearDesktop = document.getElementById('clear-search-desktop');
   const clearMobile = document.getElementById('clear-search-mobile');
-  if (clearDesktop) clearDesktop.classList.toggle('hidden', !show);
-  if (clearMobile) clearMobile.classList.toggle('hidden', !show);
-}
 
-function performSearch() {
-  const query = getSearchQuery();
-  if (query.length > 0) {
-    showSection('catalogue');
+  if (searchInput) {
+    searchInput.addEventListener('input', performSearch);
+
+    document.addEventListener('keydown', function(e) {
+      if (
+        e.key === '/' &&
+        !['INPUT', 'TEXTAREA'].includes(e.target.tagName)
+      ) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    });
   }
-  filterProducts();
-  setSearchQuery(query);
-}
 
-function clearSearch() {
-  setSearchQuery('');
-  if (document.getElementById('section-catalogue')?.classList.contains('active')) {
-    filterProducts();
+  if (mobileSearch) {
+    mobileSearch.addEventListener('input', function() {
+      const desktop = document.getElementById('search-input');
+
+      if (desktop) {
+        desktop.value = this.value;
+      }
+
+      performSearch();
+    });
   }
-  document.getElementById('search-input')?.focus();
-}
 
+  if (clearDesktop) {
+    clearDesktop.addEventListener('click', clearSearch);
+  }
 
-// Search events
-const searchInput = document.getElementById('search-input');
-const mobileSearch = document.getElementById('mobile-search');
-if (searchInput) {
-  searchInput.addEventListener('input', performSearch);
-}
-if (mobileSearch) {
-  mobileSearch.addEventListener('input', function() {
-    // Sync value with desktop
-    const desktop = document.getElementById('search-input');
-    if (desktop && desktop.value !== this.value) {
-      desktop.value = this.value;
-    }
-    performSearch();
+  if (clearMobile) {
+    clearMobile.addEventListener('click', clearSearch);
+  }
+
+  [searchInput, mobileSearch].forEach(input => {
+    if (!input) return;
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        clearSearch();
+        this.blur();
+      }
+    });
   });
-}
+
+  // EmailJS initialization
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init('YOUR_EMAILJS_PUBLIC_KEY');
+  }
+
+  // Contact form
+  const contactForm = document.getElementById('contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('contact-submit-btn');
+      const feedback = document.getElementById('contact-feedback');
+
+      const formData = {
+        from_name: document.getElementById('contact-name')?.value || '',
+        from_email: document.getElementById('contact-email')?.value || '',
+        company: document.getElementById('contact-company')?.value || '',
+        subject: document.getElementById('contact-subject')?.value || '',
+        message: document.getElementById('contact-message')?.value || '',
+        to_email: 'info@educore.co.za'
+      };
+
+      if (
+        !formData.from_name ||
+        !formData.from_email ||
+        !formData.message
+      ) {
+        if (feedback) {
+          feedback.className =
+            'text-center text-sm mt-2 text-red-600';
+
+          feedback.textContent =
+            'Please fill in all required fields.';
+
+          feedback.classList.remove('hidden');
+        }
+
+        return;
+      }
+
+      if (typeof emailjs === 'undefined') {
+        console.error('EmailJS library is not loaded.');
+
+        if (feedback) {
+          feedback.className =
+            'text-center text-sm mt-2 text-red-600';
+
+          feedback.textContent =
+            'Email service is currently unavailable.';
+
+          feedback.classList.remove('hidden');
+        }
+
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      }
+
+      feedback?.classList.add('hidden');
+
+      emailjs
+        .send(
+          'YOUR_SERVICE_ID',
+          'YOUR_TEMPLATE_ID',
+          formData
+        )
+        .then(function() {
+          if (feedback) {
+            feedback.className =
+              'text-center text-sm mt-2 text-green-600';
+
+            feedback.textContent =
+              '✅ Your message was sent successfully!';
+
+            feedback.classList.remove('hidden');
+          }
+
+          contactForm.reset();
+        })
+        .catch(function(error) {
+          console.error('EmailJS error:', error);
+
+          if (feedback) {
+            feedback.className =
+              'text-center text-sm mt-2 text-red-600';
+
+            feedback.textContent =
+              '❌ There was an error sending your message.';
+
+            feedback.classList.remove('hidden');
+          }
+        })
+        .finally(function() {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+              '<i class="fas fa-paper-plane"></i> Send Message';
+          }
+        });
+    });
+  }
+
+  // Default section
+  showSection('home');
+});
+
+  // Navigation
+  document.querySelectorAll('.nav-link').forEach(link => {
+
+    link.addEventListener('click', function(e) {
+
+      e.preventDefault();
+
+      showSection(this.dataset.section);
+
+    });
+
+  });
+
+
+
+  // Mobile menu
+  document.getElementById('menu-toggle')
+    .addEventListener('click', () => {
+
+      document
+      .getElementById('mobile-menu')
+      .classList.toggle('hidden');
+
+    });
+
+
+
+
 // Clear buttons
 document.getElementById('clear-search-desktop')?.addEventListener('click', clearSearch);
 document.getElementById('clear-search-mobile')?.addEventListener('click', clearSearch);
@@ -797,95 +946,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // CONTACT FORM – EmailJS
 // ============================
 
-// Initialize EmailJS with your Public Key
-(function() {
-  // Replace with your EmailJS Public Key
-  emailjs.init('YOUR_EMAILJS_PUBLIC_KEY');
-})();
-
-document.getElementById('contact-form')?.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  const submitBtn = document.getElementById('contact-submit-btn');
-  const feedback = document.getElementById('contact-feedback');
-  
-  // Collect form data
-  const formData = {
-    from_name: document.getElementById('contact-name').value,
-    from_email: document.getElementById('contact-email').value,
-    company: document.getElementById('contact-company').value,
-    subject: document.getElementById('contact-subject').value,
-    message: document.getElementById('contact-message').value,
-    to_email: 'info@educore.co.za' // Your business email
-  };
-  
-  // Validate required fields
-  if (!formData.from_name || !formData.from_email || !formData.message) {
-    feedback.className = 'text-center text-sm mt-2 text-red-600';
-    feedback.textContent = 'Please fill in all required fields.';
-    feedback.classList.remove('hidden');
-    return;
-  }
-  
-  // Disable button and show loading state
-  submitBtn.disabled = true;
-  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-  feedback.classList.add('hidden');
-  
-  // Send email using EmailJS
-  // Replace with your EmailJS Service ID and Template ID
-  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
-    .then(function(response) {
-      feedback.className = 'text-center text-sm mt-2 text-green-600';
-      feedback.textContent = '✅ Your message was sent successfully! We\'ll respond within 24 hours.';
-      feedback.classList.remove('hidden');
-      document.getElementById('contact-form').reset();
-    })
-    .catch(function(error) {
-      console.error('EmailJS error:', error);
-      feedback.className = 'text-center text-sm mt-2 text-red-600';
-      feedback.textContent = '❌ There was an error sending your message. Please try again later.';
-      feedback.classList.remove('hidden');
-    })
-    .finally(function() {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-    });
-});
-
-  if (searchInput) {
-    searchInput.addEventListener('input', performSearch);
-    // Focus on search when '/' key is pressed (optional)
-    document.addEventListener('keydown', function(e) {
-      if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
-        e.preventDefault();
-        searchInput.focus();
-      }
-    });
-  }
-  if (mobileSearch) {
-    mobileSearch.addEventListener('input', function() {
-      // Sync desktop search value
-      const desktop = document.getElementById('search-input');
-      if (desktop) desktop.value = this.value;
-      performSearch();
-    });
-  }
-
-  if (clearDesktop) clearDesktop.addEventListener('click', clearSearch);
-  if (clearMobile) clearMobile.addEventListener('click', clearSearch);
-
-  // Also clear when user presses Escape inside search
-  [searchInput, mobileSearch].forEach(input => {
-    if (!input) return;
-    input.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        clearSearch();
-        this.blur();
-      }
-    });
-  });
-});
 
   // Add to quote (event delegation)
   document.addEventListener('click', function(e) {
@@ -1027,13 +1087,7 @@ document.getElementById('contact-form')?.addEventListener('submit', function(e) 
     showSection('home');
   });
 
-  // Update product count on download page
-  const countEl = document.getElementById('pdfProductCount');
-  if (countEl) countEl.textContent = products.length;
-  const countEl2 = document.getElementById('pdfProductCount2');
-  if (countEl2) countEl2.textContent = products.length;
-  const featureCount = document.getElementById('featureProductCount');
-  if (featureCount) featureCount.textContent = products.length;
+
 
   // Default home
   showSection('home');
