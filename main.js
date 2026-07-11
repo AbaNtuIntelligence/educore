@@ -102,7 +102,7 @@ function productCardHTML(product, showAddButton = true) {
   return `
     <div class="product-card bg-gradient-to-b from-white to-gray-50/80 rounded-xl shadow-md overflow-hidden w-64 flex-shrink-0 border border-gray-200/60 hover:border-[#F05A28]/40 transition-all duration-300 cursor-pointer" data-id="${product.id}">
       <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200/50">
-        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-contain p-4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23f1f5f9%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%22100%22 y=%22100%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%239ca3af%22 font-size=%2216%22 font-family=%22system-ui%22%3ENo Image%3C/text%3E%3C/svg%3E'" />
+        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-contain p-4" onerror="this.onerror=null; this.src='/images/placeholders/educore-placeholder.webp';" />
         <span class="absolute top-2 right-2 bg-[#F05A28] text-white text-[0.6rem] font-semibold px-3 py-1 rounded-full shadow-md tracking-wide uppercase">Bulk Pricing</span>
         ${product.featured ? '<span class="absolute top-2 left-2 bg-[#1A2B4C] text-white text-[0.6rem] font-semibold px-3 py-1 rounded-full shadow-md tracking-wide uppercase">Featured</span>' : ''}
       </div>
@@ -168,6 +168,11 @@ function renderSliders() {
     `;
   });
   container.innerHTML = html;
+
+
+console.log("Slider HTML length:", html.length);
+console.log("Landing sections created:", container.children.length);
+console.log("Landing slider container HTML:", container.innerHTML.slice(0, 500));
 
   // Attach slider events
   document.querySelectorAll('.slider-container').forEach(container => {

@@ -1,11 +1,15 @@
 export default function ProductCard({ product }) {
   return (
     <div className="border rounded-xl p-4 shadow-sm bg-white">
-      <img
-        src={product["Cloud URL"]}
-        alt={product["Product Name"]}
-        className="w-full h-48 object-contain"
-      />
+     <img
+  src={product.image}
+  alt={product.name}
+  onError={(e) => {
+    e.currentTarget.onerror = null;
+    e.currentTarget.src = "/images/placeholders/educore-placeholder.webp";
+  }}
+  className="w-full h-full object-contain p-4"
+/>
 
       <h3 className="font-semibold mt-4 text-gray-900">
         {product["Product Name"]}
