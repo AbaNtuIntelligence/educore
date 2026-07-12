@@ -11,6 +11,7 @@
   <!-- PDF Generator -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js"></script>
+  
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
@@ -232,150 +233,420 @@
 <body>
 
 <!-- ========== HEADER ========== -->
-<header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200">
-  <!-- Top bar -->
-  <div class="hidden lg:block bg-[#1A2B4C] text-white text-sm py-1.5">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <span class="opacity-80">Your trusted partner for stationery, PPE &amp; hygiene solutions.</span>
+<header class="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
+
+  <!-- Desktop top bar -->
+  <div class="hidden xl:block bg-[#1A2B4C] text-white">
+    <div
+      class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm sm:px-6 lg:px-8"
+    >
+      <span class="opacity-80">
+        Your trusted partner for stationery, PPE &amp; hygiene solutions.
+      </span>
+
       <div class="flex items-center gap-4">
-        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="hover:text-[#F05A28] transition"><i class="fab fa-youtube"></i></a>
-        <span class="text-gray-400">|</span>
-        <a href="/download.html" class="inline-flex items-center gap-2 bg-[#F05A28] hover:bg-[#d94a1e] px-4 py-2 rounded-lg text-sm transition">
-        <i class="fas fa-download"></i> Download Catalogue (PDF)
-      </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main nav -->
-  <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-    <a href="#" class="text-2xl font-bold text-[#1A2B4C] tracking-tight" id="logo-link">EDUCORE</a>
-    <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
-      <a href="#" class="nav-link text-[#1A2B4C] hover:text-[#F05A28]" data-section="home">Home</a>
-      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="catalogue">Catalogue</a>
-      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="about">About</a>
-      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="contact">Contact</a>
-      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="quote">Request Quote</a>
-      <a href="#" class="nav-link text-gray-600 hover:text-[#F05A28]" data-section="catalogue-download">Catalogue PDF</a>
-    </nav>
-    <div class="flex items-center gap-3">
-      <input type="text" id="search-input" placeholder="Search products..." />
-<button id="clear-search-desktop" class="hidden">×</button>
-
-
-      <button id="basket-btn" class="relative p-2 hover:bg-gray-100 rounded-full transition">
-        <i class="fas fa-shopping-basket text-xl text-[#1A2B4C]"></i>
-        <span id="basket-count" class="basket-badge">0</span>
-      </button>
-      <button id="menu-toggle" class="md:hidden p-2 hover:bg-gray-100 rounded-full">
-        <i class="fas fa-bars text-xl text-[#1A2B4C]"></i>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
-    <div class="flex flex-col gap-2 text-sm">
-      <a href="#" class="nav-link text-[#1A2B4C]" data-section="home">Home</a>
-      <a href="#" class="nav-link text-gray-600" data-section="catalogue">Catalogue</a>
-      <a href="#" class="nav-link text-gray-600" data-section="about">About</a>
-      <a href="#" class="nav-link text-gray-600" data-section="contact">Contact</a>
-      <a href="#" class="nav-link text-gray-600" data-section="quote">Request Quote</a>
-      <a href="#" class="nav-link text-gray-600" data-section="catalogue-download">Catalogue PDF</a>
-      
-      
-      <div class="relative mt-2">
-        <input type="text" id="mobile-search" placeholder="Search products..." />
-          <button id="clear-search-mobile" class="hidden">×</button>
-      </div>
-    
-    </div>
-  </div>
-</header>
-
-<!-- ========== MAIN ========== -->
-<main class="container mx-auto px-4 py-6">
-
-  <!-- ===== HOME ===== -->
-<section id="section-home" class="page-section active">
-  <!-- Hero Slider -->
-  <div class="hero-wrapper" id="heroSlider">
-
-    <div class="hero-slides">
-      <div
-        class="hero-slide active"
-        style="background-image: url('/images/educore.jpg');"
-      ></div>
-
-      <div
-        class="hero-slide"
-        style="background-image: url('/images/educore-1.jpg');"
-      ></div>
-
-      <div
-        class="hero-slide"
-        style="background-image: url('/images/stationery.jpg');"
-      ></div>
-
-      <div
-        class="hero-slide"
-        style="background-image: url('/images/mop-cap-pack-of-100-units.png');"
-      ></div>
-    </div>
-
-    <div class="hero-content">
-      <h1>
-        Your Single Source for<br />
-        <span>Quality Stationery, PPE &amp; Hygiene</span>
-      </h1>
-
-      <p>
-        Trusted by schools, government, and businesses across South Africa.
-      </p>
-
-      <div class="hero-buttons">
         <a
           href="#"
-          class="btn-primary"
-          onclick="document.querySelector('[data-section=catalogue]').click(); return false;"
+          aria-label="Facebook"
+          class="transition hover:text-[#F05A28]"
         >
-          View Full Catalogue
-          <i class="fas fa-arrow-right text-sm"></i>
+          <i class="fab fa-facebook-f"></i>
         </a>
 
         <a
           href="#"
-          class="btn-outline"
-          onclick="document.querySelector('[data-section=catalogue-download]').click(); return false;"
+          aria-label="LinkedIn"
+          class="transition hover:text-[#F05A28]"
+        >
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Instagram"
+          class="transition hover:text-[#F05A28]"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+
+        <a
+          href="#"
+          aria-label="YouTube"
+          class="transition hover:text-[#F05A28]"
+        >
+          <i class="fab fa-youtube"></i>
+        </a>
+
+        <span class="text-gray-400">|</span>
+
+        <a
+          href="#"
+          data-section="catalogue-download"
+          class="inline-flex items-center gap-2 rounded-lg bg-[#F05A28] px-4 py-2 font-medium transition hover:bg-[#d94a1e]"
         >
           <i class="fas fa-download"></i>
           Download Catalogue
         </a>
       </div>
     </div>
+  </div>
 
-    <div class="hero-dots">
-      <span class="hero-dot active" data-index="0"></span>
-      <span class="hero-dot" data-index="1"></span>
-      <span class="hero-dot" data-index="2"></span>
-      <span class="hero-dot" data-index="3"></span>
+  <!-- Main navigation -->
+  <div class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+
+    <div class="flex min-h-16 items-center justify-between gap-3 py-2 sm:min-h-20">
+
+      <!-- Logo and brand -->
+      <a
+        href="#"
+        id="logo-link"
+        class="flex min-w-0 items-center gap-2 transition hover:opacity-90 sm:gap-3"
+        aria-label="EDUCORE home"
+      >
+        <div
+          class="flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-50 sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+        >
+          <img
+            src="/images/hero/logo.jpeg"
+            alt="EDUCORE logo"
+            class="h-full w-full object-contain"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+
+          <div
+            class="hidden h-full w-full items-center justify-center bg-[#1A2B4C] text-lg font-bold text-white sm:text-xl"
+          >
+            E
+          </div>
+        </div>
+
+        <div class="min-w-0 leading-tight">
+          <span
+            class="block truncate text-lg font-extrabold tracking-tight text-[#1A2B4C] sm:text-xl lg:text-2xl"
+          >
+            EDUCORE
+          </span>
+
+          <span
+            class="hidden max-w-48 text-[0.6rem] font-semibold uppercase leading-snug tracking-[0.14em] text-[#F05A28] sm:block lg:max-w-56 lg:text-[0.65rem]"
+          >
+            Stationery, PPE &amp; Hygiene Solutions
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="hidden items-center gap-4 text-sm font-medium lg:flex xl:gap-6">
+        <a
+          href="#"
+          class="nav-link whitespace-nowrap text-[#1A2B4C] transition hover:text-[#F05A28]"
+          data-section="home"
+        >
+          Home
+        </a>
+
+        <a
+          href="#"
+          class="nav-link whitespace-nowrap text-gray-600 transition hover:text-[#F05A28]"
+          data-section="catalogue"
+        >
+          Catalogue
+        </a>
+
+        <a
+          href="#"
+          class="nav-link whitespace-nowrap text-gray-600 transition hover:text-[#F05A28]"
+          data-section="about"
+        >
+          About
+        </a>
+
+        <a
+          href="#"
+          class="nav-link whitespace-nowrap text-gray-600 transition hover:text-[#F05A28]"
+          data-section="contact"
+        >
+          Contact
+        </a>
+
+        <a
+          href="#"
+          class="nav-link whitespace-nowrap text-gray-600 transition hover:text-[#F05A28]"
+          data-section="quote"
+        >
+          Request Quote
+        </a>
+
+        <a
+          href="#"
+          class="nav-link hidden whitespace-nowrap text-gray-600 transition hover:text-[#F05A28] xl:block"
+          data-section="catalogue-download"
+        >
+          Catalogue PDF
+        </a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex flex-shrink-0 items-center gap-1 sm:gap-2">
+
+        <!-- Desktop search -->
+        <div class="relative hidden 2xl:block">
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Search products..."
+            autocomplete="off"
+            class="w-52 rounded-full border border-gray-300 bg-gray-50 py-2 pl-4 pr-10 text-sm text-gray-700 outline-none transition focus:border-[#F05A28] focus:bg-white focus:ring-2 focus:ring-[#F05A28]/20"
+          />
+
+          <button
+            type="button"
+            id="clear-search-desktop"
+            class="absolute right-3 top-1/2 hidden -translate-y-1/2 text-lg text-gray-400 transition hover:text-[#F05A28]"
+            aria-label="Clear search"
+          >
+            &times;
+          </button>
+        </div>
+
+        <!-- Mobile search shortcut -->
+        <button
+          type="button"
+          id="mobile-search-toggle"
+          class="rounded-full p-2 text-[#1A2B4C] transition hover:bg-gray-100 2xl:hidden"
+          aria-label="Open product search"
+        >
+          <i class="fas fa-search text-lg"></i>
+        </button>
+
+        <!-- Basket -->
+        <button
+          type="button"
+          id="basket-btn"
+          class="relative rounded-full p-2 text-[#1A2B4C] transition hover:bg-gray-100"
+          aria-label="Open quote basket"
+        >
+          <i class="fas fa-shopping-basket text-lg sm:text-xl"></i>
+
+          <span
+            id="basket-count"
+            class="basket-badge"
+          >
+            0
+          </span>
+        </button>
+
+        <!-- Mobile menu button -->
+      <button
+  type="button"
+  id="menu-toggle"
+  class="relative z-[70] pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full text-[#1A2B4C] transition hover:bg-gray-100 lg:hidden"
+  aria-label="Open navigation menu"
+  aria-controls="mobile-menu"
+  aria-expanded="false"
+>
+  <i class="fas fa-bars text-xl pointer-events-none"></i>
+</button>
+      </div>
     </div>
 
+    <!-- Mobile search panel -->
+    <div
+      id="mobile-search-panel"
+      class="hidden border-t border-gray-100 py-3 2xl:hidden"
+    >
+      <div class="relative">
+        <input
+          type="search"
+          id="mobile-search"
+          placeholder="Search products..."
+          autocomplete="off"
+          class="w-full rounded-xl border border-gray-300 bg-gray-50 py-3 pl-4 pr-12 text-sm text-gray-700 outline-none transition focus:border-[#F05A28] focus:bg-white focus:ring-2 focus:ring-[#F05A28]/20"
+        />
+
+        <button
+          type="button"
+          id="clear-search-mobile"
+          class="absolute right-4 top-1/2 hidden -translate-y-1/2 text-xl text-gray-400 transition hover:text-[#F05A28]"
+          aria-label="Clear search"
+        >
+          &times;
+        </button>
+      </div>
+    </div>
   </div>
+
+  <!-- Mobile and tablet menu -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-gray-200 bg-white lg:hidden"
+  >
+    <nav class="mx-auto flex max-w-7xl flex-col px-4 py-4 text-sm font-medium sm:px-6">
+      <a
+        href="#"
+        class="nav-link rounded-lg px-3 py-3 text-[#1A2B4C] transition hover:bg-gray-50 hover:text-[#F05A28]"
+        data-section="home"
+      >
+        <i class="fas fa-home mr-3 w-5 text-center"></i>
+        Home
+      </a>
+
+      <a
+        href="#"
+        class="nav-link rounded-lg px-3 py-3 text-gray-600 transition hover:bg-gray-50 hover:text-[#F05A28]"
+        data-section="catalogue"
+      >
+        <i class="fas fa-th-list mr-3 w-5 text-center"></i>
+        Catalogue
+      </a>
+
+      <a
+        href="#"
+        class="nav-link rounded-lg px-3 py-3 text-gray-600 transition hover:bg-gray-50 hover:text-[#F05A28]"
+        data-section="about"
+      >
+        <i class="fas fa-building mr-3 w-5 text-center"></i>
+        About
+      </a>
+
+      <a
+        href="#"
+        class="nav-link rounded-lg px-3 py-3 text-gray-600 transition hover:bg-gray-50 hover:text-[#F05A28]"
+        data-section="contact"
+      >
+        <i class="fas fa-envelope mr-3 w-5 text-center"></i>
+        Contact
+      </a>
+
+      <a
+        href="#"
+        class="nav-link rounded-lg px-3 py-3 text-gray-600 transition hover:bg-gray-50 hover:text-[#F05A28]"
+        data-section="quote"
+      >
+        <i class="fas fa-file-invoice mr-3 w-5 text-center"></i>
+        Request Quote
+      </a>
+
+      <a
+        href="#"
+        class="nav-link rounded-lg px-3 py-3 text-gray-600 transition hover:bg-gray-50 hover:text-[#F05A28]"
+        data-section="catalogue-download"
+      >
+        <i class="fas fa-file-pdf mr-3 w-5 text-center"></i>
+        Catalogue PDF
+      </a>
+
+      <div class="mt-3 border-t border-gray-100 pt-3">
+        <p class="px-3 text-xs uppercase tracking-wider text-gray-400">
+          Connect with us
+        </p>
+
+        <div class="mt-3 flex items-center gap-2 px-3">
+          <a
+            href="#"
+            aria-label="Facebook"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1A2B4C] transition hover:bg-[#F05A28] hover:text-white"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+
+          <a
+            href="#"
+            aria-label="LinkedIn"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1A2B4C] transition hover:bg-[#F05A28] hover:text-white"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+
+          <a
+            href="#"
+            aria-label="Instagram"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1A2B4C] transition hover:bg-[#F05A28] hover:text-white"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<!-- ========== MAIN ========== -->
+<main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+  <!-- ===== HOME ===== -->
+<section id="section-home" class="page-section active">
+  <!-- Hero Slider -->
+<div class="hero-wrapper" id="heroSlider">
+
+  <div class="hero-slides">
+    <div
+      class="hero-slide active"
+      style="background-image: url('/images/hero/educore.webp');"
+    ></div>
+
+    <div
+      class="hero-slide"
+      style="background-image: url('/images/hero/educore-1.webp');"
+    ></div>
+
+    <div
+      class="hero-slide"
+      style="background-image: url('/images/hero/disposable-plastic-shoe-covers.webp');"
+    ></div>
+
+    
+  </div>
+
+  <div class="hero-content">
+    <h1>
+      Your Single Source for<br />
+      <span>Quality Stationery, PPE &amp; Hygiene</span>
+    </h1>
+
+    <p>
+      Trusted by schools, government, and businesses across South Africa.
+    </p>
+
+    <div class="hero-buttons">
+      <a
+        href="#"
+        class="btn-primary"
+        onclick="document.querySelector('[data-section=catalogue]').click(); return false;"
+      >
+        View Full Catalogue
+        <i class="fas fa-arrow-right text-sm"></i>
+      </a>
+
+      <a
+        href="#"
+        class="btn-outline"
+        onclick="document.querySelector('[data-section=catalogue-download]').click(); return false;"
+      >
+        <i class="fas fa-download"></i>
+        Download Catalogue
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <span class="hero-dot active" data-index="0"></span>
+    <span class="hero-dot" data-index="1"></span>
+    <span class="hero-dot" data-index="2"></span>
+   
+  </div>
+
+</div>
 
   <!-- Category Sliders -->
   <div id="category-sliders" class="space-y-12 mt-10"></div>
 </section>
   <!-- ===== CATALOGUE ===== -->
   <section id="section-catalogue" class="page-section">
-    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div class="mb-6 flex flex-col items-center gap-4 text-center lg:flex-row lg:justify-between lg:text-left">
       <h2 class="text-2xl md:text-3xl font-bold text-[#1A2B4C] tracking-tight">
         <i class="fas fa-th-list text-[#F05A28] mr-2"></i>All Products
       </h2>
-      <div class="flex gap-2 flex-wrap">
+      <div class="flex w-full flex-wrap justify-center gap-2 lg:w-auto lg:justify-end">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="stationery">Stationery</button>
         <button class="filter-btn" data-filter="furniture">Furniture</button>
@@ -383,11 +654,14 @@
         <button class="filter-btn" data-filter="cleaning">Cleaning</button>
       </div>
     </div>
-    <div id="catalogue-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    <div
+  id="catalogue-grid"
+  class="grid w-full grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+></div>
   </section>
 
   <!-- ===== ABOUT ===== -->
- <section id="section-about" class="page-section">
+ <section id="section-about" class="page-section w-full">
   
   <!-- Hero banner -->
   <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1A2B4C] to-[#2a3f62] text-white mb-12">
@@ -403,8 +677,8 @@
   </div>
 
   <!-- Company overview -->
-  <div class="grid md:grid-cols-2 gap-10 items-start mb-16">
-    <div class="prose prose-lg text-gray-700 space-y-4">
+ <div class="mb-16 grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-10">
+   <div class="space-y-4 text-center text-gray-700 md:text-left">
       <p><strong>EDUCORE Stationery and Hygiene Supplies (Pty) Ltd</strong> is a South African company dedicated to providing high-quality stationery, office furniture, PPE, and hygiene products to educational institutions, government departments, and corporate clients.</p>
       <p>With a focus on reliability and bulk supply, we support tenders and large-scale procurement with competitive pricing and nationwide delivery.</p>
       <p><strong>Our Values:</strong> Integrity, Quality, and Service Excellence.</p>
@@ -416,12 +690,15 @@
         </a>
       </div>
     </div>
-    <div class="relative">
+    <div class="relative mx-auto w-full max-w-xl">
+
 <img
-  src="/images/educore.jpg"
+  src="/images/hero/educore.webp"
   alt="EDUCORE Office"
   class="rounded-xl shadow-lg w-full object-cover h-64 md:h-80"
-/>      <div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-md hidden md:block">
+/> 
+
+<div class="absolute -bottom-4 -right-4 bg-white p-3 rounded-xl shadow-md hidden md:block">
         <div class="flex items-center gap-3">
           <i class="fas fa-check-circle text-[#F05A28] text-2xl"></i>
           <!--<span class="font-semibold text-[#1A2B4C]">Trusted Partner</span>-->
@@ -472,52 +749,7 @@
     </div>
   </div>
 
-  <!-- Team --
-  <div class="mb-16">
-    <h2 class="text-2xl md:text-3xl font-bold text-[#1A2B4C] text-center mb-8">Leadership Team</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      -->
-      <!-- Team Member 1 
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
-        <img src="https://picsum.photos/seed/bongani/300/300" alt="Bongani Dube" class="w-full h-56 object-cover" />
-        <div class="p-4">
-          <h4 class="font-bold text-[#1A2B4C]">Bongani Dube</h4>
-          <p class="text-sm text-gray-500">Managing Director</p>
-          <div class="flex justify-center gap-3 mt-2 text-[#1A2B4C]">
-            <a href="#" class="hover:text-[#F05A28]"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="hover:text-[#F05A28]"><i class="fas fa-envelope"></i></a>
-          </div>
-        </div>
-      </div>
-      -->
-      <!-- Team Member 2 (placeholder) --
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
-        <img src="https://picsum.photos/seed/thandi/300/300" alt="Thandi Mokoena" class="w-full h-56 object-cover" />
-        <div class="p-4">
-          <h4 class="font-bold text-[#1A2B4C]">Thandi Mokoena</h4>
-          <p class="text-sm text-gray-500">Operations Director</p>
-          <div class="flex justify-center gap-3 mt-2 text-[#1A2B4C]">
-            <a href="#" class="hover:text-[#F05A28]"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="hover:text-[#F05A28]"><i class="fas fa-envelope"></i></a>
-          </div>
-        </div>
-      </div>
-      -->
-      <!-- Team Member 3 (placeholder) --
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden text-center">
-        <img src="https://picsum.photos/seed/sipho/300/300" alt="Sipho Ndlovu" class="w-full h-56 object-cover" />
-        <div class="p-4">
-          <h4 class="font-bold text-[#1A2B4C]">Sipho Ndlovu</h4>
-          <p class="text-sm text-gray-500">Head of Procurement</p>
-          <div class="flex justify-center gap-3 mt-2 text-[#1A2B4C]">
-            <a href="#" class="hover:text-[#F05A28]"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="hover:text-[#F05A28]"><i class="fas fa-envelope"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
+
 
   <!-- Contact CTA -->
   <div class="bg-gradient-to-r from-[#1A2B4C] to-[#2a3f62] text-white rounded-2xl p-8 text-center">
@@ -538,7 +770,7 @@
   </div>
 
   <!-- Two-column layout: contact info + form -->
-  <div class="grid md:grid-cols-5 gap-8 max-w-6xl mx-auto">
+<div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-5">
     
     <!-- Left: Contact info -->
     <div class="md:col-span-2 space-y-6">
@@ -818,51 +1050,136 @@
 <div id="drawer-overlay" class="fixed inset-0 bg-black/30 z-40 hidden"></div>
 
 <!-- ========== PRODUCT MODAL ========== -->
-<div id="productModal" class="fixed inset-0 z-50 hidden">
-  <div id="modalOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-  <div class="relative z-10 max-w-5xl mx-auto mt-8 md:mt-16 px-4">
-    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
-      <button id="modalCloseBtn" class="absolute top-4 right-4 z-20 p-2 bg-white/80 hover:bg-white rounded-full shadow-md transition hover:scale-105 text-[#1A2B4C]">
+<div
+  id="productModal"
+  class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/60 backdrop-blur-sm"
+>
+  <div class="min-h-full px-3 py-4 sm:px-4 sm:py-8">
+    <div
+      id="modalContent"
+      class="relative mx-auto w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl"
+    >
+      <button
+        id="modalCloseBtn"
+        class="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#1A2B4C] shadow-md transition hover:bg-white"
+        aria-label="Close product details"
+      >
         <i class="fas fa-times text-xl"></i>
       </button>
-      <div class="grid md:grid-cols-2">
-        <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex items-center justify-center min-h-[300px] md:min-h-[400px]">
-          <img id="modalImage" src="" alt="Product" class="object-contain max-h-[400px] w-full" />
+
+      <div class="grid grid-cols-1 md:grid-cols-2">
+
+        <div class="flex min-h-64 items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4 sm:p-6 md:min-h-[400px] md:p-8">
+          <img
+            id="modalImage"
+            src=""
+            alt="Product"
+            class="max-h-72 w-full object-contain sm:max-h-96 md:max-h-[400px]"
+          />
         </div>
-        <div class="p-6 md:p-8 flex flex-col">
-          <h2 id="modalName" class="text-2xl md:text-3xl font-bold text-[#1A2B4C] leading-tight">Product Name</h2>
-          <div class="flex items-center gap-2 mt-1">
-            <span class="text-yellow-400 text-sm">★★★★★</span>
+
+        <div class="flex flex-col p-4 sm:p-6 md:p-8">
+          <h2
+            id="modalName"
+            class="pr-10 text-xl font-bold leading-tight text-[#1A2B4C] sm:text-2xl md:text-3xl"
+          >
+            Product Name
+          </h2>
+
+          <div class="mt-2 flex flex-wrap items-center gap-2">
+            <span class="text-sm text-yellow-400">★★★★★</span>
             <span class="text-xs text-gray-400">(12 reviews)</span>
             <span class="text-xs text-gray-300">|</span>
-            <span class="text-xs text-[#F05A28] font-medium">In Stock</span>
+            <span class="text-xs font-medium text-[#F05A28]">In Stock</span>
           </div>
-          <span id="modalPrice" class="text-3xl font-bold text-[#F05A28] mt-3">R 0.00</span>
-          <div class="flex flex-wrap gap-3 mt-2 text-sm">
-            <span class="bg-gray-100 px-3 py-1 rounded-full text-gray-600">SKU: <span id="modalSku">-</span></span>
-            <span class="bg-gray-100 px-3 py-1 rounded-full text-gray-600">Unit: <span id="modalUnit">-</span></span>
-            <span class="bg-[#1A2B4C]/10 px-3 py-1 rounded-full text-[#1A2B4C] font-medium">Category: <span id="modalCategory">-</span></span>
+
+          <span
+            id="modalPrice"
+            class="mt-3 text-2xl font-bold text-[#F05A28] sm:text-3xl"
+          >
+            R 0.00
+          </span>
+
+          <div class="mt-3 flex flex-wrap gap-2 text-xs sm:text-sm">
+            <span class="rounded-full bg-gray-100 px-3 py-1 text-gray-600">
+              SKU: <span id="modalSku">-</span>
+            </span>
+
+            <span class="rounded-full bg-gray-100 px-3 py-1 text-gray-600">
+              Unit: <span id="modalUnit">-</span>
+            </span>
+
+            <span class="rounded-full bg-[#1A2B4C]/10 px-3 py-1 font-medium text-[#1A2B4C]">
+              Category: <span id="modalCategory">-</span>
+            </span>
           </div>
-          <p id="modalDescription" class="text-gray-600 mt-4 text-sm leading-relaxed">Description</p>
+
+          <p
+            id="modalDescription"
+            class="mt-4 text-sm leading-relaxed text-gray-600"
+          >
+            Description
+          </p>
+
           <div class="mt-4">
-            <h4 class="font-semibold text-[#1A2B4C] text-sm mb-1">Features & Benefits</h4>
-            <ul id="modalFeatures" class="list-disc list-inside text-sm text-gray-600 space-y-0.5 max-h-[80px] overflow-y-auto"></ul>
+            <h4 class="mb-2 text-sm font-semibold text-[#1A2B4C]">
+              Features &amp; Benefits
+            </h4>
+
+            <ul
+              id="modalFeatures"
+              class="list-inside list-disc space-y-1 text-sm text-gray-600"
+            ></ul>
           </div>
-          <div class="mt-6 pt-4 border-t border-gray-200 flex flex-wrap items-center gap-4">
-            <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-              <button id="modalQtyMinus" class="px-3 py-2 hover:bg-gray-100 text-gray-600 transition">−</button>
-              <span id="modalQtyValue" class="px-4 py-2 border-x border-gray-300 min-w-[3rem] text-center font-medium text-[#1A2B4C]">1</span>
-              <button id="modalQtyPlus" class="px-3 py-2 hover:bg-gray-100 text-gray-600 transition">+</button>
+
+          <div class="mt-6 flex flex-col gap-3 border-t border-gray-200 pt-4 sm:flex-row sm:flex-wrap sm:items-center">
+            <div class="flex w-fit items-center overflow-hidden rounded-lg border border-gray-300">
+              <button
+                id="modalQtyMinus"
+                class="px-3 py-2 text-gray-600 transition hover:bg-gray-100"
+              >
+                −
+              </button>
+
+              <span
+                id="modalQtyValue"
+                class="min-w-12 border-x border-gray-300 px-4 py-2 text-center font-medium text-[#1A2B4C]"
+              >
+                1
+              </span>
+
+              <button
+                id="modalQtyPlus"
+                class="px-3 py-2 text-gray-600 transition hover:bg-gray-100"
+              >
+                +
+              </button>
             </div>
-            <button id="modalAddToQuote" class="flex-1 min-w-[140px] bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-2.5 px-6 rounded-lg transition shadow-sm hover:shadow-md active:scale-95 flex items-center justify-center gap-2">
-              <i class="fas fa-plus"></i> Add to Quote
+
+            <button
+              id="modalAddToQuote"
+              class="w-full rounded-lg bg-[#F05A28] px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-[#d94a1e] sm:flex-1"
+            >
+              <i class="fas fa-plus mr-2"></i>
+              Add to Quote
             </button>
-            <button id="modalContactSales" class="border border-[#1A2B4C] text-[#1A2B4C] hover:bg-[#1A2B4C] hover:text-white font-semibold py-2.5 px-4 rounded-lg transition flex items-center gap-2 text-sm">
-              <i class="fas fa-phone-alt"></i> Contact Sales
+
+            <button
+              id="modalContactSales"
+              class="w-full rounded-lg border border-[#1A2B4C] px-4 py-3 text-sm font-semibold text-[#1A2B4C] transition hover:bg-[#1A2B4C] hover:text-white sm:w-auto"
+            >
+              <i class="fas fa-phone-alt mr-2"></i>
+              Contact Sales
             </button>
           </div>
-          <a href="#" id="modalBackLink" class="mt-4 text-sm text-gray-400 hover:text-[#F05A28] transition flex items-center gap-1">
-            <i class="fas fa-arrow-left"></i> Back to Catalogue
+
+          <a
+            href="#"
+            id="modalBackLink"
+            class="mt-4 flex items-center gap-1 text-sm text-gray-400 transition hover:text-[#F05A28]"
+          >
+            <i class="fas fa-arrow-left"></i>
+            Back to Catalogue
           </a>
         </div>
       </div>

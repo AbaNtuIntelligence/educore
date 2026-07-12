@@ -100,7 +100,7 @@ let modalQty = 1;
 // ============================
 function productCardHTML(product, showAddButton = true) {
   return `
-    <div class="product-card bg-gradient-to-b from-white to-gray-50/80 rounded-xl shadow-md overflow-hidden w-[82vw] max-w-xs flex-shrink-0 snap-center sm:w-64 border border-gray-200/60 hover:border-[#F05A28]/40 transition-all duration-300 cursor-pointer" data-id="${product.id}">
+    <div class="product-card bg-gradient-to-b from-white to-gray-50/80 rounded-xl shadow-md overflow-hidden w-64 flex-shrink-0 border border-gray-200/60 hover:border-[#F05A28]/40 transition-all duration-300 cursor-pointer" data-id="${product.id}">
       <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200/50">
         <img src="${product.image}" alt="${product.name}" class="w-full h-full object-contain p-4" onerror="this.onerror=null; this.src='/images/placeholders/educore-placeholder.webp';" />
         <span class="absolute top-2 right-2 bg-[#F05A28] text-white text-[0.6rem] font-semibold px-3 py-1 rounded-full shadow-md tracking-wide uppercase">Bulk Pricing</span>
@@ -144,14 +144,14 @@ function renderSliders() {
     const totalDots = Math.ceil(catProducts.length / 3);
     html += `
       <div class="category-slider" data-category="${cat.key}">
-        <div class="mb-4 flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-between sm:text-left">
-          <h3 class="flex items-center justify-center gap-2 text-xl font-bold text-[#1A2B4C] sm:justify-start">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-xl font-bold text-[#1A2B4C] flex items-center gap-2">
             <i class="fas ${cat.icon}"></i> ${cat.label}
           </h3>
           <a href="#" class="text-[#F05A28] hover:underline text-sm font-medium section-link" data-category="${cat.key}">View All →</a>
         </div>
         <div class="relative">
-          <div id="${sliderId}" class="slider-container flex w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-4 scroll-smooth" data-category="${cat.key}">
+          <div id="${sliderId}" class="slider-container overflow-x-auto no-scrollbar flex gap-4 pb-4 scroll-smooth" data-category="${cat.key}">
             ${catProducts.map(p => productCardHTML(p)).join('')}
           </div>
           ${catProducts.length > 3 ? `
@@ -303,6 +303,7 @@ function initialiseMobileMenu() {
     });
 }
 
+initialiseMobileMenu();
 
 
 
@@ -684,6 +685,8 @@ console.log(
 
 
 
+initialiseMobileMenu();
+
 // ============================
 // INITIALIZATION
 // ============================
@@ -692,14 +695,7 @@ document.addEventListener('DOMContentLoaded', function() {
   loadProductsFromSheet();
   renderBasket();
 
-initialiseMobileMenu();
 
-// --- Attach search events ---
-document.addEventListener('DOMContentLoaded', function() {
-  const searchInput = document.getElementById('search-input');
-  const mobileSearch = document.getElementById('mobile-search');
-  const clearDesktop = document.getElementById('clear-search-desktop');
-  const clearMobile = document.getElementById('clear-search-mobile');
 
 
   
@@ -990,6 +986,12 @@ function filterProducts() {
   toggleClearButtons(query.length > 0);
 }
 
+// --- Attach search events ---
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('search-input');
+  const mobileSearch = document.getElementById('mobile-search');
+  const clearDesktop = document.getElementById('clear-search-desktop');
+  const clearMobile = document.getElementById('clear-search-mobile');
 
 
 // ============================
@@ -1078,50 +1080,6 @@ function filterProducts() {
     }, 1500);
   });
 
-console.table({
-  modalCloseBtn: document.getElementById("modalCloseBtn"),
-  modalOverlay: document.getElementById("modalOverlay"),
-  modalBackLink: document.getElementById("modalBackLink"),
-  modalContactSales: document.getElementById("modalContactSales"),
-  modalAddToQuote: document.getElementById("modalAddToQuote")
-});
-
-
-const modalCloseBtn = document.getElementById("modalCloseBtn");
-const modalOverlay = document.getElementById("modalOverlay");
-const modalBackLink = document.getElementById("modalBackLink");
-const modalContactSales = document.getElementById("modalContactSales");
-const modalAddToQuote = document.getElementById("modalAddToQuote");
-
-modalCloseBtn?.addEventListener("click", function (event) {
-  event.preventDefault();
-  closeProductModal();
-});
-
-modalOverlay?.addEventListener("click", function () {
-  closeProductModal();
-});
-
-modalBackLink?.addEventListener("click", function (event) {
-  event.preventDefault();
-  closeProductModal();
-  showSection("catalogue");
-});
-
-modalContactSales?.addEventListener("click", function () {
-  closeProductModal();
-  showSection("contact");
-});
-
-modalAddToQuote?.addEventListener("click", function () {
-  if (!currentProduct) return;
-
-  const quantity = Number(
-    document.getElementById("modalQtyValue")?.textContent || 1
-  );
-
-  addToBasket(currentProduct.id, quantity);
-});
   // Modal events
   document.getElementById('modalOverlay').addEventListener('click', closeProductModal);
   document.getElementById('modalCloseBtn').addEventListener('click', closeProductModal);
