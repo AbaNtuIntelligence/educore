@@ -1,4 +1,5 @@
 import { getProductsFromGoogleSheets } from "./src/services/googleSheets.js";
+import "./assets/js/download.js";
 let products = [];
 // ============================
 // DATA – 100+ Products
@@ -473,83 +474,299 @@ function renderQuoteBasket() {
   if (uniqueItemsEl) uniqueItemsEl.textContent = basket.length;
 }
 
-// ============================
-// PDF GENERATION
-// ============================
+
 function buildCatalogueDocDefinition() {
-  const sorted = [...products].sort((a, b) => {
-    if (a.category < b.category) return -1;
-    if (a.category > b.category) return 1;
-    return a.name.localeCompare(b.name);
+  if (!Array.isArray(products) || products.length === 0) {
+    throw new Error(
+      'Products are still loading from Google Sheets. Please try again.'
+    );
+  }
+
+  const currentProducts = products;
+
+  const sortedProducts = [...currentProducts].sort((a, b) => {
+    const categoryComparison = String(a.category || '').localeCompare(
+      String(b.category || '')
+    );
+
+    if (categoryComparison !== 0) {
+      return categoryComparison;
+    }
+
+    return String(a.name || '').localeCompare(
+      String(b.name || '')
+    );
   });
-  const tableBody = sorted.map(p => [
-    p.sku,
-    p.name,
-    p.category.charAt(0).toUpperCase() + p.category.slice(1),
-    p.unit,
-    p.price,
-    p.description.substring(0, 60) + (p.description.length > 60 ? '…' : '')
+
+  const tableBody = sortedProducts.map(product => [
+    String(product.sku || ''),
+    String(product.name || ''),
+    formatCategory(product.category),
+    String(product.unit || ''),
+    String(product.price || ''),
+    truncateText(product.description, 60)
   ]);
+
   return {
     pageSize: 'A4',
-    pageMargins: [40, 60, 40, 60],
-    header: function() {
-      return { columns: [ { text: 'EDUCORE', style: 'headerTitle' }, { text: 'Catalogue 2026', style: 'headerSub' } ], margin: [40, 20, 40, 0] };
+    pageOrientation: 'landscape',
+    pageMargins: [30, 60, 30, 50],
+
+    header() {
+      return {
+        columns: [
+          {
+            text: 'EDUCORE',
+            bold: true,
+            fontSize: 16,
+            color: '#1A2B4C'
+          },
+          {
+            text: 'Product Catalogue 2026',
+            alignment: 'right',
+            fontSize: 11,
+            color: '#F05A28'
+          }
+        ],
+        margin: [30, 20, 30, 0]
+      };
     },
-    footer: function(currentPage, pageCount) {
-      return { text: `Page ${currentPage} of ${pageCount}`, alignment: 'center', fontSize: 8, margin: [0, 0, 0, 20] };
+
+    footer(currentPage, pageCount) {
+      return {
+        text: `Page ${currentPage} of ${pageCount}`,
+        alignment: 'center',
+        fontSize: 8,
+        color: '#6B7280',
+        margin: [0, 10, 0, 0]
+      };
     },
+
     content: [
-      { text: 'Complete Product Catalogue', style: 'title' },
-      { text: 'Stationery • Office Furniture • PPE & Hygiene Solutions', style: 'subtitle' },
-      { text: `Generated: ${new Date().toLocaleString()}`, alignment: 'right', fontSize: 8, margin: [0, 0, 0, 20] },
       {
-        style: 'tableExample',
+        text: 'Complete Product Catalogue',
+        style: 'title'
+      },
+      {
+        text:
+          'Stationery • Office Furniture • PPE & Safety • Cleaning & Hygiene',
+        style: 'subtitle'
+      },
+      {
+        text: `Generated: ${new Date().toLocaleString('en-ZA')}`,
+        alignment: 'right',
+        fontSize: 8,
+        margin: [0, 0, 0, 15]
+      },
+      {
         table: {
           headerRows: 1,
-          widths: ['auto', '*', 'auto', 'auto', 'auto', '*'],
-          body: [ ['SKU', 'Product Name', 'Category', 'Unit', 'Price', 'Description'], ...tableBody ]
+          widths: [75, '*', 85, 70, 65, '*'],
+          body: [
+            [
+              { text: 'SKU', style: 'tableHeader' },
+              { text: 'Product Name', style: 'tableHeader' },
+              { text: 'Category', style: 'tableHeader' },
+              { text: 'Unit', style: 'tableHeader' },
+              { text: 'Price', style: 'tableHeader' },
+              { text: 'Description', style: 'tableHeader' }
+            ],
+            ...tableBody
+          ]
         },
+
         layout: {
-          fillColor: function(rowIndex) { return (rowIndex % 2 === 0) ? '#f3f4f6' : null; },
-          hLineColor: '#e5e7eb',
-          vLineColor: '#e5e7eb',
+          fillColor(rowIndex) {
+            if (rowIndex === 0) {
+              return '#1A2B4C';
+            }
+
+            return rowIndex % 2 === 0
+              ? '#F3F4F6'
+              : null;
+          },
+
+          hLineColor: '#D1D5DB',
+          vLineColor: '#D1D5DB',
+          paddingLeft: () => 5,
+          paddingRight: () => 5,
+          paddingTop: () => 5,
+          paddingBottom: () => 5
         }
       }
     ],
+
     styles: {
-      headerTitle: { fontSize: 16, bold: true, color: '#1A2B4C' },
-      headerSub: { fontSize: 12, color: '#F05A28', alignment: 'right' },
-      title: { fontSize: 22, bold: true, alignment: 'center', margin: [0, 0, 0, 8] },
-      subtitle: { fontSize: 14, alignment: 'center', color: '#4b5563', margin: [0, 0, 0, 16] },
-      tableExample: { margin: [0, 0, 0, 0] }
+      title: {
+        fontSize: 22,
+        bold: true,
+        alignment: 'center',
+        color: '#1A2B4C',
+        margin: [0, 0, 0, 6]
+      },
+
+      subtitle: {
+        fontSize: 11,
+        alignment: 'center',
+        color: '#4B5563',
+        margin: [0, 0, 0, 14]
+      },
+
+      tableHeader: {
+        bold: true,
+        color: '#FFFFFF',
+        fontSize: 8
+      }
+    },
+
+    defaultStyle: {
+      fontSize: 7
     }
   };
 }
-function generateCataloguePDF() {
-  try {
-    if (typeof pdfMake === 'undefined') { alert('PDF library not loaded. Check your internet connection.'); return; }
-    const docDef = buildCatalogueDocDefinition();
-    pdfMake.createPdf(docDef).download('educore-catalogue-2026.pdf');
-    const btn = document.getElementById('generatePdfBtn');
-    if (btn) {
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
-      btn.disabled = true;
-      setTimeout(() => { btn.innerHTML = '<i class="fas fa-download"></i> Download Catalogue (PDF)'; btn.disabled = false; }, 2000);
-    }
-  } catch (e) { console.error(e); alert('Error generating PDF. Please try again.'); }
+
+function formatCategory(category) {
+  const value = String(category || '').trim();
+
+  if (!value) {
+    return '';
+  }
+
+  return value.charAt(0).toUpperCase() + value.slice(1);
 }
-function openCataloguePDFForPrint() {
+
+function truncateText(value, maximumLength) {
+  const text = String(value || '');
+
+  return text.length > maximumLength
+    ? `${text.substring(0, maximumLength)}…`
+    : text;
+}
+
+
+// ============================
+// PDF GENERATION
+// ============================
+function generateCataloguePDF(clickedButton) {
+  const button =
+    clickedButton ||
+    document.getElementById('generatePdfBtn');
+
+  const originalHtml =
+    button?.innerHTML ||
+    '<i class="fas fa-download"></i> Download Catalogue (PDF)';
+
   try {
-    if (typeof pdfMake === 'undefined') { alert('PDF library not loaded.'); return; }
-    const docDef = buildCatalogueDocDefinition();
-    pdfMake.createPdf(docDef).getBlob(function(blob) {
-      const url = URL.createObjectURL(blob);
-      const printWindow = window.open(url, '_blank');
-      if (!printWindow) { alert('Please allow popups.'); return; }
-      setTimeout(() => { try { printWindow.print(); } catch (e) {} }, 3000);
-    });
-  } catch (e) { console.error(e); alert('Error preparing PDF for print.'); }
+    if (!window.pdfMake) {
+      throw new Error('pdfMake failed to load.');
+    }
+
+    if (!Array.isArray(products) || products.length === 0) {
+      throw new Error(
+        'Products are still loading. Please try again.'
+      );
+    }
+
+    if (button) {
+      button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
+      button.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+    }
+
+    const documentDefinition =
+      buildCatalogueDocDefinition();
+
+    window.pdfMake
+      .createPdf(documentDefinition)
+      .download(
+        'educore-catalogue-2026.pdf',
+        function () {
+          restorePdfButton(button, originalHtml);
+        }
+      );
+  } catch (error) {
+    console.error('PDF generation failed:', error);
+
+    restorePdfButton(button, originalHtml);
+
+    alert(`PDF generation failed: ${error.message}`);
+  }
+}
+
+function restorePdfButton(button, originalHtml) {
+  if (!button) return;
+
+  button.disabled = false;
+  button.removeAttribute('aria-busy');
+  button.innerHTML = originalHtml;
+}
+
+function openCataloguePDFForPrint(clickedButton) {
+  const button =
+    clickedButton ||
+    document.getElementById('printPdfBtn');
+
+  const originalHtml =
+    button?.innerHTML ||
+    '<i class="fas fa-print"></i> Print Catalogue';
+
+  try {
+    if (!window.pdfMake) {
+      throw new Error('pdfMake failed to load.');
+    }
+
+    if (!Array.isArray(products) || products.length === 0) {
+      throw new Error(
+        'Products are still loading. Please try again.'
+      );
+    }
+
+    if (button) {
+      button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
+      button.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i> Preparing...';
+    }
+
+    const documentDefinition =
+      buildCatalogueDocDefinition();
+
+    window.pdfMake
+      .createPdf(documentDefinition)
+      .getBlob(function (blob) {
+        restorePdfButton(button, originalHtml);
+
+        const pdfUrl = URL.createObjectURL(blob);
+        const printWindow = window.open(pdfUrl, '_blank');
+
+        if (!printWindow) {
+          URL.revokeObjectURL(pdfUrl);
+
+          alert(
+            'The browser blocked the print window. Please allow popups.'
+          );
+
+          return;
+        }
+
+        setTimeout(function () {
+          try {
+            printWindow.print();
+          } finally {
+            setTimeout(function () {
+              URL.revokeObjectURL(pdfUrl);
+            }, 5000);
+          }
+        }, 1500);
+      });
+  } catch (error) {
+    console.error('PDF print failed:', error);
+
+    restorePdfButton(button, originalHtml);
+
+    alert(`PDF print failed: ${error.message}`);
+  }
 }
 
 // ============================
@@ -693,6 +910,50 @@ document.addEventListener('DOMContentLoaded', function() {
   renderBasket();
 
 initialiseMobileMenu();
+
+
+const generatePdfButton =
+  document.getElementById('generatePdfBtn');
+
+const printPdfButton =
+  document.getElementById('printPdfBtn');
+
+generatePdfButton?.addEventListener(
+  'click',
+  function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    generateCataloguePDF(this);
+  }
+);
+
+printPdfButton?.addEventListener(
+  'click',
+  function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    openCataloguePDFForPrint(this);
+  }
+);
+
+document.querySelectorAll("[data-section]").forEach((link) => {
+  link.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const section = this.dataset.section;
+
+    if (!section) return;
+
+    showSection(section);
+
+    document
+      .getElementById("mobile-menu")
+      ?.classList.add("hidden");
+  });
+});
+
 
 // --- Attach search events ---
 document.addEventListener('DOMContentLoaded', function() {
@@ -1156,10 +1417,6 @@ modalAddToQuote?.addEventListener("click", function () {
     document.querySelector('[data-section="contact"]')?.click();
   });
 
-  // PDF buttons
-  document.getElementById('generatePdfBtn').addEventListener('click', generateCataloguePDF);
-  document.getElementById('printPdfBtn').addEventListener('click', openCataloguePDFForPrint);
-
   // View All links in sliders
   document.querySelectorAll('.section-link').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -1181,7 +1438,24 @@ modalAddToQuote?.addEventListener("click", function () {
     showSection('home');
   });
 
+document.addEventListener('click', function (event) {
+  const downloadButton = event.target.closest('#generatePdfBtn');
 
+  if (downloadButton) {
+    event.preventDefault();
+    event.stopPropagation();
+    generateCataloguePDF();
+    return;
+  }
+
+  const printButton = event.target.closest('#printPdfBtn');
+
+  if (printButton) {
+    event.preventDefault();
+    event.stopPropagation();
+    openCataloguePDFForPrint();
+  }
+});
 
   // Default home
   showSection('home');

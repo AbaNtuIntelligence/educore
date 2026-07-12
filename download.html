@@ -108,12 +108,23 @@
             Access our complete range of stationery, office furniture, PPE, and hygiene solutions – all in one easy‑to‑download PDF.
           </p>
           <div class="mt-6 flex flex-wrap gap-4">
-            <button id="generatePdfBtn" class="bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2 shadow-lg">
-              <i class="fas fa-download"></i> Download Catalogue (PDF)
-            </button>
-            <button id="printPdfBtn" class="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2">
-              <i class="fas fa-print"></i> Print Catalogue
-            </button>
+           <button
+  type="button"
+  id="generatePdfBtn"
+  class="bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold px-6 py-3 rounded-full"
+>
+  <i class="fas fa-download"></i>
+  Download Catalogue PDF
+</button>
+
+<button
+  type="button"
+  id="printPdfBtn"
+  class="border-2 border-white text-white font-semibold px-6 py-3 rounded-full"
+>
+  <i class="fas fa-print"></i>
+  Print Catalogue
+</button>
             <a href="/catalogue.html" class="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2">
               Browse Online <i class="fas fa-arrow-right text-sm"></i>
             </a>
@@ -221,6 +232,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js"></script>
 <script type="module" src="/main.js"></script>
-<script src="assets/js/download.js"></script>
+
 </body>
 </html>
