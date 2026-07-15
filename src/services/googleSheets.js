@@ -1,23 +1,9 @@
 console.log("googleSheets.js loaded");
+
 import Papa from "papaparse";
+
 const CSV_URL =
-"https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-O3cDp2G6s-AIcSBO-rLdjscotzHFDwBXI0vAsrJbv8sL67TXFg4czvyavjgoaLUkd8dmA0SYalHm/pub?gid=0&single=true&output=csv";
-
-
-export async function getProductsFromGoogleSheets(){
-
-    const response = await fetch(CSV_URL);
-
-    const csv = await response.text();
-
-console.log("CSV LENGTH:", csv.length);
-console.log("CSV PREVIEW:", csv.substring(0,500));
-
-    const result = Papa.parse(csv,{
-        header:true,
-        skipEmptyLines:true
-    });
-
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-O3cDp2G6s-AIcSBO-rLdjscotzHFDwBXI0vAsrJbv8sL67TXFg4czvyavjgoaLUkd8dmA0SYalHm/pub?gid=0&single=true&output=csv";
 
 function normalizeCategory(value) {
   const category = String(value || "")
@@ -45,50 +31,87 @@ function normalizeCategory(value) {
   return categoryMap[category] || category;
 }
 
-    return result.data
-  .map((row, index) => {
-    const imageFilename = String(row["Image Filename"] || "").trim();
-    const cloudUrl = String(row["Cloud URL"] || "").trim();
+export async function getProductsFromGoogleSheets() {
+  const response = await fetch(CSV_URL);
 
-    return {
-      id: Number(row.ID) || index + 1,
+  if (!response.ok) {
+    throw new Error(
+      `Google Sheets request failed: ${response.status} ${response.statusText}`
+    );
+  }
 
-      name: String(row["Product Name"] || "").trim(),
+  const csv = await response.text();
 
-    category: normalizeCategory(row.Category),
+  console.log("CSV LENGTH:", csv.length);
+  console.log("CSV PREVIEW:", csv.substring(0, 500));
 
-      brand: String(row.Brand || "").trim(),
+  const result = Papa.parse(csv, {
+    header: true,
+    skipEmptyLines: true
+  });
 
-      sku: String(row.SKU || "").trim(),
+  if (result.errors?.length) {
+    console.warn("CSV parse warnings:", result.errors);
+  }
 
-      slug: String(row.Slug || "").trim(),
+  return result.data
+    .map((row, index) => {
+      const imageFilename = String(
+        row["Image Filename"] || ""
+      ).trim();
 
-      unit: String(row.Unit || "").trim(),
+      const cloudUrl = String(
+        row["Cloud URL"] || ""
+      ).trim();
 
-      price: String(row.Price || "").trim(),
+      return {
+        id: Number(row.ID) || index + 1,
 
-      featured: ["yes", "true", "1"].includes(
-        String(row.Featured || "").trim().toLowerCase()
-      ),
+        name: String(
+          row["Product Name"] || ""
+        ).trim(),
 
-      description: String(row.Description || "").trim(),
+        category: normalizeCategory(row.Category),
 
-      image:
-        cloudUrl ||
-        (imageFilename
-          ? `/images/products/${imageFilename}`
-          : ""),
+        brand: String(row.Brand || "").trim(),
 
-      features: [
-        row["Feature 1"],
-        row["Feature 2"],
-        row["Feature 3"],
-        row["Feature 4"]
-      ]
-        .map(value => String(value || "").trim())
-        .filter(Boolean)
-    };
-  })
-  .filter(product => product.name);
+        sku: String(row.SKU || "").trim(),
 
+        slug: String(row.Slug || "").trim(),
+
+        unit: String(row.Unit || "").trim(),
+
+        price: String(row.Price || "").trim(),
+
+        featured: ["yes", "true", "1"].includes(
+          String(row.Featured || "")
+            .trim()
+            .toLowerCase()
+        ),
+
+        description: String(
+          row.Description || ""
+        ).trim(),
+
+        image:
+          cloudUrl ||
+          (
+            imageFilename
+              ? `/images/products/${imageFilename}`
+              : ""
+          ),
+
+        features: [
+          row["Feature 1"],
+          row["Feature 2"],
+          row["Feature 3"],
+          row["Feature 4"]
+        ]
+          .map((value) =>
+            String(value || "").trim()
+          )
+          .filter(Boolean)
+      };
+    })
+    .filter((product) => product.name);
 }

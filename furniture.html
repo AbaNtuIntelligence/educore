@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Furniture | EDUCORE</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body data-category="furniture" class="bg-slate-50">
+  <header class="border-b bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+      <a href="/index.html" class="text-xl font-bold text-[#1A2B4C]">
+        EDUCORE
+      </a>
+
+      <a href="/catalogue.html" class="text-sm font-medium text-[#F05A28]">
+        Back to Catalogue
+      </a>
+    </div>
+  </header>
+
+  <main class="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-bold text-[#1A2B4C]">
+        Furniture
+      </h1>
+
+      <p class="mt-2 text-gray-500">
+        Browse EDUCORE furniture products.
+      </p>
+    </div>
+<div class="flex w-full flex-wrap justify-center gap-2">
+  <a href="/catalogue.html" class="filter-btn">All</a>
+  <a href="/stationery.html" class="filter-btn">Stationery</a>
+  <a href="/furniture.html" class="filter-btn active">Furniture</a>
+  <a href="/ppe.html" class="filter-btn">PPE</a>
+  <a href="/cleaning.html" class="filter-btn">Cleaning</a>
+</div>
+    <div
+      id="category-grid"
+      class="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    ></div>
+  </main>
+
+  <script type="module" src="/src/services/categoryPage.js"></script>
+</body>
+</html>

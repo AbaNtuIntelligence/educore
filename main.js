@@ -1,5 +1,9 @@
 import { getProductsFromGoogleSheets } from "./src/services/googleSheets.js";
-import "./assets/js/download.js";
+
+import {
+  updateProductCounts
+} from "./assets/js/download.js";
+
 let products = [];
 // ============================
 // DATA – 100+ Products
@@ -781,21 +785,16 @@ function showSection(sectionId) {
     link.classList.toggle('text-gray-600', link.dataset.section !== sectionId);
   });
   document.getElementById('mobile-menu')?.classList.add('hidden');
-  if (sectionId === 'catalogue') filterProducts();
+if (sectionId === 'catalogue') {
+  renderCatalogue(products);
+}
   if (sectionId === 'quote') renderQuoteBasket();
 }
 
 
 
 
-// Filter buttons
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    filterProducts();
-  });
-});
+
 
 // Set initial active filter
 document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
@@ -1438,24 +1437,7 @@ modalAddToQuote?.addEventListener("click", function () {
     showSection('home');
   });
 
-document.addEventListener('click', function (event) {
-  const downloadButton = event.target.closest('#generatePdfBtn');
 
-  if (downloadButton) {
-    event.preventDefault();
-    event.stopPropagation();
-    generateCataloguePDF();
-    return;
-  }
-
-  const printButton = event.target.closest('#printPdfBtn');
-
-  if (printButton) {
-    event.preventDefault();
-    event.stopPropagation();
-    openCataloguePDFForPrint();
-  }
-});
 
   // Default home
   showSection('home');

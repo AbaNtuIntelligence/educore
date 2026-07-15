@@ -100,15 +100,20 @@
     <h2 class="text-2xl md:text-3xl font-bold text-[#1A2B4C]">
       <i class="fas fa-th-list text-[#F05A28] mr-2"></i>All Products
     </h2>
+
     <div class="flex gap-2 flex-wrap">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="stationery">Stationery</button>
-      <button class="filter-btn" data-filter="furniture">Furniture</button>
-      <button class="filter-btn" data-filter="ppe">PPE</button>
-      <button class="filter-btn" data-filter="cleaning">Cleaning</button>
-    </div>
+  <a href="/catalogue.html" class="filter-btn active">All</a>
+  <a href="/stationery.html" class="filter-btn">Stationery</a>
+  <a href="/furniture.html" class="filter-btn">Furniture</a>
+  <a href="/ppe.html" class="filter-btn">PPE</a>
+  <a href="/cleaning.html" class="filter-btn">Cleaning</a>
+</div>
+
   </div>
-  <div id="catalogue-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  <div
+  id="catalogue-grid"
+  class="grid w-full grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+></div>
 </main>
 
 <!-- ===== BASKET DRAWER (same as index.html) ===== -->
@@ -203,8 +208,7 @@
 
 
 
+<script type="module" src="/catalogue.js"></script>
 
-<script type="module" src="/main.js"></script>
-<script src="assets/js/catalogue.js"></script>
 </body>
 </html>
