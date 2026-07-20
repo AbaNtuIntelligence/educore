@@ -335,9 +335,12 @@ function renderCatalogue(productsToRender) {
 function renderBasket() {
   basket = getQuoteBasket();
   const count = quoteItemCount(basket);
-  document.getElementById('basket-count').textContent = count;
+  document.querySelectorAll('#basket-count').forEach(badge => {
+    badge.textContent = count;
+  });
   const itemsContainer = document.getElementById('basket-items');
   const empty = document.getElementById('basket-empty');
+  if (!itemsContainer || !empty) return;
   if (!count) {
     itemsContainer.innerHTML = '';
     empty.style.display = 'block';
@@ -1350,7 +1353,9 @@ console.table({
 
 
   // Modal events
-  document.getElementById('modalOverlay').addEventListener('click', closeProductModal);
+  document.getElementById('productModal')?.addEventListener('click', event => {
+    if (event.target === event.currentTarget) closeProductModal();
+  });
   document.getElementById('modalCloseBtn').addEventListener('click', closeProductModal);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProductModal(); });
   document.getElementById('modalBackLink').addEventListener('click', function(e) {

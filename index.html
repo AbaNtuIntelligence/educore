@@ -312,13 +312,26 @@
     </nav>
 
 
-    <!-- Mobile Button -->
-    <button 
-      id="menu-toggle"
-      class="lg:hidden text-2xl text-[#1A2B4C]"
-    >
-      ☰
-    </button>
+    <div class="flex items-center gap-2">
+      <button
+        id="basket-btn"
+        type="button"
+        class="relative rounded-full p-2 text-[#1A2B4C] transition hover:bg-gray-100"
+        aria-label="Open quote basket"
+      >
+        <i class="fas fa-shopping-basket text-xl"></i>
+        <span id="basket-count" class="basket-badge">0</span>
+      </button>
+
+      <button
+        id="menu-toggle"
+        type="button"
+        class="text-2xl text-[#1A2B4C] lg:hidden"
+        aria-label="Open navigation menu"
+      >
+        ☰
+      </button>
+    </div>
 
   </div>
 
