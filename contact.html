@@ -109,10 +109,15 @@
       <input type="text" name="company" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" />
     </div>
     <div>
+      <label class="block text-sm font-medium text-gray-700">Phone</label>
+      <input type="tel" name="phone" autocomplete="tel" class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none" />
+    </div>
+    <div>
       <label class="block text-sm font-medium text-gray-700">Message *</label>
       <textarea name="message" rows="4" required class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#F05A28]/50 focus:border-[#F05A28] outline-none"></textarea>
     </div>
-    <button type="submit" class="w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg transition">Send Message</button>
+    <button type="submit" class="w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg transition"><i class="fas fa-paper-plane mr-2"></i>Send Message</button>
+    <p id="contact-status" class="hidden rounded-lg bg-green-50 p-3 text-sm text-green-800"><strong>Your email app has been opened.</strong> Send the prepared email to complete your enquiry.</p>
   </form>
 </main>
 
@@ -163,13 +168,7 @@
     </div>
   </div>
 </footer>
-<script type="module" src="/main.js"></script>
-<script>
-document.getElementById('contact-form')?.addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Thank you! We\'ll respond within 24 hours.');
-  this.reset();
-});
-</script>
+<script type="module" src="/src/staticPageApp.js"></script>
+<script type="module" src="/src/contactApp.js"></script>
 </body>
 </html>

@@ -107,6 +107,10 @@ export async function getProductsFromGoogleSheets() {
               : ""
           ),
 
+        localImage: imageFilename
+          ? `/images/products/${imageFilename}`
+          : "",
+
         features: [
           row["Feature 1"],
           row["Feature 2"],
