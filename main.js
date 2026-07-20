@@ -937,21 +937,18 @@ printPdfButton?.addEventListener(
   }
 );
 
-document.querySelectorAll("[data-section]").forEach((link) => {
-  link.addEventListener("click", function (event) {
-    event.preventDefault();
+/*
+document.querySelectorAll('[data-section]').forEach((link) => {
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
 
-    const section = this.dataset.section;
+        const section = this.dataset.section;
+        if (!section) return;
 
-    if (!section) return;
-
-    showSection(section);
-
-    document
-      .getElementById("mobile-menu")
-      ?.classList.add("hidden");
-  });
+        showSection(section);
+    });
 });
+*/
 
 
 // --- Attach search events ---
@@ -1432,11 +1429,10 @@ modalAddToQuote?.addEventListener("click", function () {
   });
 
   // Logo
-  document.getElementById('logo-link').addEventListener('click', function(e) {
+  document.getElementById('logo-link')?.addEventListener('click', function(e) {
     e.preventDefault();
     showSection('home');
   });
-
 
 
   // Default home
