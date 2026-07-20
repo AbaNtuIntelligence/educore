@@ -25,7 +25,13 @@ function normalizeCategory(value) {
     hygiene: "cleaning",
     "cleaning & hygiene": "cleaning",
     "cleaning and hygiene": "cleaning",
-    "cleaning chemicals": "cleaning"
+    "cleaning chemicals": "cleaning",
+
+    hospital: "hospital",
+    "hospital equipment": "hospital",
+    "medical equipment": "hospital",
+    healthcare: "hospital",
+    "healthcare equipment": "hospital"
   };
 
   return categoryMap[category] || category;
