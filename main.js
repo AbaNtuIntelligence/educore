@@ -278,22 +278,19 @@ function initialiseMobileMenu() {
 
     console.log("Mobile toggle clicked");
 
-    const isCurrentlyHidden =
-      mobileMenu.classList.contains("hidden");
-
-    mobileMenu.classList.toggle("hidden", !isCurrentlyHidden);
-    mobileMenu.classList.toggle("flex", isCurrentlyHidden);
+    const isOpening = !mobileMenu.classList.contains("is-open");
+    mobileMenu.classList.toggle("is-open", isOpening);
 
     menuToggle.setAttribute(
       "aria-expanded",
-      String(isCurrentlyHidden)
+      String(isOpening)
     );
 
     const icon = menuToggle.querySelector("i");
 
     if (icon) {
-      icon.classList.toggle("fa-bars", !isCurrentlyHidden);
-      icon.classList.toggle("fa-times", isCurrentlyHidden);
+      icon.classList.toggle("fa-bars", !isOpening);
+      icon.classList.toggle("fa-times", isOpening);
     }
   });
 
@@ -301,8 +298,7 @@ function initialiseMobileMenu() {
     .querySelectorAll("#mobile-menu .nav-link")
     .forEach((link) => {
       link.addEventListener("click", function () {
-        mobileMenu.classList.add("hidden");
-        mobileMenu.classList.remove("flex");
+        mobileMenu.classList.remove("is-open");
         menuToggle.setAttribute("aria-expanded", "false");
 
         const icon = menuToggle.querySelector("i");

@@ -22,14 +22,14 @@ function headerMarkup() {
     <div class="hidden bg-[#1A2B4C] py-1.5 text-sm text-white lg:block"><div class="mx-auto flex max-w-7xl items-center justify-between px-4"><span class="text-white/80">Your trusted partner for stationery, PPE, hygiene and hospital equipment.</span><a href="/download.html" class="font-medium hover:text-[#F05A28]">Download Product Catalogue</a></div></div>
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
       <a href="/index.html" class="flex min-w-0 items-center gap-3"><img src="/images/hero/logo.jpeg" alt="EDUCORE" class="h-12 w-12 rounded-lg object-contain"><div class="hidden sm:block"><p class="text-xl font-bold text-[#1A2B4C]">EDUCORE</p><p class="text-xs font-semibold text-[#F05A28]">Stationery, PPE & Hygiene Solutions</p></div></a>
-      <nav class="hidden items-center gap-5 text-sm lg:flex" aria-label="Primary navigation">${navigationLinks()}</nav>
+      <nav id="desktop-nav" class="items-center gap-5 text-sm" aria-label="Primary navigation">${navigationLinks()}</nav>
       <div class="flex items-center gap-2">
         <div class="relative hidden xl:block"><input id="site-search" type="search" placeholder="Search products…" class="w-48 rounded-full border border-gray-300 py-2 pl-4 pr-9 text-sm outline-none focus:border-[#F05A28]"><span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">⌕</span></div>
         <button id="basket-btn" type="button" class="relative rounded-full p-2 text-xl text-[#1A2B4C] hover:bg-gray-100" aria-label="Open quote basket"><span aria-hidden="true">🛒</span><span id="basket-count" class="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#F05A28] px-1 text-xs font-bold text-white">0</span></button>
         <button id="menu-toggle" type="button" class="rounded p-2 text-2xl text-[#1A2B4C] hover:bg-gray-100 lg:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
       </div>
     </div>
-    <nav id="mobile-menu" class="hidden border-t bg-white px-4 py-3 lg:hidden" aria-label="Mobile navigation">${navigationLinks(true)}<div class="mt-3"><input id="mobile-search" type="search" placeholder="Search products…" class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm outline-none focus:border-[#F05A28]"></div></nav>
+    <nav id="mobile-menu" class="flex-col border-t bg-white px-4 py-3" aria-label="Mobile navigation">${navigationLinks(true)}<div class="mt-3"><input id="mobile-search" type="search" placeholder="Search products…" class="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm outline-none focus:border-[#F05A28]"></div></nav>
   </header>`;
 }
 
@@ -47,7 +47,7 @@ function initialiseHeader() {
   document.getElementById("menu-toggle")?.addEventListener("click", event => {
     event.stopImmediatePropagation();
     const menu = document.getElementById("mobile-menu");
-    const open = menu?.classList.toggle("hidden") === false;
+    const open = menu?.classList.toggle("is-open") || false;
     event.currentTarget.setAttribute("aria-expanded", String(open));
   }, true);
 

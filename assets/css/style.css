@@ -149,6 +149,36 @@ header nav a.active {
   border-bottom-color: #F05A28 !important;
 }
 
+/* Deterministic responsive navigation (independent of Tailwind utility order). */
+#desktop-nav {
+  display: flex !important;
+  align-items: center;
+}
+
+#menu-toggle {
+  display: none !important;
+}
+
+#mobile-menu {
+  display: none !important;
+}
+
+@media (max-width: 1023px) {
+  #desktop-nav {
+    display: none !important;
+  }
+
+  #menu-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #mobile-menu.is-open {
+    display: flex !important;
+  }
+}
+
 /* Mobile menu links */
 #mobile-menu a {
   color: #1A2B4C !important;
