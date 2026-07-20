@@ -281,10 +281,8 @@ function initialiseMobileMenu() {
     const isCurrentlyHidden =
       mobileMenu.classList.contains("hidden");
 
-    mobileMenu.classList.toggle(
-      "hidden",
-      !isCurrentlyHidden
-    );
+    mobileMenu.classList.toggle("hidden", !isCurrentlyHidden);
+    mobileMenu.classList.toggle("flex", isCurrentlyHidden);
 
     menuToggle.setAttribute(
       "aria-expanded",
@@ -304,6 +302,7 @@ function initialiseMobileMenu() {
     .forEach((link) => {
       link.addEventListener("click", function () {
         mobileMenu.classList.add("hidden");
+        mobileMenu.classList.remove("flex");
         menuToggle.setAttribute("aria-expanded", "false");
 
         const icon = menuToggle.querySelector("i");
