@@ -1,4 +1,11 @@
 import { getProductsFromGoogleSheets } from "./src/services/googleSheets.js";
+import {
+  addQuoteItem,
+  getQuoteBasket,
+  quoteItemCount,
+  removeQuoteItem,
+  saveQuoteBasket
+} from "./src/services/quoteBasket.js";
 
 import {
   updateProductCounts
@@ -96,7 +103,7 @@ let products = [];
 // ============================
 // STATE
 // ============================
-let basket = JSON.parse(localStorage.getItem('educore_basket')) || [];
+let basket = getQuoteBasket();
 let currentModalProductId = null;
 let modalQty = 1;
 
@@ -105,7 +112,7 @@ let modalQty = 1;
 // ============================
 function productCardHTML(product, showAddButton = true) {
   return `
-    <div class="product-card bg-gradient-to-b from-white to-gray-50/80 rounded-xl shadow-md overflow-hidden w-[82vw] max-w-xs flex-shrink-0 snap-center sm:w-64 border border-gray-200/60 hover:border-[#F05A28]/40 transition-all duration-300 cursor-pointer" data-id="${product.id}">
+    <article class="product-card bg-gradient-to-b from-white to-gray-50/80 rounded-xl shadow-md overflow-hidden w-[82vw] max-w-xs flex-shrink-0 snap-center sm:w-64 border border-gray-200/60 hover:border-[#F05A28]/40 transition-all duration-300 cursor-pointer" data-id="${product.id}" tabindex="0" role="button" aria-label="View details for ${product.name}">
       <div class="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200/50">
         <img src="${product.image}" alt="${product.name}" class="w-full h-full object-contain p-4" onerror="this.onerror=null; this.src='/images/placeholders/educore-placeholder.webp';" />
         <span class="absolute top-2 right-2 bg-[#F05A28] text-white text-[0.6rem] font-semibold px-3 py-1 rounded-full shadow-md tracking-wide uppercase">Bulk Pricing</span>
@@ -116,14 +123,14 @@ function productCardHTML(product, showAddButton = true) {
         <p class="text-sm text-gray-600 mt-1 line-clamp-2">${product.description}</p>
         <div class="mt-3 flex items-center justify-between">
           <span class="font-bold text-[#1A2B4C] text-lg">${product.price}</span>
-          ${showAddButton ? `<button class="add-to-quote bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-sm hover:shadow-md active:scale-95" data-id="${product.id}">Add to Quote</button>` : ''}
+          ${showAddButton ? `<button type="button" class="add-to-quote bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-sm hover:shadow-md active:scale-95" data-id="${product.id}"><i class="fas fa-plus mr-1"></i>Add to Quote</button>` : ''}
         </div>
         <div class="mt-1.5 flex items-center justify-between text-xs">
           <span class="text-gray-400">SKU: ${product.sku}</span>
           <span class="text-[#1A2B4C]/40"><i class="fas fa-box"></i> ${product.unit}</span>
         </div>
       </div>
-    </div>
+    </article>
   `;
 }
 
@@ -139,7 +146,8 @@ function renderSliders() {
     { key: 'stationery', label: 'Stationery', icon: 'fa-pen' },
     { key: 'furniture', label: 'Office Furniture', icon: 'fa-chair' },
     { key: 'ppe', label: 'PPE & Safety', icon: 'fa-helmet-safety' },
-    { key: 'cleaning', label: 'Cleaning & Hygiene', icon: 'fa-broom' }
+    { key: 'cleaning', label: 'Cleaning & Hygiene', icon: 'fa-broom' },
+    { key: 'hospital', label: 'Hospital Equipment', icon: 'fa-hospital' }
   ];
   let html = '';
   categories.forEach((cat, index) => {
@@ -153,7 +161,7 @@ function renderSliders() {
           <h3 class="flex items-center justify-center gap-2 text-xl font-bold text-[#1A2B4C] sm:justify-start">
             <i class="fas ${cat.icon}"></i> ${cat.label}
           </h3>
-          <a href="#" class="text-[#F05A28] hover:underline text-sm font-medium section-link" data-category="${cat.key}">View All →</a>
+          <a href="/catalogue.html?category=${cat.key}" class="text-[#F05A28] hover:underline text-sm font-medium">View All →</a>
         </div>
         <div class="relative">
           <div id="${sliderId}" class="slider-container flex w-full snap-x snap-mandatory gap-4 overflow-x-auto pb-4 scroll-smooth" data-category="${cat.key}">
@@ -325,7 +333,8 @@ function renderCatalogue(productsToRender) {
 
 // --- Basket ---
 function renderBasket() {
-  const count = basket.reduce((s, i) => s + i.quantity, 0);
+  basket = getQuoteBasket();
+  const count = quoteItemCount(basket);
   document.getElementById('basket-count').textContent = count;
   const itemsContainer = document.getElementById('basket-items');
   const empty = document.getElementById('basket-empty');
@@ -344,26 +353,26 @@ function renderBasket() {
       <button class="remove-from-basket text-red-500 hover:text-red-700 text-sm" data-id="${item.id}"><i class="fas fa-times"></i></button>
     </div>
   `).join('');
-  localStorage.setItem('educore_basket', JSON.stringify(basket));
+  saveQuoteBasket(basket);
 }
 
-function addToBasket(productId) {
+function addToBasket(productId, quantity = 1) {
   const product = products.find(p => p.id === productId);
   if (!product) return;
-  const existing = basket.find(i => i.id === productId);
-  if (existing) existing.quantity += 1;
-  else basket.push({ id: product.id, name: product.name, sku: product.sku, quantity: 1 });
+  addQuoteItem(product, quantity);
+  basket = getQuoteBasket();
   renderBasket();
   document.getElementById('basket-drawer').classList.add('open');
-  document.getElementById('drawer-overlay').classList.remove('hidden');
+  document.getElementById('drawer-overlay').classList.add('show');
 }
 
 function removeFromBasket(productId) {
-  basket = basket.filter(i => i.id !== productId);
+  removeQuoteItem(productId);
+  basket = getQuoteBasket();
   renderBasket();
   if (!basket.length) {
     document.getElementById('basket-drawer').classList.remove('open');
-    document.getElementById('drawer-overlay').classList.add('hidden');
+    document.getElementById('drawer-overlay').classList.remove('show');
   }
 }
 
@@ -441,12 +450,12 @@ function renderQuoteBasket() {
     // Event listeners for controls
     container.querySelectorAll('.qty-decrease').forEach(btn => {
       btn.addEventListener('click', function() {
-        const id = parseInt(this.dataset.id);
-        const item = basket.find(i => i.id === id);
+        const id = this.dataset.id;
+        const item = basket.find(i => String(i.id) === id);
         if (item) {
           if (item.quantity > 1) item.quantity -= 1;
           else basket = basket.filter(i => i.id !== id);
-          localStorage.setItem('educore_basket', JSON.stringify(basket));
+          saveQuoteBasket(basket);
           renderQuoteBasket();
           renderBasket();
         }
@@ -454,11 +463,11 @@ function renderQuoteBasket() {
     });
     container.querySelectorAll('.qty-increase').forEach(btn => {
       btn.addEventListener('click', function() {
-        const id = parseInt(this.dataset.id);
-        const item = basket.find(i => i.id === id);
+        const id = this.dataset.id;
+        const item = basket.find(i => String(i.id) === id);
         if (item) {
           item.quantity += 1;
-          localStorage.setItem('educore_basket', JSON.stringify(basket));
+          saveQuoteBasket(basket);
           renderQuoteBasket();
           renderBasket();
         }
@@ -466,9 +475,9 @@ function renderQuoteBasket() {
     });
     container.querySelectorAll('.remove-item').forEach(btn => {
       btn.addEventListener('click', function() {
-        const id = parseInt(this.dataset.id);
-        basket = basket.filter(i => i.id !== id);
-        localStorage.setItem('educore_basket', JSON.stringify(basket));
+        const id = this.dataset.id;
+        basket = basket.filter(i => String(i.id) !== id);
+        saveQuoteBasket(basket);
         renderQuoteBasket();
         renderBasket();
       });
@@ -1259,41 +1268,37 @@ function filterProducts() {
     const btn = e.target.closest('.add-to-quote');
     if (btn) {
       e.stopPropagation();
-      addToBasket(parseInt(btn.dataset.id));
+      addToBasket(Number(btn.dataset.id));
     }
     const removeBtn = e.target.closest('.remove-from-basket');
     if (removeBtn) {
-      removeFromBasket(parseInt(removeBtn.dataset.id));
+      removeFromBasket(removeBtn.dataset.id);
     }
     // Card click to open modal
     const card = e.target.closest('.product-card');
     if (card && card.dataset.id && !e.target.closest('.add-to-quote')) {
-      openProductModal(parseInt(card.dataset.id));
+      openProductModal(Number(card.dataset.id));
     }
   });
 
   // Basket drawer
   document.getElementById('basket-btn').addEventListener('click', () => {
     document.getElementById('basket-drawer').classList.toggle('open');
-    document.getElementById('drawer-overlay').classList.toggle('hidden');
+    document.getElementById('drawer-overlay').classList.toggle('show');
   });
   document.getElementById('close-drawer').addEventListener('click', () => {
     document.getElementById('basket-drawer').classList.remove('open');
-    document.getElementById('drawer-overlay').classList.add('hidden');
+    document.getElementById('drawer-overlay').classList.remove('show');
   });
   document.getElementById('drawer-overlay').addEventListener('click', () => {
     document.getElementById('basket-drawer').classList.remove('open');
-    document.getElementById('drawer-overlay').classList.add('hidden');
+    document.getElementById('drawer-overlay').classList.remove('show');
   });
 
   // Request Quote from drawer
   document.getElementById('request-quote-btn').addEventListener('click', function() {
     if (!basket.length) { alert('Your basket is empty.'); return; }
-    showSection('quote');
-    const textarea = document.querySelector('#quote-form textarea[name="notes"]');
-    if (textarea) textarea.value = basket.map(i => `${i.name} (${i.sku}) x ${i.quantity}`).join('\n');
-    document.getElementById('basket-drawer').classList.remove('open');
-    document.getElementById('drawer-overlay').classList.add('hidden');
+    window.location.href = '/quote.html';
   });
 
   // Clear quote
@@ -1301,7 +1306,7 @@ function filterProducts() {
     if (!basket.length) return;
     if (confirm('Clear your quote basket?')) {
       basket = [];
-      localStorage.setItem('educore_basket', JSON.stringify(basket));
+      saveQuoteBasket(basket);
       renderQuoteBasket();
       renderBasket();
     }
@@ -1326,7 +1331,7 @@ function filterProducts() {
     setTimeout(() => {
       alert('Quote request sent! We\'ll get back to you shortly.');
       basket = [];
-      localStorage.setItem('educore_basket', JSON.stringify(basket));
+      saveQuoteBasket(basket);
       renderQuoteBasket();
       renderBasket();
       this.reset();
@@ -1344,41 +1349,6 @@ console.table({
 });
 
 
-const modalCloseBtn = document.getElementById("modalCloseBtn");
-const modalOverlay = document.getElementById("modalOverlay");
-const modalBackLink = document.getElementById("modalBackLink");
-const modalContactSales = document.getElementById("modalContactSales");
-const modalAddToQuote = document.getElementById("modalAddToQuote");
-
-modalCloseBtn?.addEventListener("click", function (event) {
-  event.preventDefault();
-  closeProductModal();
-});
-
-modalOverlay?.addEventListener("click", function () {
-  closeProductModal();
-});
-
-modalBackLink?.addEventListener("click", function (event) {
-  event.preventDefault();
-  closeProductModal();
-  showSection("catalogue");
-});
-
-modalContactSales?.addEventListener("click", function () {
-  closeProductModal();
-  showSection("contact");
-});
-
-modalAddToQuote?.addEventListener("click", function () {
-  if (!currentProduct) return;
-
-  const quantity = Number(
-    document.getElementById("modalQtyValue")?.textContent || 1
-  );
-
-  addToBasket(currentProduct.id, quantity);
-});
   // Modal events
   document.getElementById('modalOverlay').addEventListener('click', closeProductModal);
   document.getElementById('modalCloseBtn').addEventListener('click', closeProductModal);
@@ -1396,13 +1366,8 @@ modalAddToQuote?.addEventListener("click", function () {
   });
   document.getElementById('modalAddToQuote').addEventListener('click', function() {
     if (currentModalProductId === null) return;
-    const product = products.find(p => p.id === currentModalProductId);
-    if (!product) return;
-    const existing = basket.find(i => i.id === product.id);
-    if (existing) existing.quantity += modalQty;
-    else basket.push({ id: product.id, name: product.name, sku: product.sku, quantity: modalQty });
-    localStorage.setItem('educore_basket', JSON.stringify(basket));
-    renderBasket();
+    addToBasket(currentModalProductId, modalQty);
+    closeProductModal();
     renderQuoteBasket();
     const btn = this;
     btn.innerHTML = '<i class="fas fa-check"></i> Added!';
@@ -1413,20 +1378,6 @@ modalAddToQuote?.addEventListener("click", function () {
     document.querySelector('[data-section="contact"]')?.click();
   });
 
-  // View All links in sliders
-  document.querySelectorAll('.section-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const cat = this.dataset.category;
-      showSection('catalogue');
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.filter === cat);
-      });
-      filterProducts();
-      document.getElementById('search-input').value = '';
-      document.getElementById('mobile-search').value = '';
-    });
-  });
 
   // Logo
   document.getElementById('logo-link')?.addEventListener('click', function(e) {
