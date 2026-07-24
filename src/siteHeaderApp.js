@@ -9,6 +9,15 @@ const links = [
   ["/download.html", "Download"]
 ];
 
+const cataloguePages = new Set([
+  "catalogue.html",
+  "stationery.html",
+  "cleaning.html",
+  "ppe.html",
+  "furniture.html",
+  "hospital.html"
+]);
+
 function navigationLinks(mobile = false) {
   const current = window.location.pathname.split("/").pop() || "index.html";
   return links.map(([href, label]) => {
@@ -38,6 +47,161 @@ function updateBasketCount() {
   document.querySelectorAll("#basket-count").forEach(badge => badge.textContent = count);
 }
 
+function initialiseBackToTop() {
+  const currentPage =
+    window.location.pathname
+      .split("/")
+      .pop() || "index.html";
+
+  /*
+   * Only display the button on the main catalogue
+   * and its category pages.
+   */
+  if (!cataloguePages.has(currentPage)) {
+    return;
+  }
+
+  /*
+   * Prevent duplicate buttons.
+   */
+  if (document.getElementById("back-to-top")) {
+    return;
+  }
+
+  const button = document.createElement("button");
+
+  button.id = "back-to-top";
+  button.type = "button";
+  button.title = "Back to top";
+  button.setAttribute(
+    "aria-label",
+    "Scroll back to the top of the page"
+  );
+
+  button.innerHTML = `
+    <span
+      aria-hidden="true"
+      style="
+        display:block;
+        font-size:24px;
+        line-height:1;
+        transform:translateY(-1px);
+      "
+    >
+      ↑
+    </span>
+  `;
+
+  Object.assign(button.style, {
+    position: "fixed",
+    right: "22px",
+    bottom: "22px",
+    width: "48px",
+    height: "48px",
+    border: "2px solid rgba(255,255,255,0.35)",
+    borderRadius: "50%",
+    background: "#F05A28",
+    color: "#FFFFFF",
+    boxShadow: "0 10px 25px rgba(26,43,76,0.28)",
+    cursor: "pointer",
+    zIndex: "9999",
+
+    /*
+     * Hidden until the user scrolls down.
+     */
+    opacity: "0",
+    visibility: "hidden",
+    pointerEvents: "none",
+    transform: "translateY(12px)",
+
+    transition:
+      "opacity 180ms ease, transform 180ms ease, visibility 180ms ease, background-color 180ms ease"
+  });
+
+  document.body.appendChild(button);
+
+  function updateButtonVisibility() {
+    const visible = window.scrollY > 400;
+
+    button.style.opacity =
+      visible ? "1" : "0";
+
+    button.style.visibility =
+      visible ? "visible" : "hidden";
+
+    button.style.pointerEvents =
+      visible ? "auto" : "none";
+
+    button.style.transform =
+      visible
+        ? "translateY(0)"
+        : "translateY(12px)";
+  }
+
+  button.addEventListener(
+    "mouseenter",
+    () => {
+      button.style.backgroundColor =
+        "#D94A1E";
+    }
+  );
+
+  button.addEventListener(
+    "mouseleave",
+    () => {
+      button.style.backgroundColor =
+        "#F05A28";
+    }
+  );
+
+  button.addEventListener(
+    "focus",
+    () => {
+      button.style.outline =
+        "3px solid rgba(240,90,40,0.35)";
+
+      button.style.outlineOffset =
+        "3px";
+    }
+  );
+
+  button.addEventListener(
+    "blur",
+    () => {
+      button.style.outline = "none";
+    }
+  );
+
+  button.addEventListener(
+    "click",
+    () => {
+      const reducedMotion =
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior:
+          reducedMotion
+            ? "auto"
+            : "smooth"
+      });
+    }
+  );
+
+  window.addEventListener(
+    "scroll",
+    updateButtonVisibility,
+    {
+      passive: true
+    }
+  );
+
+  updateButtonVisibility();
+}
+
 function initialiseHeader() {
   const existing = document.querySelector("body > header");
   if (existing) existing.outerHTML = headerMarkup();
@@ -64,3 +228,4 @@ function initialiseHeader() {
 
 document.addEventListener("DOMContentLoaded", initialiseHeader);
 window.addEventListener("educore:basket-change", updateBasketCount);
+initialiseBackToTop();
