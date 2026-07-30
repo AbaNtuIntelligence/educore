@@ -3,12 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EDUCORE – Stationery, PPE & Office Furniture</title>
+  <title>EDUCORE | Stationery, PPE, Hygiene & Furniture Suppliers Johannesburg</title>
+  <meta name="description" content="EDUCORE supplies stationery, PPE, hygiene products, office furniture and hospital equipment from Turffontein, Johannesburg. Request a bulk or tender quotation." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://educorestationery-hygiene-ppe.co.za/" />
+  <meta property="og:title" content="EDUCORE | Johannesburg Institutional Supply Solutions" />
+  <meta property="og:description" content="Stationery, PPE, hygiene, office furniture and hospital equipment supply from Turffontein, Johannesburg." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://educorestationery-hygiene-ppe.co.za/" />
+  <meta property="og:image" content="https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg" />
+  <link rel="stylesheet" href="/assets/supplier-pages.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://educorestationery-hygiene-ppe.co.za/#business",
+    "name": "EDUCORE Stationery and Hygiene Supplies (Pty) Ltd",
+    "url": "https://educorestationery-hygiene-ppe.co.za/",
+    "logo": "https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg",
+    "image": "https://educorestationery-hygiene-ppe.co.za/images/hero/educore.webp",
+    "telephone": "+27 71 945 0220",
+    "email": "info@educorestationery-hygiene-ppe.co.za",
+    "description": "Johannesburg supplier of stationery, PPE, hygiene products, office furniture, hospital equipment and quotation-based institutional supply solutions.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "104 Donnelly Street",
+      "addressLocality": "Turffontein",
+      "addressRegion": "Gauteng",
+      "postalCode": "2190",
+      "addressCountry": "ZA"
+    },
+    "areaServed": [
+      {"@type": "City", "name": "Johannesburg"},
+      {"@type": "AdministrativeArea", "name": "Gauteng"},
+      {"@type": "Country", "name": "South Africa"}
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "EDUCORE Product Categories",
+      "itemListElement": [
+        {"@type": "OfferCatalog", "name": "Stationery"},
+        {"@type": "OfferCatalog", "name": "Personal Protective Equipment"},
+        {"@type": "OfferCatalog", "name": "Cleaning and Hygiene Supplies"},
+        {"@type": "OfferCatalog", "name": "Office Furniture"},
+        {"@type": "OfferCatalog", "name": "Hospital Equipment"}
+      ]
+    }
+  }
+  </script>
   <!-- Tailwind CSS (CDN) – fine for static sites -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
   <!-- PDF Generator -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js"></script>
@@ -230,148 +276,284 @@
     .filter-btn.active { background: #1A2B4C; color: white; }
     .filter-btn:hover:not(.active) { background: #e2e8f0; }
   </style>
+  <script type="module" crossorigin src="/assets/googleSheets-CkKW2Qub.js"></script>
+  <script type="module" crossorigin src="/assets/main-BwAbOl3g.js"></script>
 </head>
 <body>
 
 <!-- ========== HEADER ========== -->
-<header class="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
+<header class="sticky top-0 z-[100] border-b border-gray-200 bg-white shadow-sm">
 
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+  <!-- Desktop top bar -->
+  <div class="hidden bg-[#1A2B4C] text-white xl:block">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 text-sm sm:px-6 lg:px-8">
+      <span class="opacity-80">
+        Your trusted partner for stationery, PPE &amp; hygiene solutions.
+      </span>
 
-    <!-- Logo -->
-    <a href="index.html" class="flex items-center gap-3">
+      <div class="flex items-center gap-4">
+        <a href="#" aria-label="Facebook" class="transition hover:text-[#F05A28]">
+          <i class="fab fa-facebook-f"></i>
+        </a>
 
-      <img 
-        src="images/hero/logo.jpeg"
-        alt="EDUCORE Logo"
-        class="h-14 w-14 rounded-lg object-contain"
-      >
+        <a href="#" aria-label="LinkedIn" class="transition hover:text-[#F05A28]">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
 
-      <div>
-        <h1 class="text-2xl font-bold text-[#1A2B4C]">
-          EDUCORE
-        </h1>
+        <a href="#" aria-label="Instagram" class="transition hover:text-[#F05A28]">
+          <i class="fab fa-instagram"></i>
+        </a>
 
-        <p class="text-xs font-semibold text-[#F05A28]">
-          Stationery, PPE & Hygiene Solutions
-        </p>
+        <a href="#" aria-label="YouTube" class="transition hover:text-[#F05A28]">
+          <i class="fab fa-youtube"></i>
+        </a>
+
+        <span class="text-gray-400">|</span>
+
+        <a
+          href="/download.html"
+          class="inline-flex items-center gap-2 font-medium transition hover:text-[#F05A28]"
+        >
+          <i class="fas fa-download"></i>
+          Download Catalogue
+        </a>
       </div>
-
-    </a>
-
-
-    <!-- Desktop Navigation -->
-    <nav id="desktop-nav" class="items-center gap-8 font-medium">
-
-      <a 
-        href="index.html"
-        class="text-[#1A2B4C] hover:text-[#F05A28]"
-      >
-        Home
-      </a>
-
-
-      <a 
-        href="catalogue.html"
-        class="text-gray-600 hover:text-[#F05A28]"
-      >
-        Catalogue
-      </a>
-
-
-      <a 
-        href="about.html"
-        class="text-gray-600 hover:text-[#F05A28]"
-      >
-        About
-      </a>
-
-
-      <a 
-        href="contact.html"
-        class="text-gray-600 hover:text-[#F05A28]"
-      >
-        Contact
-      </a>
-
-
-      <a 
-        href="quote.html"
-        class="text-gray-600 hover:text-[#F05A28]"
-      >
-        Request Quote
-      </a>
-
-
-      <a 
-        href="download.html"
-        class="text-gray-600 hover:text-[#F05A28]"
-      >
-        Download
-      </a>
-
-    </nav>
-
-
-    <div class="flex items-center gap-2">
-      <button
-        id="basket-btn"
-        type="button"
-        class="relative rounded-full p-2 text-[#1A2B4C] transition hover:bg-gray-100"
-        aria-label="Open quote basket"
-      >
-        <i class="fas fa-shopping-basket text-xl"></i>
-        <span id="basket-count" class="basket-badge">0</span>
-      </button>
-
-      <button
-        id="menu-toggle"
-        type="button"
-        class="text-2xl text-[#1A2B4C] lg:hidden"
-        aria-label="Open navigation menu"
-      >
-        ☰
-      </button>
     </div>
-
   </div>
 
+  <!-- Main navigation -->
+  <div class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+    <div class="flex min-h-16 items-center justify-between gap-3 py-2 sm:min-h-20">
 
+      <!-- Logo and brand -->
+      <a
+        href="/index.html"
+        id="logo-link"
+        class="flex min-w-0 items-center gap-2 transition hover:opacity-90 sm:gap-3"
+        aria-label="EDUCORE home"
+      >
+        <div class="flex h-11 w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-slate-50 sm:h-14 sm:w-14 lg:h-16 lg:w-16">
+          <img
+            src="/images/hero/logo.jpeg"
+            alt="EDUCORE logo"
+            class="h-full w-full object-contain"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
 
-  <!-- Mobile Menu -->
+          <div class="hidden h-full w-full items-center justify-center bg-[#1A2B4C] text-lg font-bold text-white sm:text-xl">
+            E
+          </div>
+        </div>
 
-  <nav 
+        <div class="min-w-0 leading-tight">
+          <span class="block truncate text-lg font-extrabold tracking-tight text-[#1A2B4C] sm:text-xl lg:text-2xl">
+            EDUCORE
+          </span>
+
+          <span class="hidden max-w-48 text-[0.6rem] font-semibold uppercase leading-snug tracking-[0.14em] text-[#F05A28] sm:block lg:max-w-56 lg:text-[0.65rem]">
+            Stationery, PPE &amp; Hygiene Solutions
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="hidden items-center gap-4 text-sm font-medium lg:flex xl:gap-6">
+        <a
+          href="/index.html"
+          class="whitespace-nowrap text-[#1A2B4C] transition hover:text-[#F05A28]"
+        >
+          Home
+        </a>
+
+        <a
+          href="/catalogue.html"
+          class="whitespace-nowrap text-gray-600 transition hover:text-[#F05A28]"
+        >
+          Catalogue
+        </a>
+
+        <a
+          href="/about.html"
+          class="whitespace-nowrap text-gray-600 transition hover:text-[#F05A28]"
+        >
+          About
+        </a>
+
+        <a
+          href="/contact.html"
+          class="whitespace-nowrap text-gray-600 transition hover:text-[#F05A28]"
+        >
+          Contact
+        </a>
+
+        <a
+          href="/quote.html"
+          class="whitespace-nowrap text-gray-600 transition hover:text-[#F05A28]"
+        >
+          Request Quote
+        </a>
+
+        <a
+          href="/download.html"
+          class="hidden whitespace-nowrap text-gray-600 transition hover:text-[#F05A28] xl:block"
+        >
+          Catalogue PDF
+        </a>
+      </nav>
+
+      <!-- Header actions -->
+      <div class="flex flex-shrink-0 items-center gap-1 sm:gap-2">
+
+        <!-- Large desktop search -->
+        <div class="relative hidden 2xl:block">
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Search products..."
+            autocomplete="off"
+            class="w-52 rounded-full border border-gray-300 bg-gray-50 py-2 pl-4 pr-10 text-sm text-gray-700 outline-none transition focus:border-[#F05A28] focus:bg-white focus:ring-2 focus:ring-[#F05A28]/20"
+          />
+
+          <button
+            type="button"
+            id="clear-search-desktop"
+            class="absolute right-3 top-1/2 hidden -translate-y-1/2 text-lg text-gray-400 transition hover:text-[#F05A28]"
+            aria-label="Clear search"
+          >
+            &times;
+          </button>
+        </div>
+
+        <!-- Mobile search button -->
+        <button
+          type="button"
+          id="mobile-search-toggle"
+          class="flex h-11 w-11 items-center justify-center rounded-full text-[#1A2B4C] transition hover:bg-gray-100 2xl:hidden"
+          aria-label="Open product search"
+          aria-controls="mobile-search-panel"
+          aria-expanded="false"
+        >
+          <i class="fas fa-search pointer-events-none text-lg"></i>
+        </button>
+
+        <!-- Basket button -->
+        <button
+          type="button"
+          id="basket-btn"
+          class="relative flex h-11 w-11 items-center justify-center rounded-full text-[#1A2B4C] transition hover:bg-gray-100"
+          aria-label="Open quote basket"
+        >
+          <i class="fas fa-shopping-basket pointer-events-none text-lg sm:text-xl"></i>
+
+          <span id="basket-count" class="basket-badge">
+            0
+          </span>
+        </button>
+
+        <!-- Mobile menu button -->
+        <button
+          type="button"
+          id="menu-toggle"
+          class="relative z-[70] flex h-11 w-11 items-center justify-center rounded-full text-[#1A2B4C] transition hover:bg-gray-100 lg:hidden"
+          aria-label="Open navigation menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bars pointer-events-none text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile search panel -->
+    <div
+      id="mobile-search-panel"
+      class="hidden border-t border-gray-100 py-3 2xl:hidden"
+    >
+      <div class="relative">
+        <input
+          type="search"
+          id="mobile-search"
+          placeholder="Search products..."
+          autocomplete="off"
+          class="w-full rounded-xl border border-gray-300 bg-gray-50 py-3 pl-4 pr-12 text-sm text-gray-700 outline-none transition focus:border-[#F05A28] focus:bg-white focus:ring-2 focus:ring-[#F05A28]/20"
+        />
+
+        <button
+          type="button"
+          id="clear-search-mobile"
+          class="absolute right-4 top-1/2 hidden -translate-y-1/2 text-xl text-gray-400 transition hover:text-[#F05A28]"
+          aria-label="Clear search"
+        >
+          &times;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile and tablet navigation -->
+  <div
     id="mobile-menu"
-    class="hidden flex-col gap-4 border-t px-6 py-5 lg:hidden"
+    class="hidden border-t border-gray-200 bg-white shadow-lg lg:hidden"
   >
+    <nav class="mx-auto flex max-w-7xl flex-col px-4 py-4 text-sm font-medium sm:px-6">
+<a href="/index.html">
+Home
+</a>
 
-    <a href="index.html">
-      Home
-    </a>
+<a href="/catalogue.html">
+Catalogue
+</a>
 
-    <a href="catalogue.html">
-      Catalogue
-    </a>
+<a href="/about.html">
+About
+</a>
 
-    <a href="about.html">
-      About
-    </a>
+<a href="/contact.html">
+Contact
+</a>
 
-    <a href="contact.html">
-      Contact
-    </a>
+<a href="/quote.html">
+Request Quote
+</a>
 
-    <a href="quote.html">
-      Request Quote
-    </a>
+<a href="/download.html">
+Download Catalogue
+</a>
 
-    <a href="download.html">
-      Download
-    </a>
+      <!-- Social links -->
+      <div class="mt-3 border-t border-gray-100 pt-4">
+        <p class="px-3 text-xs uppercase tracking-wider text-gray-400">
+          Connect with us
+        </p>
 
-  </nav>
+        <div class="mt-3 flex items-center gap-2 px-3">
+          <a
+            href="#"
+            aria-label="Facebook"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1A2B4C] transition hover:bg-[#F05A28] hover:text-white"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
 
+          <a
+            href="#"
+            aria-label="LinkedIn"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1A2B4C] transition hover:bg-[#F05A28] hover:text-white"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
 
+          <a
+            href="#"
+            aria-label="Instagram"
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-[#1A2B4C] transition hover:bg-[#F05A28] hover:text-white"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
 <!-- ========== MAIN ========== -->
 <main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -402,8 +584,8 @@
 
   <div class="hero-content">
     <h1>
-      Your Single Source for<br />
-      <span>Quality Stationery, PPE &amp; Hygiene</span>
+      Stationery, PPE, Hygiene and Office Furniture<br />
+      <span>Suppliers in Johannesburg</span>
     </h1>
 
     <p>
@@ -412,8 +594,9 @@
 
     <div class="hero-buttons">
       <a
-        href="/catalogue.html"
+        href="#"
         class="btn-primary"
+        onclick="document.querySelector('[data-section=catalogue]').click(); return false;"
       >
         View Full Catalogue
         <i class="fas fa-arrow-right text-sm"></i>
@@ -441,6 +624,22 @@
 
   <!-- Category Sliders -->
   <div id="category-sliders" class="space-y-12 mt-10"></div>
+
+  <section class="supplier-hub" aria-labelledby="supplier-hub-title">
+    <div class="supplier-hub__intro">
+      <p class="supplier-eyebrow">Johannesburg institutional supply</p>
+      <h2 id="supplier-hub-title">Local supply support from Turffontein, with nationwide enquiries welcome</h2>
+      <p>EDUCORE supports schools, offices, businesses, contractors, healthcare facilities and public-sector buyers with quotation-based supply solutions. Product brand, specification, availability and lead time are confirmed before an order is approved.</p>
+    </div>
+    <div class="supplier-link-grid">
+      <a href="/stationery-suppliers-johannesburg.html"><strong>Stationery suppliers</strong><span>Johannesburg &amp; Turffontein</span></a>
+      <a href="/ppe-suppliers-johannesburg.html"><strong>PPE suppliers</strong><span>Workplace safety products</span></a>
+      <a href="/office-furniture-suppliers-johannesburg.html"><strong>Office furniture suppliers</strong><span>Workplace &amp; institutional furniture</span></a>
+      <a href="/hygiene-suppliers-johannesburg.html"><strong>Hygiene suppliers</strong><span>Cleaning consumables &amp; equipment</span></a>
+      <a href="/hospital-equipment-suppliers-johannesburg.html"><strong>Hospital equipment suppliers</strong><span>Clinical &amp; patient-care equipment</span></a>
+      <a href="/tender-stationery-supplier-south-africa.html"><strong>Tender supply support</strong><span>Bulk stationery across South Africa</span></a>
+    </div>
+  </section>
 </section>
   <!-- ===== CATALOGUE ===== -->
   <section id="section-catalogue" class="page-section">
@@ -626,7 +825,7 @@
         </div>
         <div>
           <h4 class="font-semibold text-[#1A2B4C]">Email Us</h4>
-          <p class="text-sm text-gray-500">info@educore.co.za</p>
+          <p class="text-sm text-gray-500">info@educorestationery-hygiene-ppe.co.za</p>
           <p class="text-xs text-gray-400">We respond within 24 hours</p>
         </div>
       </div>
@@ -1007,7 +1206,111 @@
     </div>
   </div>
 </div>
+<!-- WhatsApp Floating Bubble -->
+<style>
+  /* ---- Floating button container ---- */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #25d366;  /* WhatsApp green */
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
+  /* ---- Bounce animation ---- */
+  .whatsapp-float {
+    animation: bounce-whatsapp 2s infinite ease-in-out;
+  }
+
+  @keyframes bounce-whatsapp {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  /* ---- Hover effect (stops bouncing on hover) ---- */
+  .whatsapp-float:hover {
+    animation: none;
+    transform: scale(1.08);
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.6);
+  }
+
+  /* ---- Icon ---- */
+  .whatsapp-float svg {
+    width: 34px;
+    height: 34px;
+    fill: white;
+  }
+
+  /* ---- Optional label (appears on hover) ---- */
+  .whatsapp-float .label {
+    position: absolute;
+    right: 72px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-family: system-ui, -apple-system, sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .whatsapp-float:hover .label {
+    opacity: 1;
+  }
+
+  /* ---- Responsive tweaks ---- */
+  @media (max-width: 480px) {
+    .whatsapp-float {
+      width: 52px;
+      height: 52px;
+      bottom: 16px;
+      right: 16px;
+    }
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+    }
+    .whatsapp-float .label {
+      font-size: 12px;
+      right: 64px;
+      padding: 4px 12px;
+    }
+  }
+</style>
+
+<!-- The floating bubble -->
+<a
+  href="https://wa.me/0719450220?text=Hello%2C%20I%20have%20a%20question%20about%20your%20products."
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-float"
+  aria-label="Chat with us on WhatsApp"
+>
+  <!-- WhatsApp icon (SVG) -->
+  <svg viewBox="0 0 24 24">
+    <path d="M12.032 21.965c-1.836 0-3.636-.484-5.212-1.395l-5.72 1.873 1.958-5.57A9.93 9.93 0 0 1 2.032 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm0-18.957c-4.951 0-8.977 4.026-8.977 8.977 0 1.582.412 3.136 1.196 4.479l.45.73-1.293 3.677 3.797-1.244.718.43A8.93 8.93 0 0 0 12.032 20.99c4.951 0 8.977-4.026 8.977-8.977s-4.026-8.977-8.977-8.977zm5.074 11.21c-.278.392-.81.784-1.328.886-.468.09-.975.138-1.566-.156-.535-.266-1.058-.63-1.706-1.02-.84-.505-1.437-1.11-1.865-1.572-.269-.292-.52-.594-.756-.908-.227-.3-.406-.585-.563-.862-.122-.216-.181-.416-.212-.598-.031-.182-.01-.355.033-.526.058-.23.216-.42.37-.57.16-.156.344-.27.518-.398.168-.124.266-.248.352-.468.087-.218.098-.482.062-.74-.053-.392-.266-.938-.61-1.439-.34-.496-.755-.923-1.176-1.145-.245-.129-.446-.172-.628-.175-.17-.003-.34.017-.504.083-.372.15-.878.63-1.137 1.19-.298.647-.316 1.408.028 2.218.316.743.864 1.48 1.55 2.211.128.135.26.27.397.402.602.583 1.281 1.113 2.043 1.553.55.318 1.132.566 1.737.714.253.061.513.09.77.085.236-.004.478-.034.712-.119.276-.1.52-.267.697-.488.232-.29.38-.672.415-1.035.035-.363-.028-.734-.183-.99-.17-.282-.44-.513-.72-.66-.24-.125-.52-.174-.787-.164-.48.016-.877.26-1.084.58-.087.133-.14.294-.167.46-.027.165-.016.336.024.503.046.192.132.379.22.535.12.214.249.38.366.556.184.276.44.522.69.74.233.203.496.383.769.533.238.13.492.238.749.314.214.064.438.096.663.092.235-.004.47-.044.698-.14.397-.168.756-.448 1.024-.83.168-.238.28-.508.31-.788.03-.28-.016-.558-.155-.778-.2-.313-.55-.536-.96-.576-.258-.025-.524.03-.757.142-.216.104-.38.28-.48.492-.075.158-.11.336-.106.515.005.178.04.355.127.509.07.124.164.23.24.348.084.13.194.247.29.37z"/>
+  </svg>
+
+  <!-- Optional label -->
+  <span class="label">Chat with us</span>
+</a>
 <!-- ========== FOOTER ========== -->
 <footer class="bg-[#1A2B4C] text-white mt-16 py-10">
   <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -1015,7 +1318,7 @@
       <h4 class="text-xl font-bold mb-4">EDUCORE</h4>
       <p class="text-sm text-gray-300">104 Donnelly Street, Turffontein, Johannesburg, 2190</p>
       <p class="text-sm text-gray-300 mt-2">Cell: 071 945 0220</p>
-      <p class="text-sm text-gray-300">Email: info@educore.co.za</p>
+      <p class="text-sm text-gray-300">Email: info@educorestationery-hygiene-ppe.co.za</p>
     </div>
     <div>
       <h5 class="font-semibold mb-3">Quick Links</h5>
@@ -1024,6 +1327,12 @@
         <li><a href="#" class="hover:text-[#F05A28] transition" data-section="catalogue">Catalogue</a></li>
         <li><a href="#" class="hover:text-[#F05A28] transition" data-section="about">About</a></li>
         <li><a href="#" class="hover:text-[#F05A28] transition" data-section="contact">Contact</a></li>
+        <li><a href="/stationery-suppliers-johannesburg.html" class="hover:text-[#F05A28] transition">Stationery Suppliers Johannesburg</a></li>
+        <li><a href="/ppe-suppliers-johannesburg.html" class="hover:text-[#F05A28] transition">PPE Suppliers Johannesburg</a></li>
+        <li><a href="/office-furniture-suppliers-johannesburg.html" class="hover:text-[#F05A28] transition">Office Furniture Johannesburg</a></li>
+        <li><a href="/hygiene-suppliers-johannesburg.html" class="hover:text-[#F05A28] transition">Hygiene Suppliers Johannesburg</a></li>
+        <li><a href="/hospital-equipment-suppliers-johannesburg.html" class="hover:text-[#F05A28] transition">Hospital Equipment Johannesburg</a></li>
+        <li><a href="/tender-stationery-supplier-south-africa.html" class="hover:text-[#F05A28] transition">Tender Stationery Supply</a></li>
       </ul>
     </div>
     <div>
@@ -1053,7 +1362,8 @@
   </div>
 </footer>
 
-<script type="module" src="/catalogue.js"></script>
-<script type="module" src="/main.js"></script>
+
+
+
 </body>
 </html>

@@ -334,7 +334,7 @@ async function prepareProducts() {
    PRODUCT PDF LAYOUT
 ========================================================= */
 
-function productCell(product) {
+function productCell(product, includePricing = true) {
   const features = (
     product.features || []
   )
@@ -367,13 +367,13 @@ function productCell(product) {
     {
       columns: [
         {
-          text:
-            product.price ||
-            "Request Quote",
+          text: includePricing
+            ? (product.price || "Request a Quote")
+            : "Request a Quote",
 
           bold: true,
           color: "#F05A28",
-          fontSize: 11
+          fontSize: 10
         },
 
         {
@@ -425,7 +425,7 @@ function productCell(product) {
 }
 
 
-function productRows(categoryProducts) {
+function productRows(categoryProducts, includePricing = true) {
   const rows = [];
 
   for (
@@ -440,10 +440,10 @@ function productRows(categoryProducts) {
       categoryProducts[index + 1];
 
     rows.push([
-      productCell(firstProduct),
+      productCell(firstProduct, includePricing),
 
       secondProduct
-        ? productCell(secondProduct)
+        ? productCell(secondProduct, includePricing)
         : {
             text: "",
             fillColor: "#FFFFFF"
@@ -538,7 +538,8 @@ function catalogueContactLine(
 
 function catalogueCover(
   prepared,
-  logoData
+  logoData,
+  includePricing = true
 ) {
   const stack = [];
 
@@ -579,8 +580,24 @@ function catalogueCover(
         `${prepared.length} products • Bulk supply • Nationwide delivery • Tender ready`,
       fontSize: 10,
       color: "#64748B",
-      margin: [0, 8, 0, 15]
+      margin: [0, 8, 0, 8]
     },
+
+    includePricing
+      ? {
+          text: "COMPLETE IMAGE CATALOGUE • CURRENT PRODUCT PRICING",
+          fontSize: 9,
+          bold: true,
+          color: "#1A2B4C",
+          margin: [0, 0, 0, 15]
+        }
+      : {
+          text: "CLIENT PRODUCT LIST • PRICING AVAILABLE ON REQUEST",
+          fontSize: 9,
+          bold: true,
+          color: "#1A2B4C",
+          margin: [0, 0, 0, 15]
+        },
 
     catalogueContactLine(
       PDF_ICONS.address,
@@ -638,7 +655,8 @@ function catalogueCover(
 
 function buildDocument(
   prepared,
-  logoData
+  logoData,
+  includePricing = true
 ) {
   const categories = [
     ...new Set(
@@ -651,7 +669,8 @@ function buildDocument(
   const content = [
     catalogueCover(
       prepared,
-      logoData
+      logoData,
+      includePricing
     )
   ];
 
@@ -680,7 +699,8 @@ function buildDocument(
 
         body:
           productRows(
-            categoryProducts
+            categoryProducts,
+            includePricing
           ),
 
         dontBreakRows: true
@@ -731,7 +751,9 @@ function buildDocument(
 
               {
                 text:
-                  "EDUCORE PRODUCT CATALOGUE",
+                  includePricing
+                    ? "EDUCORE PRODUCT CATALOGUE"
+                    : "EDUCORE CLIENT PRODUCT LIST",
 
                 bold: true,
                 color: "#1A2B4C",
@@ -741,7 +763,9 @@ function buildDocument(
           }
         : {
             text:
-              "EDUCORE PRODUCT CATALOGUE",
+              includePricing
+                ? "EDUCORE PRODUCT CATALOGUE"
+                : "EDUCORE CLIENT PRODUCT LIST",
 
             bold: true,
             color: "#1A2B4C"
@@ -819,13 +843,17 @@ function buildDocument(
 
     info: {
       title:
-        "EDUCORE Product Catalogue 2026",
+        includePricing
+          ? "EDUCORE Product Catalogue 2026"
+          : "EDUCORE Client Product List 2026 - No Pricing",
 
       author:
         "EDUCORE",
 
       subject:
-        "Stationery, Office Furniture, PPE, Cleaning, Hygiene and Hospital Equipment",
+        includePricing
+          ? "Image catalogue with pricing - Stationery, Office Furniture, PPE, Cleaning, Hygiene and Hospital Equipment"
+          : "Client product list without pricing - Stationery, Office Furniture, PPE, Cleaning, Hygiene and Hospital Equipment",
 
       keywords:
         "EDUCORE, stationery, PPE, hygiene, hospital equipment, catalogue"
@@ -849,7 +877,7 @@ function buildDocument(
    PDF GENERATION
 ========================================================= */
 
-async function createPdf(action, button) {
+async function createPdf(action, button, includePricing = true) {
   if (!window.pdfMake) {
     alert("The PDF library could not be loaded.");
     return;
@@ -922,7 +950,7 @@ async function createPdf(action, button) {
   button.disabled = true;
 
   document
-    .querySelectorAll("#generatePdfBtn, #printPdfBtn")
+    .querySelectorAll("#generatePdfBtn, #printPdfBtn, #generateProductListBtn")
     .forEach(item => {
       item.disabled = true;
     });
@@ -940,7 +968,8 @@ async function createPdf(action, button) {
 
     const documentDefinition = buildDocument(
       prepared,
-      logoData
+      logoData,
+      includePricing
     );
 
     const pdf = window.pdfMake.createPdf(
@@ -949,7 +978,9 @@ async function createPdf(action, button) {
 
     if (action === "download") {
       pdf.download(
-        "educore-product-catalogue-2026.pdf"
+        includePricing
+          ? "educore-enhanced-product-catalogue-2026.pdf"
+          : "educore-client-product-list-2026-no-pricing.pdf"
       );
     } else {
       const pdfBlob = await new Promise(
@@ -1000,7 +1031,7 @@ async function createPdf(action, button) {
     button.innerHTML = originalButtonContent;
 
     document
-      .querySelectorAll("#generatePdfBtn, #printPdfBtn")
+      .querySelectorAll("#generatePdfBtn, #printPdfBtn, #generateProductListBtn")
       .forEach(item => {
         item.disabled = false;
       });
@@ -1053,7 +1084,8 @@ document.addEventListener(
         event => {
           createPdf(
             "download",
-            event.currentTarget
+            event.currentTarget,
+            true
           );
         }
       );
@@ -1067,7 +1099,23 @@ document.addEventListener(
         event => {
           createPdf(
             "print",
-            event.currentTarget
+            event.currentTarget,
+            true
+          );
+        }
+      );
+
+    document
+      .getElementById(
+        "generateProductListBtn"
+      )
+      ?.addEventListener(
+        "click",
+        event => {
+          createPdf(
+            "download",
+            event.currentTarget,
+            false
           );
         }
       );
