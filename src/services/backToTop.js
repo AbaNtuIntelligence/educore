@@ -106,3 +106,4 @@ export function initialiseBackToTop() {
 
   updateVisibility();
 }
+// Back-to-top deployment refresh
