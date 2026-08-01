@@ -1,21 +1,75 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EDUCORE – Catalogue</title>
+  <title>EDUCORE â€“ Catalogue</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script type="module" crossorigin src="/assets/catalogue-BHb7yKsq.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/googleSheets-CkKW2Qub.js">
-  <link rel="modulepreload" crossorigin href="/assets/main-BwAbOl3g.js">
-  <link rel="stylesheet" crossorigin href="/assets/catalogue-CTf3fqP9.css">
-</head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script type="module" src="/src/catalogueApp.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/googleSheets-B7lp_FAW.js">
+  </head>
 
 <body>
 
-<!-- ===== HEADER (same as index.html) – include the search inputs with clear buttons ===== -->
+<!-- ===== HEADER (same as index.html) â€“ include the search inputs with clear buttons ===== -->
 <!-- ===== NAVIGATION ===== -->
+ <style>
+  <style>
+  /* Quote basket closed state */
+  #basket-drawer {
+    transform: translateX(105%);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      transform 0.3s ease,
+      visibility 0s linear 0.3s;
+  }
+
+  /* Quote basket open state */
+  #basket-drawer.open {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      transform 0.3s ease,
+      visibility 0s linear 0s;
+  }
+
+  #drawer-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(15, 23, 42, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      visibility 0s linear 0.3s;
+  }
+
+  #drawer-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      opacity 0.3s ease,
+      visibility 0s linear 0s;
+  }
+
+  body.drawer-open {
+    overflow: hidden;
+  }
+
+  @media (max-width: 480px) {
+    #basket-drawer {
+      width: 100%;
+    }
+  }
+</style>
+ </style>
 <header>
   <!-- Top Bar -->
   <div class="top-bar hidden lg:block bg-[#1A2B4C] text-white text-sm py-1.5">
@@ -100,7 +154,7 @@
 
 <main class="container py-6">
   <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-    <h2 class="text-2xl md:text-3xl font-bold text-[#1A2B4C]">
+    <h2 id="catalogue-title" class="text-2xl md:text-3xl font-bold text-[#1A2B4C]">
       <i class="fas fa-th-list text-[#F05A28] mr-2"></i>All Products
     </h2>
 
@@ -113,6 +167,9 @@
 </div>
 
   </div>
+  <p id="catalogue-result-count" class="mb-4 text-sm text-gray-500" aria-live="polite">
+    Loading productsâ€¦
+  </p>
   <div
   id="catalogue-grid"
   class="grid w-full grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
@@ -120,46 +177,9 @@
 </main>
 
 <!-- ===== BASKET DRAWER (same as index.html) ===== -->
-<div id="basket-drawer" class="drawer fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 overflow-y-auto p-6">
-  <div class="flex justify-between items-center border-b pb-4 mb-4">
-    <h3 class="text-xl font-bold text-[#1A2B4C]">Your Quote Basket</h3>
-    <button id="close-drawer" class="text-gray-500 hover:text-gray-700"><i class="fas fa-times text-xl"></i></button>
-  </div>
-  <div id="basket-items" class="space-y-4"></div>
-  <div id="basket-empty" class="text-center text-gray-500 py-8">
-    <i class="fas fa-shopping-basket text-4xl text-gray-300 mb-2 block"></i>
-    <p>Your basket is empty.</p>
-  </div>
-  <div class="mt-6 border-t pt-4">
-    <a href="/quote.html" class="block w-full bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold py-3 rounded-lg text-center transition">Request Quote</a>
-  </div>
-</div>
+
 <div id="drawer-overlay"></div>
 
-<!-- ===== BASKET DRAWER ===== -->
-<div id="basket-drawer" class="drawer fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 overflow-y-auto p-6">
-  <div class="flex justify-between items-center border-b pb-4 mb-4">
-    <h3 class="text-xl font-bold text-[#1A2B4C]">Your Quote Basket</h3>
-    <button id="close-drawer" class="text-gray-500 hover:text-gray-700">
-      <i class="fas fa-times text-xl"></i>
-    </button>
-  </div>
-  <div id="basket-items" class="space-y-4"></div>
-  <div id="basket-empty" class="text-center text-gray-500 py-8">
-    <i class="fas fa-shopping-basket text-4xl text-gray-300 mb-2 block"></i>
-    <p>Your basket is empty.</p>
-    <p class="text-sm mt-1">Browse products and click "Add to Quote".</p>
-  </div>
-  <div class="mt-6 border-t pt-4">
-    <button
-  type="button"
-  class="add-to-quote rounded-lg bg-[#F05A28] px-4 py-2 text-sm font-semibold text-white"
-  data-id="${product.id}"
->
-  Request Quote
-</button>
-  </div>
-</div>
 
 <div
   id="productModal"
@@ -198,7 +218,7 @@
           </h2>
 
           <div class="mt-2 flex flex-wrap items-center gap-2">
-            <span class="text-sm text-yellow-400">★★★★★</span>
+            <span class="text-sm text-yellow-400">â˜…â˜…â˜…â˜…â˜…</span>
             <span class="text-xs text-gray-400">(12 reviews)</span>
             <span class="text-xs text-gray-300">|</span>
             <span class="text-xs font-medium text-[#F05A28]">In Stock</span>
@@ -249,7 +269,7 @@
                 id="modalQtyMinus"
                 class="px-3 py-2 text-gray-600 transition hover:bg-gray-100"
               >
-                −
+                âˆ’
               </button>
 
               <span
@@ -299,7 +319,7 @@
 </div>
 
 <!-- Drawer Overlay -->
-<div id="drawer-overlay" class="fixed inset-0 bg-black/30 z-40 hidden"></div>
+<div id="drawer-overlay-legacy" class="fixed inset-0 bg-black/30 z-40 hidden" aria-hidden="true"></div>
 
 <!-- ===== FOOTER (same as index.html) ===== -->
 <!-- ===== FOOTER ===== -->
@@ -333,7 +353,7 @@
       </a>
       <p class="text-sm text-gray-300 mt-3">Reg: 2026/461572/07</p>
       <p class="text-sm text-gray-300">Tax: 9790884192</p>
-      <p class="text-sm text-[#F05A28] font-medium mt-1">✓ B-BBEE Compliant | Tender Ready</p>
+      <p class="text-sm text-[#F05A28] font-medium mt-1">âœ“ B-BBEE Compliant | Tender Ready</p>
     </div>
 
     <!-- Column 4: Social -->
@@ -352,7 +372,14 @@
 
 
 
-
+
+
+
+
 
 </body>
 </html>
+
+
+
+

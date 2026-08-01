@@ -1,14 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EDUCORE – About</title>
+  <title>EDUCORE â€“ About</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script type="module" crossorigin src="/assets/quoteBasket-6Lo7OGJ4.js"></script>
-  <script type="module" crossorigin src="/assets/siteHeaderApp-yWvgCm6U.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/style-CYUsBOU9.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script type="module" src="/src/staticPageApp.js"></script>
 </head>
 <body>
 <!-- Header (same) -->
@@ -96,60 +94,555 @@
 </header>
 
 <main>
-  <section class="bg-[#1A2B4C] text-white">
-    <div class="container grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+<!-- ===== COMPANY PROFILE ===== -->
+<section id="section-about" class="page-section w-full">
+
+  <!-- Hero -->
+  <div class="relative mb-14 overflow-hidden rounded-3xl bg-[#1A2B4C] text-white shadow-xl">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#F05A28]"></div>
+      <div class="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full border-[50px] border-white/10"></div>
+    </div>
+
+    <div class="relative z-10 grid items-center gap-10 px-6 py-14 md:px-10 lg:grid-cols-[1.3fr_0.7fr] lg:px-14 lg:py-20">
       <div>
-        <span class="inline-flex rounded-full bg-[#F05A28]/20 px-4 py-1 text-sm font-semibold text-[#F05A28]">South African owned • Procurement ready</span>
-        <h1 class="mt-5 text-4xl font-bold leading-tight md:text-5xl">Supply solutions that keep organisations working.</h1>
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-200">EDUCORE Stationery and Hygiene Supplies (Pty) Ltd helps schools, government institutions, healthcare facilities and businesses source dependable everyday essentials through one accountable supplier.</p>
-        <div class="mt-7 flex flex-wrap gap-3">
-          <a href="/catalogue.html" class="rounded-lg bg-[#F05A28] px-6 py-3 font-semibold text-white hover:bg-[#d94a1e]">Browse Catalogue</a>
-          <a href="/quote.html" class="rounded-lg border border-white px-6 py-3 font-semibold text-white hover:bg-white/10">Request a Quote</a>
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-200">
+          <i class="fas fa-building"></i>
+          Company Profile
+        </span>
+
+        <h1 class="mt-6 max-w-4xl text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+          Supplying South African organisations
+          <span class="text-[#F05A28]">with confidence.</span>
+        </h1>
+
+        <p class="mt-6 max-w-3xl text-base leading-8 text-slate-200 md:text-lg">
+          EDUCORE Stationery and Hygiene Supplies (Pty) Ltd is a South African
+          procurement and supply company providing dependable access to stationery,
+          office furniture, cleaning and hygiene products, personal protective
+          equipment and hospital equipment.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/catalogue.html"
+            class="inline-flex items-center gap-2 rounded-lg bg-[#F05A28] px-6 py-3 font-semibold text-white transition hover:bg-[#d94a1e]"
+          >
+            <i class="fas fa-book-open"></i>
+            Browse Catalogue
+          </a>
+
+          <a
+            href="/quote.html"
+            class="inline-flex items-center gap-2 rounded-lg border border-white/40 px-6 py-3 font-semibold text-white transition hover:bg-white hover:text-[#1A2B4C]"
+          >
+            <i class="fas fa-file-invoice"></i>
+            Request a Quote
+          </a>
         </div>
       </div>
-      <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-3 shadow-2xl">
-        <img src="/images/hero/educore.webp" alt="EDUCORE stationery, PPE and hygiene supply solutions" class="h-80 w-full rounded-xl object-cover lg:h-96" />
-      </div>
-    </div>
-  </section>
 
-  <section class="container py-14 lg:py-20">
-    <div class="grid items-center gap-12 lg:grid-cols-2">
-      <div class="overflow-hidden rounded-2xl bg-slate-100 shadow-lg">
-        <img src="/images/hero/educore-1.webp" alt="EDUCORE product supply and procurement service" class="h-full min-h-72 w-full object-cover" />
-      </div>
-      <div>
-        <p class="text-sm font-bold uppercase tracking-widest text-[#F05A28]">Who we are</p>
-        <h2 class="mt-2 text-3xl font-bold text-[#1A2B4C]">A dependable partner for routine and bulk procurement</h2>
-        <p class="mt-5 leading-7 text-gray-600">We consolidate stationery, office furniture, personal protective equipment, cleaning and hygiene supplies, and hospital equipment into a practical single-source offering. This helps procurement teams reduce administrative effort, compare products easily and request accurate quotations from one place.</p>
-        <p class="mt-4 leading-7 text-gray-600">Our approach is built around responsive service, competitive bulk pricing, transparent product information and reliable nationwide fulfilment.</p>
-        <div class="mt-6 grid grid-cols-2 gap-4 text-sm">
-          <div class="rounded-xl bg-slate-50 p-4"><strong class="block text-lg text-[#1A2B4C]">B-BBEE</strong><span class="text-gray-500">Compliant supplier</span></div>
-          <div class="rounded-xl bg-slate-50 p-4"><strong class="block text-lg text-[#1A2B4C]">Nationwide</strong><span class="text-gray-500">Delivery support</span></div>
-          <div class="rounded-xl bg-slate-50 p-4"><strong class="block text-lg text-[#1A2B4C]">Tender</strong><span class="text-gray-500">Ready documentation</span></div>
-          <div class="rounded-xl bg-slate-50 p-4"><strong class="block text-lg text-[#1A2B4C]">Bulk</strong><span class="text-gray-500">Competitive quotations</span></div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur">
+          <i class="fas fa-boxes-stacked text-2xl text-[#F05A28]"></i>
+          <p class="mt-4 text-2xl font-bold">556+</p>
+          <p class="mt-1 text-sm text-slate-300">Catalogue products</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur">
+          <i class="fas fa-layer-group text-2xl text-[#F05A28]"></i>
+          <p class="mt-4 text-2xl font-bold">5</p>
+          <p class="mt-1 text-sm text-slate-300">Core supply ranges</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur">
+          <i class="fas fa-truck-fast text-2xl text-[#F05A28]"></i>
+          <p class="mt-4 text-xl font-bold">Nationwide</p>
+          <p class="mt-1 text-sm text-slate-300">Delivery capability</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur">
+          <i class="fas fa-file-signature text-2xl text-[#F05A28]"></i>
+          <p class="mt-4 text-xl font-bold">Tender Ready</p>
+          <p class="mt-1 text-sm text-slate-300">Institutional supply support</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="bg-slate-50 py-14">
-    <div class="container">
-      <div class="mx-auto max-w-3xl text-center"><p class="text-sm font-bold uppercase tracking-widest text-[#F05A28]">Our supply categories</p><h2 class="mt-2 text-3xl font-bold text-[#1A2B4C]">One supplier. Five essential ranges.</h2></div>
-      <div class="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        <a href="/catalogue.html?category=stationery" class="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md"><i class="fas fa-pen text-3xl text-[#F05A28]"></i><h3 class="mt-4 font-bold text-[#1A2B4C]">Stationery</h3></a>
-        <a href="/catalogue.html?category=furniture" class="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md"><i class="fas fa-chair text-3xl text-[#F05A28]"></i><h3 class="mt-4 font-bold text-[#1A2B4C]">Furniture</h3></a>
-        <a href="/catalogue.html?category=ppe" class="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md"><i class="fas fa-helmet-safety text-3xl text-[#F05A28]"></i><h3 class="mt-4 font-bold text-[#1A2B4C]">PPE & Safety</h3></a>
-        <a href="/catalogue.html?category=cleaning" class="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md"><i class="fas fa-broom text-3xl text-[#F05A28]"></i><h3 class="mt-4 font-bold text-[#1A2B4C]">Cleaning</h3></a>
-        <a href="/catalogue.html?category=hospital" class="rounded-xl bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md"><i class="fas fa-hospital text-3xl text-[#F05A28]"></i><h3 class="mt-4 font-bold text-[#1A2B4C]">Hospital Equipment</h3></a>
+  <!-- Who we are -->
+  <div class="mb-16 grid items-start gap-10 lg:grid-cols-2">
+    <div>
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-[#F05A28]">
+        Who We Are
+      </p>
+
+      <h2 class="mt-3 text-3xl font-bold leading-tight text-[#1A2B4C] md:text-4xl">
+        A procurement partner, not simply a product seller
+      </h2>
+
+      <div class="mt-6 space-y-5 text-base leading-8 text-gray-600">
+        <p>
+          Modern organisations require suppliers that understand availability,
+          consistency, value and operational urgency. EDUCORE helps clients source
+          essential products through one dependable procurement channel.
+        </p>
+
+        <p>
+          Our supply-focused approach enables schools, government departments,
+          healthcare facilities, corporate offices, NGOs, industrial businesses
+          and other institutions to consolidate purchasing across multiple product
+          categories.
+        </p>
+
+        <p>
+          We are committed to supplying the correct products, in the required
+          quantities, at competitive prices and within agreed delivery requirements.
+        </p>
       </div>
     </div>
-  </section>
 
-  <section class="container py-14">
-    <div class="rounded-2xl bg-[#1A2B4C] px-6 py-10 text-center text-white md:px-12"><h2 class="text-3xl font-bold">Ready to simplify your procurement?</h2><p class="mx-auto mt-3 max-w-2xl text-slate-200">Build a quote from our live catalogue or speak to EDUCORE about a bulk, institutional or tender requirement.</p><div class="mt-6 flex flex-wrap justify-center gap-3"><a href="/quote.html" class="rounded-lg bg-[#F05A28] px-6 py-3 font-semibold">Request Quote</a><a href="/contact.html" class="rounded-lg border border-white px-6 py-3 font-semibold">Contact Our Team</a></div></div>
-    <div class="mt-8 text-center text-sm text-gray-500"><strong>Company registration:</strong> 2026/461572/07 &nbsp; • &nbsp; <strong>Tax:</strong> 9790884192</div>
-  </section>
+    <div class="rounded-3xl border border-gray-100 bg-slate-50 p-7 shadow-sm md:p-9">
+      <h3 class="text-xl font-bold text-[#1A2B4C]">
+        Corporate Information
+      </h3>
+
+      <div class="mt-6 space-y-4">
+        <div class="flex items-start gap-4 rounded-xl bg-white p-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-50 text-[#F05A28]">
+            <i class="fas fa-building"></i>
+          </span>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">
+              Registered Name
+            </p>
+            <p class="mt-1 font-semibold text-[#1A2B4C]">
+              EDUCORE Stationery and Hygiene Supplies (Pty) Ltd
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 rounded-xl bg-white p-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-50 text-[#F05A28]">
+            <i class="fas fa-id-card"></i>
+          </span>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">
+              Company Registration
+            </p>
+            <p class="mt-1 font-semibold text-[#1A2B4C]">
+              2026/461572/07
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 rounded-xl bg-white p-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-50 text-[#F05A28]">
+            <i class="fas fa-receipt"></i>
+          </span>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">
+              Tax Number
+            </p>
+            <p class="mt-1 font-semibold text-[#1A2B4C]">
+              9790884192
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 rounded-xl bg-white p-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-50 text-[#F05A28]">
+            <i class="fas fa-certificate"></i>
+          </span>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-400">
+              Supplier Number
+            </p>
+            <p class="mt-1 font-semibold text-[#1A2B4C]">
+              MAAA1735098
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supply categories -->
+  <div class="mb-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-[#F05A28]">
+        Our Supply Capability
+      </p>
+
+      <h2 class="mt-3 text-3xl font-bold text-[#1A2B4C] md:text-4xl">
+        One supplier for essential organisational requirements
+      </h2>
+
+      <p class="mt-4 leading-7 text-gray-600">
+        Our product range supports routine procurement, bulk purchasing,
+        institutional supply and tender requirements.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-xl text-[#F05A28]">
+          <i class="fas fa-pen-ruler"></i>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-[#1A2B4C]">
+          Stationery & Office Supplies
+        </h3>
+        <p class="mt-3 leading-7 text-gray-600">
+          Paper products, filing solutions, writing instruments, office
+          consumables, educational supplies and daily workplace essentials.
+        </p>
+      </article>
+
+      <article class="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-xl text-[#F05A28]">
+          <i class="fas fa-chair"></i>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-[#1A2B4C]">
+          Office Furniture
+        </h3>
+        <p class="mt-3 leading-7 text-gray-600">
+          Desks, seating, filing cabinets, shelving, classroom furniture,
+          reception units, boardroom furniture and storage solutions.
+        </p>
+      </article>
+
+      <article class="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-xl text-[#F05A28]">
+          <i class="fas fa-pump-soap"></i>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-[#1A2B4C]">
+          Cleaning & Hygiene
+        </h3>
+        <p class="mt-3 leading-7 text-gray-600">
+          Cleaning chemicals, washroom consumables, janitorial equipment,
+          sanitation products and commercial hygiene solutions.
+        </p>
+      </article>
+
+      <article class="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-xl text-[#F05A28]">
+          <i class="fas fa-helmet-safety"></i>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-[#1A2B4C]">
+          Personal Protective Equipment
+        </h3>
+        <p class="mt-3 leading-7 text-gray-600">
+          Safety footwear, reflective clothing, gloves, helmets, eye
+          protection, respiratory equipment and workplace safety apparel.
+        </p>
+      </article>
+
+      <article class="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-xl text-[#F05A28]">
+          <i class="fas fa-bed-pulse"></i>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-[#1A2B4C]">
+          Hospital & Medical Equipment
+        </h3>
+        <p class="mt-3 leading-7 text-gray-600">
+          Hospital furniture, wheelchairs, stretchers, examination equipment,
+          emergency products and patient-care equipment.
+        </p>
+      </article>
+
+      <article class="rounded-2xl border border-gray-100 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-xl text-[#F05A28]">
+          <i class="fas fa-boxes-packing"></i>
+        </div>
+        <h3 class="mt-5 text-xl font-bold text-[#1A2B4C]">
+          Bulk & Tender Supply
+        </h3>
+        <p class="mt-3 leading-7 text-gray-600">
+          Consolidated quotations, large-volume sourcing and structured supply
+          support for institutional and commercial procurement.
+        </p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Mission and vision -->
+  <div class="mb-16 grid gap-6 lg:grid-cols-2">
+    <div class="rounded-3xl bg-[#1A2B4C] p-8 text-white md:p-10">
+      <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-xl text-[#F05A28]">
+        <i class="fas fa-bullseye"></i>
+      </div>
+
+      <h3 class="mt-6 text-2xl font-bold">Our Mission</h3>
+
+      <p class="mt-4 leading-8 text-slate-200">
+        To simplify procurement through dependable sourcing, competitive
+        pricing, responsive service and efficient delivery while building
+        long-term relationships founded on integrity and accountability.
+      </p>
+    </div>
+
+    <div class="rounded-3xl border border-gray-100 bg-white p-8 shadow-sm md:p-10">
+      <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-xl text-[#F05A28]">
+        <i class="fas fa-eye"></i>
+      </div>
+
+      <h3 class="mt-6 text-2xl font-bold text-[#1A2B4C]">
+        Our Vision
+      </h3>
+
+      <p class="mt-4 leading-8 text-gray-600">
+        To become one of South Africa's most trusted procurement and supply
+        partners by providing organisations with reliable access to quality
+        products, professional service and sustainable supply solutions.
+      </p>
+    </div>
+  </div>
+
+  <!-- Why choose us -->
+  <div class="mb-16 rounded-3xl bg-slate-50 p-6 md:p-10">
+    <div class="text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-[#F05A28]">
+        Why Organisations Choose EDUCORE
+      </p>
+
+      <h2 class="mt-3 text-3xl font-bold text-[#1A2B4C]">
+        Supply built around reliability and procurement efficiency
+      </h2>
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-2xl bg-white p-6">
+        <i class="fas fa-link text-2xl text-[#F05A28]"></i>
+        <h3 class="mt-4 font-bold text-[#1A2B4C]">
+          Consolidated Procurement
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Source several operational categories through one dependable supplier.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6">
+        <i class="fas fa-award text-2xl text-[#F05A28]"></i>
+        <h3 class="mt-4 font-bold text-[#1A2B4C]">
+          Quality-Focused Sourcing
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Products sourced with durability, suitability and value for money in mind.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6">
+        <i class="fas fa-tags text-2xl text-[#F05A28]"></i>
+        <h3 class="mt-4 font-bold text-[#1A2B4C]">
+          Competitive Quotations
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Commercially considered pricing for routine, bulk and tender requirements.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6">
+        <i class="fas fa-box-open text-2xl text-[#F05A28]"></i>
+        <h3 class="mt-4 font-bold text-[#1A2B4C]">
+          Bulk Supply Capability
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Structured sourcing for organisations requiring larger product quantities.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6">
+        <i class="fas fa-headset text-2xl text-[#F05A28]"></i>
+        <h3 class="mt-4 font-bold text-[#1A2B4C]">
+          Responsive Support
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Clear communication and assistance throughout the procurement process.
+        </p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-6">
+        <i class="fas fa-truck text-2xl text-[#F05A28]"></i>
+        <h3 class="mt-4 font-bold text-[#1A2B4C]">
+          Nationwide Delivery
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Delivery solutions supporting customers across South Africa.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Industries -->
+  <div class="mb-16">
+    <div class="grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-[#F05A28]">
+          Markets We Serve
+        </p>
+
+        <h2 class="mt-3 text-3xl font-bold text-[#1A2B4C]">
+          Supporting public, private and community organisations
+        </h2>
+
+        <p class="mt-4 leading-7 text-gray-600">
+          Our supply capability is structured to serve organisations with
+          recurring, specialised and large-volume operational needs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          Government Departments
+        </span>
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          Municipalities
+        </span>
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          Schools
+        </span>
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          Universities & TVETs
+        </span>
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          Hospitals & Clinics
+        </span>
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          Corporate Offices
+        </span>
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          NGOs & NPOs
+        </span>
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          Construction
+        </span>
+        <span class="rounded-xl border border-gray-100 bg-white p-4 text-center text-sm font-semibold text-[#1A2B4C] shadow-sm">
+          Mining & Industry
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Procurement process -->
+  <div class="mb-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-[#F05A28]">
+        Procurement Process
+      </p>
+
+      <h2 class="mt-3 text-3xl font-bold text-[#1A2B4C]">
+        A clear path from requirement to delivery
+      </h2>
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-4">
+      <div class="relative rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#F05A28] font-bold text-white">
+          1
+        </span>
+        <h3 class="mt-5 font-bold text-[#1A2B4C]">
+          Submit Requirements
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Send the product list, quantities and delivery requirements.
+        </p>
+      </div>
+
+      <div class="relative rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#F05A28] font-bold text-white">
+          2
+        </span>
+        <h3 class="mt-5 font-bold text-[#1A2B4C]">
+          Receive Quotation
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          We prepare a structured and competitive supply quotation.
+        </p>
+      </div>
+
+      <div class="relative rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#F05A28] font-bold text-white">
+          3
+        </span>
+        <h3 class="mt-5 font-bold text-[#1A2B4C]">
+          Confirm the Order
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          Approved products are sourced, prepared and quality checked.
+        </p>
+      </div>
+
+      <div class="relative rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[#F05A28] font-bold text-white">
+          4
+        </span>
+        <h3 class="mt-5 font-bold text-[#1A2B4C]">
+          Delivery
+        </h3>
+        <p class="mt-2 text-sm leading-6 text-gray-600">
+          The completed order is dispatched to the agreed destination.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Commitment -->
+  <div class="mb-16 overflow-hidden rounded-3xl border border-orange-100 bg-orange-50">
+    <div class="grid items-center gap-8 p-7 md:p-10 lg:grid-cols-[auto_1fr]">
+      <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#F05A28] text-3xl text-white">
+        <i class="fas fa-handshake"></i>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-bold text-[#1A2B4C]">
+          Our Commitment
+        </h2>
+
+        <p class="mt-3 max-w-4xl leading-8 text-gray-700">
+          We are committed to dependable service, professional communication,
+          quality-focused sourcing and long-term client relationships. Our goal
+          is not merely to fulfil orders, but to become a trusted procurement
+          partner that supports the operational success of every organisation
+          we serve.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA -->
+  <div class="rounded-3xl bg-gradient-to-r from-[#1A2B4C] to-[#2a3f62] px-6 py-12 text-center text-white shadow-xl md:px-12">
+    <p class="text-sm font-bold uppercase tracking-[0.2em] text-orange-200">
+      Partner with EDUCORE
+    </p>
+
+    <h2 class="mt-3 text-3xl font-bold md:text-4xl">
+      Ready to simplify your organisation's procurement?
+    </h2>
+
+    <p class="mx-auto mt-4 max-w-3xl leading-7 text-slate-200">
+      Whether you require stationery, furniture, PPE, cleaning products,
+      hospital equipment or bulk supply support, our team is ready to assist.
+    </p>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a
+        href="/quote.html"
+        class="inline-flex items-center gap-2 rounded-lg bg-[#F05A28] px-7 py-3 font-semibold text-white transition hover:bg-[#d94a1e]"
+      >
+        <i class="fas fa-file-invoice-dollar"></i>
+        Request a Quote
+      </a>
+
+      <a
+        href="/contact.html"
+        class="inline-flex items-center gap-2 rounded-lg border border-white/40 px-7 py-3 font-semibold text-white transition hover:bg-white hover:text-[#1A2B4C]"
+      >
+        <i class="fas fa-envelope"></i>
+        Contact Our Team
+      </a>
+    </div>
+  </div>
+</section>
 </main>
 
 <!-- ===== FOOTER ===== -->
@@ -160,7 +653,7 @@
       <h4 class="text-xl font-bold mb-4">EDUCORE</h4>
       <p class="text-sm text-gray-300">104 Donnelly Street, Turffontein, Johannesburg, 2190</p>
       <p class="text-sm text-gray-300 mt-2">Cell: 071 945 0220</p>
-      <p class="text-sm text-gray-300">Email: info@educore.co.za</p>
+      <p class="text-sm text-gray-300">Email: info@educorestationery-hygiene-ppe.co.za</p>
     </div>
 
     <!-- Column 2: Quick Links -->
@@ -183,7 +676,7 @@
       </a>
       <p class="text-sm text-gray-300 mt-3">Reg: 2026/461572/07</p>
       <p class="text-sm text-gray-300">Tax: 9790884192</p>
-      <p class="text-sm text-[#F05A28] font-medium mt-1">✓ B-BBEE Compliant | Tender Ready</p>
+      <p class="text-sm text-[#F05A28] font-medium mt-1">âœ“ B-BBEE Compliant | Tender Ready</p>
     </div>
 
     <!-- Column 4: Social -->
@@ -198,6 +691,9 @@
       <p class="text-sm text-gray-400 mt-4">&copy; 2026 EDUCORE. All rights reserved.</p>
     </div>
   </div>
-</footer>
+</footer>
+
 </body>
 </html>
+
+

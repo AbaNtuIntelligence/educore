@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,20 +7,33 @@
   <meta name="description" content="EDUCORE supplies stationery, PPE, hygiene products, office furniture and hospital equipment from Turffontein, Johannesburg. Request a bulk or tender quotation." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://educorestationery-hygiene-ppe.co.za/" />
+  <link rel="icon" type="image/jpeg" sizes="1254x1254" href="https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg" />
+  <link rel="shortcut icon" type="image/jpeg" href="https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg" />
+  <link rel="apple-touch-icon" href="https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg" />
+
   <meta property="og:title" content="EDUCORE | Johannesburg Institutional Supply Solutions" />
   <meta property="og:description" content="Stationery, PPE, hygiene, office furniture and hospital equipment supply from Turffontein, Johannesburg." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://educorestationery-hygiene-ppe.co.za/" />
   <meta property="og:image" content="https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg" />
-  <link rel="stylesheet" href="/assets/supplier-pages.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["Organization", "LocalBusiness"],
     "@id": "https://educorestationery-hygiene-ppe.co.za/#business",
     "name": "EDUCORE Stationery and Hygiene Supplies (Pty) Ltd",
+    "legalName": "EDUCORE Stationery and Hygiene Supplies (Pty) Ltd",
+    "alternateName": "EDUCORE",
     "url": "https://educorestationery-hygiene-ppe.co.za/",
-    "logo": "https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg",
+    "logo": {
+      "@type": "ImageObject",
+      "@id": "https://educorestationery-hygiene-ppe.co.za/#logo",
+      "url": "https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg",
+      "contentUrl": "https://educorestationery-hygiene-ppe.co.za/images/hero/logo.jpeg",
+      "width": 1254,
+      "height": 1254,
+      "caption": "EDUCORE Stationery and Hygiene Supplies"
+    },
     "image": "https://educorestationery-hygiene-ppe.co.za/images/hero/educore.webp",
     "telephone": "+27 71 945 0220",
     "email": "info@educorestationery-hygiene-ppe.co.za",
@@ -51,7 +64,20 @@
     }
   }
   </script>
-  <!-- Tailwind CSS (CDN) – fine for static sites -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://educorestationery-hygiene-ppe.co.za/#website",
+    "url": "https://educorestationery-hygiene-ppe.co.za/",
+    "name": "EDUCORE",
+    "alternateName": "EDUCORE Stationery and Hygiene Supplies",
+    "publisher": {
+      "@id": "https://educorestationery-hygiene-ppe.co.za/#business"
+    }
+  }
+  </script>
+  <!-- Tailwind CSS (CDN) â€“ fine for static sites -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -276,8 +302,19 @@
     .filter-btn.active { background: #1A2B4C; color: white; }
     .filter-btn:hover:not(.active) { background: #e2e8f0; }
   </style>
-  <script type="module" crossorigin src="/assets/googleSheets-CkKW2Qub.js"></script>
-  <script type="module" crossorigin src="/assets/main-BwAbOl3g.js"></script>
+  <script type="module" src="/main.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/googleSheets-B7lp_FAW.js">
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-Dezn_h7o.js">
+  <link rel="modulepreload" crossorigin href="/assets/quoteBasket-CDFzsy44.js">
+  <link rel="stylesheet" crossorigin href="/assets/supplier-pages.css">
+  <!-- Landing-page navbar visibility fix: supplier-pages CSS globally forces .hidden !important -->
+  <style>
+    @media (min-width: 1024px) {
+      header nav.hidden.lg\:flex { display: flex !important; }
+      #menu-toggle.lg\:hidden { display: none !important; }
+      #mobile-menu.lg\:hidden { display: none !important; }
+    }
+  </style>
 </head>
 <body>
 
@@ -756,7 +793,7 @@ Download Catalogue
         </div>
         <h3 class="text-xl font-bold text-[#1A2B4C]">Our Mission</h3>
       </div>
-      <p class="text-gray-600">To deliver reliable, high‑quality stationery, PPE, hygiene, and office furniture solutions that empower education and business across South Africa.</p>
+      <p class="text-gray-600">To deliver reliable, highâ€‘quality stationery, PPE, hygiene, and office furniture solutions that empower education and business across South Africa.</p>
     </div>
     <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
       <div class="flex items-center gap-3 mb-4">
@@ -786,7 +823,7 @@ Download Catalogue
   <!-- Page header -->
   <div class="mb-10 text-center">
     <h2 class="text-3xl md:text-4xl font-bold text-[#1A2B4C]">Get in Touch</h2>
-    <p class="mt-2 text-gray-500 max-w-lg mx-auto">We’re here to help. Reach out for quotes, tender support, or general enquiries.</p>
+    <p class="mt-2 text-gray-500 max-w-lg mx-auto">Weâ€™re here to help. Reach out for quotes, tender support, or general enquiries.</p>
   </div>
 
   <!-- Two-column layout: contact info + form -->
@@ -802,7 +839,7 @@ Download Catalogue
         <div>
           <h4 class="font-semibold text-[#1A2B4C]">Visit Us</h4>
           <p class="text-sm text-gray-500">104 Donnelly Street, Turffontein, Johannesburg, 2190</p>
-          <a href="https://maps.google.com/maps?q=104+Donnelly+Street+Turffontein+Johannesburg" target="_blank" class="text-xs text-[#F05A28] hover:underline mt-1 inline-block">View on Map →</a>
+          <a href="https://maps.google.com/maps?q=104+Donnelly+Street+Turffontein+Johannesburg" target="_blank" class="text-xs text-[#F05A28] hover:underline mt-1 inline-block">View on Map â†’</a>
         </div>
       </div>
 
@@ -814,7 +851,7 @@ Download Catalogue
         <div>
           <h4 class="font-semibold text-[#1A2B4C]">Call Us</h4>
           <p class="text-sm text-gray-500">071 945 0220</p>
-          <p class="text-xs text-gray-400">Mon–Fri, 8:00 – 17:00</p>
+          <p class="text-xs text-gray-400">Monâ€“Fri, 8:00 â€“ 17:00</p>
         </div>
       </div>
 
@@ -976,7 +1013,7 @@ Download Catalogue
               <span class="text-[#F05A28]">Full Product Catalogue</span>
             </h1>
             <p class="mt-3 text-gray-200 max-w-xl text-base md:text-lg">
-              Access our complete range of stationery, office furniture, PPE, and hygiene solutions – all in one easy‑to‑download PDF.
+              Access our complete range of stationery, office furniture, PPE, and hygiene solutions â€“ all in one easyâ€‘toâ€‘download PDF.
             </p>
             <div class="mt-6 flex flex-wrap gap-4">
               <button id="generatePdfBtn" class="bg-[#F05A28] hover:bg-[#d94a1e] text-white font-semibold px-6 py-3 rounded-full transition inline-flex items-center gap-2 shadow-lg">
@@ -990,7 +1027,7 @@ Download Catalogue
               </a>
             </div>
             <p class="mt-4 text-sm text-gray-300">
-              <i class="fas fa-file-pdf mr-1"></i> PDF generated from live product data • <span id="pdfProductCount">0</span> products
+              <i class="fas fa-file-pdf mr-1"></i> PDF generated from live product data â€¢ <span id="pdfProductCount">0</span> products
             </p>
           </div>
           <div class="flex-shrink-0 w-48 md:w-56 lg:w-64 bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/20 shadow-xl text-center">
@@ -1107,7 +1144,7 @@ Download Catalogue
           </h2>
 
           <div class="mt-2 flex flex-wrap items-center gap-2">
-            <span class="text-sm text-yellow-400">★★★★★</span>
+            <span class="text-sm text-yellow-400">â˜…â˜…â˜…â˜…â˜…</span>
             <span class="text-xs text-gray-400">(12 reviews)</span>
             <span class="text-xs text-gray-300">|</span>
             <span class="text-xs font-medium text-[#F05A28]">In Stock</span>
@@ -1158,7 +1195,7 @@ Download Catalogue
                 id="modalQtyMinus"
                 class="px-3 py-2 text-gray-600 transition hover:bg-gray-100"
               >
-                −
+                âˆ’
               </button>
 
               <span
@@ -1347,7 +1384,7 @@ Download Catalogue
 </a>
       <p class="text-sm text-gray-300 mt-3">Reg: 2026/461572/07</p>
       <p class="text-sm text-gray-300">Tax: 9790884192</p>
-      <p class="text-sm text-[#F05A28] font-medium mt-1">✓ B-BBEE Compliant | Tender Ready</p>
+      <p class="text-sm text-[#F05A28] font-medium mt-1">âœ“ B-BBEE Compliant | Tender Ready</p>
     </div>
     <div>
       <h5 class="font-semibold mb-3">Connect</h5>
@@ -1363,7 +1400,13 @@ Download Catalogue
 </footer>
 
 
-
+
+
+
 
 </body>
 </html>
+
+
+
+
