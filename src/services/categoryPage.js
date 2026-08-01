@@ -1,4 +1,5 @@
 import { getProductsFromGoogleSheets } from "./googleSheets.js";
+import { initialiseBackToTop } from "./backToTop.js";
 
 function productCardHTML(product) {
   return `
@@ -78,3 +79,4 @@ async function loadCategoryPage() {
 }
 
 document.addEventListener("DOMContentLoaded", loadCategoryPage);
+initialiseBackToTop();

@@ -1,4 +1,5 @@
 import { getProductsFromGoogleSheets } from "./src/services/googleSheets.js";
+import { initialiseBackToTop } from "./src/services/backToTop.js";
 import {
   addQuoteItem,
   getQuoteBasket,
@@ -916,6 +917,7 @@ document.addEventListener('DOMContentLoaded', function() {
   renderBasket();
 
 initialiseMobileMenu();
+initialiseBackToTop();
 
 
 const generatePdfButton =
