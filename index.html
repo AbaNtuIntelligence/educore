@@ -301,6 +301,22 @@
     }
     .filter-btn.active { background: #1A2B4C; color: white; }
     .filter-btn:hover:not(.active) { background: #e2e8f0; }
+
+#mobile-menu {
+  transition: max-height 0.3s ease-in-out, opacity 0.25s ease, transform 0.25s ease;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  overflow: hidden;
+}
+
+#mobile-menu:not(.hidden) {
+  max-height: 800px;  /* large enough for your content */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
   </style>
   <script type="module" src="/main.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/googleSheets-B7lp_FAW.js">

@@ -12,6 +12,20 @@ header {
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
+#mobile-menu {
+  transition: max-height 0.3s ease-in-out, opacity 0.25s ease, transform 0.25s ease;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  overflow: hidden;
+}
+
+#mobile-menu:not(.hidden) {
+  max-height: 800px;  /* large enough for your content */
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Top Bar */
 .top-bar {
   background: #1A2B4C;
