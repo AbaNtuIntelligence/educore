@@ -1,4 +1,4 @@
-console.log("googleSheets.js loaded");
+﻿console.log("googleSheets.js loaded");
 
 import Papa from "papaparse";
 
@@ -27,11 +27,29 @@ function normalizeCategory(value) {
     "cleaning and hygiene": "cleaning",
     "cleaning chemicals": "cleaning",
 
+    printers: "printers",
+    "printers, cartridges & refills": "printers",
+    "printers and cartridges": "printers",
+    "printers & cartridges": "printers",
+
+    "educational resources": "educational",
+
+    "fire & emergency safety": "fire-safety",
+    "fire and emergency safety": "fire-safety",
+
+    "office accessories": "office-accessories",
+
+    "safety signage": "safety-signage",
+
     hospital: "hospital",
     "hospital equipment": "hospital",
     "medical equipment": "hospital",
     healthcare: "hospital",
-    "healthcare equipment": "hospital"
+    "healthcare equipment": "hospital",
+
+    "security equipment": "security",
+    "security books": "security",
+    "security merchandise": "security"
   };
 
   return categoryMap[category] || category;
@@ -125,3 +143,4 @@ export async function getProductsFromGoogleSheets() {
     })
     .filter((product) => product.name);
 }
+

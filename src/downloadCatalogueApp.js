@@ -204,7 +204,14 @@ async function fetchImageFromSource(
     quality = 0.68
   } = options;
 
-  const response = await fetch(source);
+  const isExternalEducoreImage =
+    /^https:\/\/educorestationery-hygiene-ppe\.co\.za\//i.test(source);
+
+  const requestSource = isExternalEducoreImage
+    ? `/catalogue-image${new URL(source).pathname}`
+    : source;
+
+  const response = await fetch(requestSource);
 
   if (!response.ok) {
     throw new Error(
@@ -225,14 +232,14 @@ async function fetchImageFromSource(
 
 async function fetchImageData(product) {
   const candidates = [
-    ...new Set(
-      [
-        product.image,
-        product.localImage,
-        PLACEHOLDER
-      ].filter(Boolean)
-    )
-  ];
+  ...new Set(
+    [
+      product.image,
+      product.localImage,
+      PLACEHOLDER
+    ].filter(Boolean)
+  )
+];
 
   for (const source of candidates) {
     try {

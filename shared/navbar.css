@@ -1,0 +1,705 @@
+/* ============================================================
+   EDUCORE SHARED NAVBAR
+   shared/navbar.css
+   ============================================================ */
+
+:root {
+  --ec-navy: #1A2B4C;
+  --ec-orange: #F05A28;
+  --ec-orange-dark: #d94a1e;
+  --ec-gray-50: #f8fafc;
+  --ec-gray-100: #f1f5f9;
+  --ec-gray-200: #e5e7eb;
+  --ec-gray-400: #9ca3af;
+  --ec-gray-500: #64748b;
+  --ec-gray-600: #475569;
+  --ec-white: #ffffff;
+}
+/* =========================================================
+   EDUCORE — SHARED NAVBAR
+   Sticky / Fixed Navigation
+   ========================================================= */
+
+#site-header,
+.site-header,
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999;
+}
+.site-header{
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.ec-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: var(--ec-white);
+  border-bottom: 1px solid var(--ec-gray-200);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.ec-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+
+.ec-topbar {
+  display: none;
+  background: var(--ec-navy);
+  color: var(--ec-white);
+}
+
+.ec-topbar-inner {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+
+.ec-topbar-message {
+  opacity: 0.8;
+}
+
+.ec-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ec-social-link {
+  color: var(--ec-white);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ec-social-link:hover {
+  color: var(--ec-orange);
+}
+
+.ec-divider {
+  color: #94a3b8;
+}
+
+.ec-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ec-white);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.ec-download-link:hover {
+  color: var(--ec-orange);
+}
+
+
+/* ============================================================
+   MAIN NAV
+   ============================================================ */
+
+.ec-nav-wrapper {
+  position: relative;
+  background: var(--ec-white);
+}
+
+.ec-nav-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+
+/* ============================================================
+   BRAND
+   ============================================================ */
+
+.ec-brand {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ec-logo-box {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: var(--ec-gray-50);
+}
+
+.ec-logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ec-logo-fallback {
+  display: none;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  background: var(--ec-navy);
+  color: var(--ec-white);
+
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.ec-brand-text {
+  min-width: 0;
+  line-height: 1.1;
+}
+
+.ec-brand-name {
+  display: block;
+  color: var(--ec-navy);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.ec-brand-tagline {
+  display: none;
+  max-width: 220px;
+
+  margin-top: 0.2rem;
+
+  color: var(--ec-orange);
+
+  font-size: 0.62rem;
+  font-weight: 700;
+
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   DESKTOP NAVIGATION
+   ============================================================ */
+
+.ec-desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+.ec-desktop-nav a {
+  position: relative;
+
+  color: var(--ec-gray-600);
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  transition:
+    color 0.2s ease;
+}
+
+.ec-desktop-nav a:hover {
+  color: var(--ec-orange);
+}
+
+.ec-desktop-nav a.is-active {
+  color: var(--ec-navy);
+}
+
+.ec-desktop-nav a.is-active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -0.55rem;
+
+  height: 2px;
+
+  background: var(--ec-orange);
+  border-radius: 999px;
+}
+
+
+/* ============================================================
+   HEADER ACTIONS
+   ============================================================ */
+
+.ec-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+   ============================================================ */
+
+.ec-action-button {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: transparent;
+  color: var(--ec-navy);
+
+  cursor: pointer;
+
+  font-size: 1.05rem;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.ec-action-button:hover {
+  background: var(--ec-gray-100);
+  color: var(--ec-orange);
+}
+
+
+/* ============================================================
+   BASKET
+   ============================================================ */
+
+.ec-basket-count {
+  position: absolute;
+
+  top: 1px;
+  right: 0;
+
+  min-width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 4px;
+
+  border-radius: 999px;
+
+  background: var(--ec-orange);
+  color: var(--ec-white);
+
+  font-size: 0.65rem;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+
+/* ============================================================
+   DESKTOP SEARCH
+   ============================================================ */
+
+.ec-desktop-search {
+  display: none;
+  position: relative;
+}
+
+.ec-desktop-search input {
+  width: 208px;
+  height: 40px;
+
+  padding:
+    0 2.5rem 0 1rem;
+
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+
+  background: var(--ec-gray-50);
+  color: #334155;
+
+  outline: none;
+
+  font-size: 0.875rem;
+}
+
+.ec-desktop-search input:focus {
+  border-color: var(--ec-orange);
+  background: var(--ec-white);
+}
+
+.ec-desktop-search button,
+.ec-mobile-search-inner button {
+  position: absolute;
+
+  right: 0.75rem;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  display: none;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--ec-gray-400);
+
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.ec-desktop-search button.is-visible,
+.ec-mobile-search-inner button.is-visible {
+  display: block;
+}
+
+
+/* ============================================================
+   MOBILE SEARCH
+   ============================================================ */
+
+.ec-mobile-search {
+  display: none;
+
+  border-top: 1px solid var(--ec-gray-100);
+  padding: 0.75rem 0;
+
+  background: var(--ec-white);
+}
+
+.ec-mobile-search.is-open {
+  display: block;
+}
+
+.ec-mobile-search-inner {
+  position: relative;
+}
+
+.ec-mobile-search-inner input {
+  width: 100%;
+  height: 46px;
+
+  padding:
+    0 3rem 0 1rem;
+
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+
+  background: var(--ec-gray-50);
+
+  outline: none;
+
+  font-size: 0.9rem;
+}
+
+.ec-mobile-search-inner input:focus {
+  border-color: var(--ec-orange);
+}
+
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+
+.ec-mobile-menu {
+  display: block;
+
+  max-height: 0;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(-8px);
+
+  border-top: 1px solid transparent;
+
+  background: var(--ec-white);
+
+  pointer-events: none;
+
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ec-mobile-menu.is-open {
+  max-height: 700px;
+
+  opacity: 1;
+  transform: translateY(0);
+
+  border-top-color: var(--ec-gray-200);
+
+  pointer-events: auto;
+}
+
+.ec-mobile-nav {
+  max-width: 1280px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  padding:
+    0.75rem 1rem 1.25rem;
+}
+
+.ec-mobile-nav > a {
+  display: flex;
+  align-items: center;
+
+  min-height: 48px;
+
+  padding: 0.75rem;
+
+  color: var(--ec-gray-600);
+  text-decoration: none;
+
+  border-radius: 0.6rem;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.ec-mobile-nav > a:hover,
+.ec-mobile-nav > a.is-active {
+  background: #fff4ef;
+  color: var(--ec-orange);
+}
+
+.ec-mobile-nav > a i {
+  margin-right: 0.6rem;
+}
+
+
+/* ============================================================
+   MOBILE SOCIAL
+   ============================================================ */
+
+.ec-mobile-social {
+  margin-top: 0.75rem;
+  padding: 1rem 0.75rem 0;
+
+  border-top: 1px solid var(--ec-gray-100);
+}
+
+.ec-mobile-social > span {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  color: var(--ec-gray-400);
+
+  font-size: 0.7rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.ec-mobile-social > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ec-mobile-social a {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 999px;
+
+  background: var(--ec-gray-100);
+  color: var(--ec-navy);
+
+  text-decoration: none;
+}
+
+.ec-mobile-social a:hover {
+  background: var(--ec-orange);
+  color: var(--ec-white);
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (min-width: 640px) {
+
+  .ec-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .ec-logo-box {
+    width: 56px;
+    height: 56px;
+  }
+
+  .ec-brand-name {
+    font-size: 1.4rem;
+  }
+
+  .ec-brand-tagline {
+    display: block;
+  }
+
+}
+
+
+/* ============================================================
+   LARGE DESKTOP
+   ============================================================ */
+
+@media (min-width: 1024px) {
+
+  .ec-topbar {
+    display: block;
+  }
+
+  .ec-nav-inner {
+    min-height: 80px;
+  }
+
+  .ec-logo-box {
+    width: 64px;
+    height: 64px;
+  }
+
+  .ec-brand-name {
+    font-size: 1.5rem;
+  }
+
+  .ec-desktop-nav {
+    display: flex;
+  }
+
+  .ec-menu-toggle {
+    display: none;
+  }
+
+  .ec-mobile-menu {
+    display: none !important;
+  }
+
+}
+
+
+/* ============================================================
+   EXTRA LARGE DESKTOP
+   ============================================================ */
+
+@media (min-width: 1280px) {
+
+  .ec-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .ec-desktop-nav {
+    gap: 1.75rem;
+  }
+
+}
+
+
+/* ============================================================
+   VERY LARGE DESKTOP SEARCH
+   ============================================================ */
+
+@media (min-width: 1536px) {
+
+  .ec-desktop-search {
+    display: block;
+  }
+
+  #mobile-search-toggle {
+    display: none;
+  }
+
+}
+/* ============================================================
+   EDUCORE SHARED QUOTE BASKET DRAWER
+   ============================================================ */
+
+.drawer {
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+#drawer-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#drawer-overlay.show {
+  display: block;
+}
+

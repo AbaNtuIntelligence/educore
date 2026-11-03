@@ -6,7 +6,16 @@
   <title>Stationery | EDUCORE</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  </head>
+  <style>
+.filter-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:.65rem 1.05rem;border:1px solid #cbd5e1;border-radius:.65rem;background:#eef3f8;color:#1A2B4C;font-size:.875rem;font-weight:700;line-height:1.2;text-decoration:none;white-space:nowrap;box-shadow:0 2px 5px rgba(26,43,76,.08);transition:background-color .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.filter-btn:hover{background:#F05A28;border-color:#F05A28;color:#fff;box-shadow:0 5px 12px rgba(240,90,40,.22);transform:translateY(-1px)}
+.filter-btn.active{background:#1A2B4C;border-color:#1A2B4C;color:#fff;box-shadow:0 5px 12px rgba(26,43,76,.2)}
+.filter-btn.active:hover{background:#F05A28;border-color:#F05A28;color:#fff}
+@media(max-width:640px){.filter-btn{min-height:40px;padding:.6rem .85rem;font-size:.8125rem}}
+</style>
+  <script src="/shared/navbar.js"></script>
+  <link rel="stylesheet" href="/shared/navbar.css" />
+</head>
 
 <body data-category="stationery" class="bg-slate-50">
   <header class="border-b bg-white">
@@ -31,12 +40,18 @@
         Browse EDUCORE stationery products.
       </p>
     </div>
-<div class="flex w-full flex-wrap justify-center gap-2">
+<div class="flex gap-2.5 flex-wrap items-center">
   <a href="/catalogue.html" class="filter-btn">All</a>
   <a href="/stationery.html" class="filter-btn active">Stationery</a>
   <a href="/furniture.html" class="filter-btn">Furniture</a>
   <a href="/ppe.html" class="filter-btn">PPE</a>
-  <a href="/cleaning.html" class="filter-btn">Cleaning</a>
+  <a href="/cleaning.html" class="filter-btn">Cleaning &amp; Hygiene</a>
+  <a href="/printers.html" class="filter-btn">Printers, Cartridges &amp; Refills</a>
+  <a href="/educational.html" class="filter-btn">Educational Resources</a>
+  <a href="/fire-safety.html" class="filter-btn">Fire &amp; Emergency Safety</a>
+  <a href="/office-accessories.html" class="filter-btn">Office Accessories</a>
+  <a href="/safety-signage.html" class="filter-btn">Safety Signage</a>
+  <a href="/security.html" class="filter-btn">Security Equipment</a>
 </div>
     <div
       id="category-grid"
@@ -47,6 +62,9 @@
   <script type="module" src="/src/services/categoryPage.js"></script>
 </body>
 </html>
+
+
+
 
 
 

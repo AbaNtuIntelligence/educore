@@ -61,22 +61,125 @@ document.addEventListener("click", event => {
   }
 });
 
-document.getElementById("quote-form")?.addEventListener("submit", event => {
-  event.preventDefault();
-  if (!getQuoteBasket().length) {
-    alert("Please add at least one product to your quote.");
-    return;
+
+
+let pendingRequestKey = null;
+let isSubmitting = false;
+
+document.getElementById("quote-form")?.addEventListener(
+  "submit",
+  async event => {
+    event.preventDefault();
+
+    if (isSubmitting) return;
+
+    const form = event.currentTarget;
+    const items = getQuoteBasket();
+
+    if (!items.length) {
+      alert("Please add at least one product to your quote.");
+      return;
+    }
+
+    if (!form.reportValidity()) return;
+
+    const submit = document.getElementById("submit-quote-btn");
+    const status = document.getElementById("quote-status");
+
+    const formData = new FormData(form);
+
+    if (!pendingRequestKey) {
+      pendingRequestKey = crypto.randomUUID();
+    }
+
+    const payload = {
+      requestKey: pendingRequestKey,
+      name: String(formData.get("name") || "").trim(),
+      company: String(formData.get("company") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      phone: String(formData.get("phone") || "").trim(),
+      notes: String(formData.get("notes") || "").trim(),
+      items: items.map(item => ({
+        id: String(item.id),
+        name: String(item.name),
+        sku: String(item.sku || ""),
+        unit: String(item.unit || ""),
+        quantity: Number(item.quantity)
+      }))
+    };
+
+    isSubmitting = true;
+    submit.disabled = true;
+    submit.textContent = "Submitting quotation...";
+
+    status.classList.remove("hidden");
+    status.textContent = "Submitting your quotation request...";
+    status.setAttribute("role", "status");
+
+    try {
+      const response = await fetch("/api/quotes.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message || "Quotation submission failed."
+        );
+      }
+
+      status.textContent =
+        `Your quotation has been submitted successfully. ` +
+        `Reference: ${result.reference}. ` +
+        `Educore will contact you shortly.`;
+
+      status.setAttribute("role", "status");
+
+      clearQuoteBasket();
+form.reset();
+pendingRequestKey = null;
+
+renderQuote();
+
+// Keep the confirmation visible after the basket clears.
+status.classList.remove("hidden");
+
+    } catch (error) {
+      status.textContent =
+        `${error.message} Your quotation basket has been retained. ` +
+        `Please try again.`;
+
+      status.setAttribute("role", "alert");
+
+    } finally {
+      isSubmitting = false;
+      submit.textContent = "Submit Quotation Request";
+      submit.disabled = !getQuoteBasket().length;
+    }
   }
-  const form = event.currentTarget;
-  if (!form.reportValidity()) return;
-  const subject = `EDUCORE quote request – ${new FormData(form).get("name")}`;
-  const mailto = `mailto:info@educore.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(quoteMessage(form))}`;
-  window.location.href = mailto;
-  document.getElementById("quote-status").classList.remove("hidden");
-});
+);
+
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("quote-form")?.insertAdjacentHTML("beforeend", `<p id="quote-status" class="hidden rounded-lg bg-green-50 p-3 text-sm text-green-800"><strong>Your email app has been opened.</strong> Send the prepared message to complete the request. Your basket remains saved until you clear it.</p>`);
+  const form = document.getElementById("quote-form");
+
+  if (form && !document.getElementById("quote-status")) {
+    form.insertAdjacentHTML(
+      "beforeend",
+      `<p id="quote-status"
+          class="hidden rounded-lg bg-green-50 p-3 text-sm text-green-800"
+          role="status"
+          aria-live="polite"></p>`
+    );
+  }
+
   renderQuote();
 });
+
 window.addEventListener("educore:basket-change", renderQuote);
