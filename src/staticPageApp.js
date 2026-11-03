@@ -25,9 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.getElementById("menu-toggle")?.addEventListener("click", () => {
-    document.getElementById("mobile-menu")?.classList.toggle("hidden");
-  });
+  
 
   document.getElementById("basket-btn")?.addEventListener("click", () => {
     window.location.href = "/quote.html";

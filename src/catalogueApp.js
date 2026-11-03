@@ -1,10 +1,11 @@
-import { getProductsFromGoogleSheets } from "./services/googleSheets.js";
+﻿import { getProductsFromGoogleSheets } from "./services/googleSheets.js";
+import { addQuoteItem } from "./services/quoteBasket.js";
 import {
-  addQuoteItem,
-  getQuoteBasket,
-  quoteItemCount,
-  removeQuoteItem
-} from "./services/quoteBasket.js";
+  openBasketDrawer,
+  renderBasketDrawer
+} from "./services/sharedBasketDrawer.js";
+
+window.openBasketDrawer = openBasketDrawer;
 
 const state = { products: [], category: "all", query: "", selected: null, quantity: 1 };
 const fallbackImage = "/images/placeholders/educore-placeholder.webp";
@@ -14,7 +15,13 @@ const categoryLabels = {
   furniture: "Furniture",
   ppe: "PPE",
   cleaning: "Cleaning & Hygiene",
-  hospital: "Hospital Equipment"
+  printers: "Printers, Cartridges & Refills",
+  educational: "Educational Resources",
+  "fire-safety": "Fire & Emergency Safety",
+  "office-accessories": "Office Accessories",
+  "safety-signage": "Safety Signage",
+  security: "Security Equipment"
+  
 };
 
 const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, character => ({
@@ -34,7 +41,7 @@ function productCard(product) {
         <span class="font-bold text-[#F05A28]">${escapeHtml(product.price || "Request Quote")}</span>
         <button type="button" class="add-to-quote rounded-lg bg-[#F05A28] px-3 py-2 text-sm font-semibold text-white hover:bg-[#d94a1e]" data-product-id="${escapeHtml(product.id)}"><i class="fas fa-plus mr-1"></i>Add to Quote</button>
       </div>
-      <button class="view-product mt-3 text-left text-xs font-medium text-[#1A2B4C] hover:underline" type="button">View product details →</button>
+      <button class="view-product mt-3 text-left text-xs font-medium text-[#1A2B4C] hover:underline" type="button">View product details â†’</button>
     </div>
   </article>`;
 }
@@ -84,7 +91,7 @@ function ensureModal() {
           <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600"><span id="modal-sku" class="rounded-full bg-gray-100 px-3 py-1"></span><span id="modal-unit" class="rounded-full bg-gray-100 px-3 py-1"></span></div>
           <p id="modal-description" class="mt-4 text-sm leading-6 text-gray-600"></p>
           <ul id="modal-features" class="mt-4 list-disc space-y-1 pl-5 text-sm text-gray-600"></ul>
-          <div class="mt-6 flex flex-wrap items-center gap-3"><div class="flex items-center rounded-lg border"><button id="modal-minus" class="h-10 w-10" type="button" aria-label="Decrease quantity">−</button><span id="modal-quantity" class="w-10 text-center font-bold">1</span><button id="modal-plus" class="h-10 w-10" type="button" aria-label="Increase quantity">+</button></div><button id="modal-add" class="rounded-lg bg-[#F05A28] px-5 py-2.5 font-semibold text-white" type="button"><i class="fas fa-plus mr-1"></i>Add to Quote</button><a href="/quote.html" class="rounded-lg border border-[#1A2B4C] px-4 py-2.5 font-semibold text-[#1A2B4C]">View Quote</a></div>
+          <div class="mt-6 flex flex-wrap items-center gap-3"><div class="flex items-center rounded-lg border"><button id="modal-minus" class="h-10 w-10" type="button" aria-label="Decrease quantity">âˆ’</button><span id="modal-quantity" class="w-10 text-center font-bold">1</span><button id="modal-plus" class="h-10 w-10" type="button" aria-label="Increase quantity">+</button></div><button id="modal-add" class="rounded-lg bg-[#F05A28] px-5 py-2.5 font-semibold text-white" type="button"><i class="fas fa-plus mr-1"></i>Add to Quote</button><a href="/quote.html" class="rounded-lg border border-[#1A2B4C] px-4 py-2.5 font-semibold text-[#1A2B4C]">View Quote</a></div>
         </div>
       </div>
     </div>
@@ -114,21 +121,6 @@ function closeModal() {
   document.body.style.overflow = "";
 }
 
-function renderBasket() {
-  const items = getQuoteBasket();
-  const count = quoteItemCount(items);
-  document.querySelectorAll("#basket-count").forEach(element => element.textContent = count);
-  const container = document.getElementById("basket-items");
-  const empty = document.getElementById("basket-empty");
-  if (!container || !empty) return;
-  empty.classList.toggle("hidden", items.length > 0);
-  container.innerHTML = items.map(item => `<div class="flex items-start justify-between gap-3 border-b pb-3"><div><p class="text-sm font-semibold text-[#1A2B4C]">${escapeHtml(item.name)}</p><p class="text-xs text-gray-500">${escapeHtml(item.sku || "No SKU")} · Qty ${item.quantity}</p></div><button class="remove-quote-item text-red-500" data-id="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)}"><i class="fas fa-times"></i></button></div>`).join("");
-}
-
-function toggleDrawer(open) {
-  document.getElementById("basket-drawer")?.classList.toggle("open", open);
-  document.getElementById("drawer-overlay")?.classList.toggle("show", open);
-}
 
 async function initialise() {
   ensureModal();
@@ -137,8 +129,7 @@ async function initialise() {
   state.query = params.get("q") || "";
   document.querySelectorAll("#search-input, #mobile-search").forEach(input => input.value = state.query);
   selectCategory(state.category);
-  renderBasket();
-
+  renderBasketDrawer();
   try {
     state.products = await getProductsFromGoogleSheets();
     renderProducts();
@@ -150,22 +141,52 @@ async function initialise() {
 
 document.addEventListener("click", event => {
   const category = event.target.closest("[data-category-filter]");
-  if (category) { event.preventDefault(); selectCategory(category.dataset.categoryFilter); }
+  if (category) {
+    event.preventDefault();
+    selectCategory(category.dataset.categoryFilter);
+  }
+
   const card = event.target.closest("[data-product-id]");
-  const product = card && state.products.find(item => String(item.id) === String(card.dataset.productId));
-  if (event.target.closest(".view-product") && product) openModal(product);
+  const product = card && state.products.find(
+    item => String(item.id) === String(card.dataset.productId)
+  );
+
+  if (event.target.closest(".view-product") && product) {
+    openModal(product);
+  }
+
   const add = event.target.closest(".add-to-quote");
-  if (add && product) { addQuoteItem(product); renderBasket(); toggleDrawer(true); }
-  const remove = event.target.closest(".remove-quote-item");
-  if (remove) { removeQuoteItem(remove.dataset.id); renderBasket(); }
-  if (event.target.closest("#reset-catalogue")) { state.query = ""; document.querySelectorAll("#search-input, #mobile-search").forEach(input => input.value = ""); selectCategory("all"); }
-  if (event.target.closest("#basket-btn")) toggleDrawer(true);
-  if (event.target.closest("#close-drawer, #drawer-overlay")) toggleDrawer(false);
-  if (event.target.closest("#close-product-modal, #product-modal-overlay")) closeModal();
-  if (event.target.closest("#modal-minus")) { state.quantity = Math.max(1, state.quantity - 1); document.getElementById("modal-quantity").textContent = state.quantity; }
-  if (event.target.closest("#modal-plus")) { state.quantity += 1; document.getElementById("modal-quantity").textContent = state.quantity; }
-  if (event.target.closest("#modal-add") && state.selected) { addQuoteItem(state.selected, state.quantity); renderBasket(); closeModal(); toggleDrawer(true); }
-  if (event.target.closest("#menu-toggle")) document.getElementById("mobile-menu")?.classList.toggle("hidden");
+  if (add && product) {
+    addQuoteItem(product);
+    openBasketDrawer();
+  }
+
+  if (event.target.closest("#reset-catalogue")) {
+    state.query = "";
+    document.querySelectorAll("#search-input, #mobile-search")
+      .forEach(input => input.value = "");
+    selectCategory("all");
+  }
+
+  if (event.target.closest("#close-product-modal, #product-modal-overlay")) {
+    closeModal();
+  }
+
+  if (event.target.closest("#modal-minus")) {
+    state.quantity = Math.max(1, state.quantity - 1);
+    document.getElementById("modal-quantity").textContent = state.quantity;
+  }
+
+  if (event.target.closest("#modal-plus")) {
+    state.quantity += 1;
+    document.getElementById("modal-quantity").textContent = state.quantity;
+  }
+
+  if (event.target.closest("#modal-add") && state.selected) {
+    addQuoteItem(state.selected, state.quantity);
+    closeModal();
+    openBasketDrawer();
+  }
 });
 
 document.addEventListener("input", event => {
@@ -177,5 +198,4 @@ document.addEventListener("input", event => {
 });
 
 document.addEventListener("keydown", event => { if (event.key === "Escape") closeModal(); });
-window.addEventListener("educore:basket-change", renderBasket);
 document.addEventListener("DOMContentLoaded", initialise);
