@@ -1,4 +1,4 @@
-﻿import { getProductsFromGoogleSheets } from "./services/googleSheets.js";
+﻿﻿import { getProductsFromGoogleSheets } from "./services/googleSheets.js";
 import { addQuoteItem } from "./services/quoteBasket.js";
 import {
   openBasketDrawer,
@@ -41,7 +41,7 @@ function productCard(product) {
         <span class="font-bold text-[#F05A28]">${escapeHtml(product.price || "Request Quote")}</span>
         <button type="button" class="add-to-quote rounded-lg bg-[#F05A28] px-3 py-2 text-sm font-semibold text-white hover:bg-[#d94a1e]" data-product-id="${escapeHtml(product.id)}"><i class="fas fa-plus mr-1"></i>Add to Quote</button>
       </div>
-      <button class="view-product mt-3 text-left text-xs font-medium text-[#1A2B4C] hover:underline" type="button">View product details â†’</button>
+      <button class="view-product mt-3 text-left text-xs font-medium text-[#1A2B4C] hover:underline" type="button">View product details →</button>
     </div>
   </article>`;
 }
@@ -91,7 +91,7 @@ function ensureModal() {
           <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600"><span id="modal-sku" class="rounded-full bg-gray-100 px-3 py-1"></span><span id="modal-unit" class="rounded-full bg-gray-100 px-3 py-1"></span></div>
           <p id="modal-description" class="mt-4 text-sm leading-6 text-gray-600"></p>
           <ul id="modal-features" class="mt-4 list-disc space-y-1 pl-5 text-sm text-gray-600"></ul>
-          <div class="mt-6 flex flex-wrap items-center gap-3"><div class="flex items-center rounded-lg border"><button id="modal-minus" class="h-10 w-10" type="button" aria-label="Decrease quantity">âˆ’</button><span id="modal-quantity" class="w-10 text-center font-bold">1</span><button id="modal-plus" class="h-10 w-10" type="button" aria-label="Increase quantity">+</button></div><button id="modal-add" class="rounded-lg bg-[#F05A28] px-5 py-2.5 font-semibold text-white" type="button"><i class="fas fa-plus mr-1"></i>Add to Quote</button><a href="/quote.html" class="rounded-lg border border-[#1A2B4C] px-4 py-2.5 font-semibold text-[#1A2B4C]">View Quote</a></div>
+          <div class="mt-6 flex flex-wrap items-center gap-3"><div class="flex items-center rounded-lg border"><button id="modal-minus" class="h-10 w-10" type="button" aria-label="Decrease quantity">−</button><span id="modal-quantity" class="w-10 text-center font-bold">1</span><button id="modal-plus" class="h-10 w-10" type="button" aria-label="Increase quantity">+</button></div><button id="modal-add" class="rounded-lg bg-[#F05A28] px-5 py-2.5 font-semibold text-white" type="button"><i class="fas fa-plus mr-1"></i>Add to Quote</button><a href="/quote.html" class="rounded-lg border border-[#1A2B4C] px-4 py-2.5 font-semibold text-[#1A2B4C]">View Quote</a></div>
         </div>
       </div>
     </div>
